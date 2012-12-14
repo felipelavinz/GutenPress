@@ -95,7 +95,7 @@ class PostType extends \GutenPress\Generate\Generator{
 		$vars = array();
 		foreach ( $this->args['rewrite'] as $key => $val ) {
 			if ( $key === 'slug' ) {
-				$vars[] = "'$key' => '$val'";
+				$vars[] = "'$key' => __('$val', 'cpt_{$this->post_type}')";
 			} else {
 				$vars[] = "'$key' => ". $this->truthy( $val );
 			}
@@ -123,10 +123,10 @@ class PostType extends \GutenPress\Generate\Generator{
 	}
 	public function getMenuIcon(){
 		if ( empty($this->args['menu_icon']) )
-			return '';
+			return 'null';
 		$url = filter_var( $this->args['menu_icon'], FILTER_VALIDATE_URL );
 		$url = empty( $url ) ? 'null' : esc_url( $url );
-		return $url;
+		return "'". $url ."'";
 	}
 	public function getMenuPosition(){
 		return empty( $this->args['menu_position'] ) ? 'null' : (int)$this->args['menu_position'];

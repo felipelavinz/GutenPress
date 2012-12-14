@@ -37,6 +37,7 @@ class PostType{
 	private function actionsManager(){
 		add_action('admin_menu', array($this, 'adminMenu'));
 		add_action('admin_init', array($this, 'buildPostType'));
+		add_action('admin_notices', array($this, 'adminNotices'));
 	}
 	public function adminMenu(){
 		// initialize variables just before adding the admin page, so they might be filtered
@@ -47,6 +48,22 @@ class PostType{
 		$this->function   = apply_filters('gutenpress_build_post_type_function', array($this, 'adminPage'));
 		$admin_page = add_management_page( $this->page_title, $this->menu_title, $this->capability, $this->menu_slug, $this->function );
 		add_action( 'admin_print_scripts-'. $admin_page, array($this, 'enqueueAssets') );
+	}
+	public function adminNotices(){
+		if ( empty($_GET['gp_msg']) )
+			return;
+		// define messages
+		$msgs = apply_filters('gutenpress_build_post_type_notices', array(
+			'post_type_created' => __('Custom post type <strong>%1$s</strong> was correctly created. Please activate the plugin to enable', 'gutenpress')
+		));
+		if ( empty($msgs[ $_GET['gp_msg'] ]) )
+			return;
+		// sanitize msg vars
+		$msg_params = array();
+		foreach ( $_GET['gp_msg_params'] as $param ) {
+			$msg_params[] = esc_html( $param );
+		}
+		echo '<div class="updated"><p>', vsprintf( $msgs[ $_GET['gp_msg'] ], $msg_params ) ,'</p></div>';
 	}
 	public function enqueueAssets(){
 		$Assets = \GutenPress\Assets\Assets::getInstance();
@@ -63,7 +80,7 @@ class PostType{
 				'required' => 'required',
 				'size' => 25,
 				'maxlength' => 20,
-				'description' => __('Used as <code>post_type</code> on new entries. Max. 20 characters, no capital letters or spaces', 'gutenpress'),
+				'description' => __('A <strong>singular</strong> slug, used as <code>post_type</code> on new entries. Max. 20 characters, no capital letters or spaces', 'gutenpress'),
 				'description_inline' => true,
 				'required' => 'required'
 			)
@@ -472,7 +489,13 @@ class PostType{
 			$cpt = new \GutenPress\Generate\Generators\PostType( $post_type, $args );
 			if( $cpt->commit() ) {
 				// redirect to plugins page, with some custom notification info
-				wp_redirect( admin_url('plugins.php'), 303 );
+				$success_url = add_query_arg(array(
+					'gp_msg' => 'post_type_created',
+					'gp_msg_params' => array(
+						$cpt->label
+					)
+				), admin_url('plugins.php'));
+				wp_redirect( $success_url, 303 );
 				exit;
 			} else {
 				throw new \Exception( sprintf( __('Error creating post type %1$s', 'gutenpress'), $post_type ) );

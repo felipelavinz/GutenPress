@@ -27,10 +27,11 @@ jQuery(document).ready(function($){
 				el.attr('checked', 'checked');
 			}
 		});
-	}).on('keyup', '#gp-build-post_type-post_type', function(){
+	}).on('change', '#gp-build-post_type-post_type', function(){
 		var val = $(this).val().toLowerCase();
 		$(this).val( val );
-		$('#gp-build-post_type-capability-type-1, #gp-build-post_type-rewrite-1').val( val );
+		$('#gp-build-post_type-capability-type-1').val( val );
+		$('#gp-build-post_type-capability-type-2, #gp-build-post_type-rewrite-2').val( val +'s' );
 	}).on('keyup', '#gp-build-post_type-label', function(){
 		var el = $(this),
 			val = el.val();

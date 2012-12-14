@@ -21,8 +21,10 @@ function gp_register_autoload(){
 	$GutenPress = new SplClassLoader('GutenPress', WPMU_PLUGIN_DIR);
 	$GutenPress->register();
 
-	// register autoloader for generated plugins
-	// @todo
+	/**
+	 * register autoloader for generated plugins
+	 * @todo
+	 */
 
 }
 
@@ -36,7 +38,6 @@ function gp_admin_bootstrap(){
 		return;
 
 	load_muplugin_textdomain('gutenpress', 'GutenPress/i18n/' );
-
 	add_action('admin_enqueue_scripts', 'gp_admin_enqueue_scripts');
 
 	// post type model generator

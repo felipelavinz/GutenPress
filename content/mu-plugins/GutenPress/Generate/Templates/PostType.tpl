@@ -10,8 +10,11 @@ License: A "Slug" license name e.g. GPL2
 */
 
 class gp_cpt_%1$s extends GutenPress\Model\PostType{
-	public static function registerPostType(){
-		register_post_type( '%1$s', array(
+	protected static function setPostType(){
+		return '%1$s';
+	}
+	protected static function setPostTypeObject(){
+		return array(
 			'label' => _x('%2$s', '%1$s', 'cpt_%1$s'),
 			'labels' => array(
 				'name' => _x('%3$s', '%1$s', 'cpt_%1$s'),
@@ -37,7 +40,7 @@ class gp_cpt_%1$s extends GutenPress\Model\PostType{
 			'show_in_menu' => %22$s,
 			'show_in_admin_bar' => %23$s,
 			'menu_position' => %24$s,
-			'menu_icon' => '%25$s',
+			'menu_icon' => %25$s,
 			'capability_type' => %26$s,
 			'hierarchical' => %27$s,
 			'supports' => %28$s,
@@ -45,7 +48,8 @@ class gp_cpt_%1$s extends GutenPress\Model\PostType{
 			'rewrite' => %30$s,
 			'query_var' => %31$s,
 			'can_export' => %32$s
-		) );
+		);
 	}
 }
 add_action( 'init', array('gp_cpt_%1$s', 'registerPostType') );
+register_activation_hook( __FILE__, array('gp_cpt_%1$s', 'activatePlugin') );
