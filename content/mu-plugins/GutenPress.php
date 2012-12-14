@@ -1,0 +1,55 @@
+<?php
+/**
+ * @package GutenPress
+ * @version 0.1
+ */
+/*
+Plugin Name: GutenPress
+Plugin URI:
+Description: Register autoload instances to manage GutenPress files and other bootstraping actions
+Author: Felipe Lavin
+Version: 0.1
+Author URI: http://www.yukei.net
+*/
+
+add_action('muplugins_loaded', 'gp_register_autoload');
+function gp_register_autoload(){
+
+	require_once WPMU_PLUGIN_DIR .'/GutenPress/Autoload/SplClassLoader.php';
+
+	// register GutenPress autoloader
+	$GutenPress = new SplClassLoader('GutenPress', WPMU_PLUGIN_DIR);
+	$GutenPress->register();
+
+	// register autoloader for generated plugins
+	// @todo
+
+}
+
+add_action('plugins_loaded', 'gp_admin_bootstrap');
+function gp_admin_bootstrap(){
+	if ( ! is_admin() )
+		return;
+
+	load_muplugin_textdomain('gutenpress', 'GutenPress/i18n/' );
+
+	add_action('admin_enqueue_scripts', 'gp_admin_enqueue_scripts');
+
+	// post type model generator
+	$PostTypeBuilder = GutenPress\Build\PostType::getInstance();
+
+	do_action('gp_admin_bootstrap');
+}
+
+function gp_admin_enqueue_scripts(){
+	// register css and javascript assets
+	// instantiate class
+	$Assets = GutenPress\Assets\Assets::getInstance();
+	$Assets->setPrefix('gp-admin-');
+	// register assets
+	$Assets->registerStyle(
+		'form-styles',
+		$Assets->styleUrl('FormStyles')
+	);
+	do_action('gp_admin_register_assets', $Assets);
+}

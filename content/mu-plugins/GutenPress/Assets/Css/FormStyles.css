@@ -1,0 +1,31 @@
+.gutenpress-form .form-table tr{
+	border-top: 1px dotted #eee;
+}
+.gutenpress-form .form-table tr:first-child{
+	border-top: 0;
+}
+.gutenpress-form .form-table th{
+	border-right: 1px dotted #eee;
+}
+.gutenpress-form .form-table td p:last-child{
+	margin-bottom: 0;
+}
+.gutenpress-form fieldset .control-group label{
+	display: inline-block;
+	text-align: right;
+	min-width: 165px;
+	padding-right: 1em;
+}
+@media only screen and (max-width:900px){
+	.gutenpress-form fieldset .control-group{
+		margin-top: 1em;
+	}
+	.gutenpress-form fieldset .control-group:first-child{
+		margin-top: 0;
+	}
+	.gutenpress-form fieldset .control-group label{
+		display: block;
+		min-width: 0;
+		text-align: left;
+	}
+}

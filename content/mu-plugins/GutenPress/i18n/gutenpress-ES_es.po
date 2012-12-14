@@ -1,0 +1,436 @@
+# Copyright (C) 2012 GutenPress
+# This file is distributed under the same license as the GutenPress package.
+msgid ""
+msgstr ""
+"Project-Id-Version: GutenPress 0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/GutenPress\n"
+"POT-Creation-Date: 2012-12-10 14:50:27+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-12-10 16:25-0300\n"
+"Last-Translator: Felipe Lavín <flavin@ayerviernes.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: AdminPages/AdminPage.php:37
+msgid "Las opciones se han guardado correctamente"
+msgstr ""
+
+#: AdminPages/Theme.php:17
+msgid "Guardar"
+msgstr ""
+
+#: Build/PostType.php:43
+msgid "Custom Post Type generator"
+msgstr "Generador de Tipos de contenido personalizados"
+
+#: Build/PostType.php:44
+msgid "Post Type generator"
+msgstr "Generador de tipos de contenido"
+
+#: Build/PostType.php:59
+msgid "Post type slug"
+msgstr "Slug del tipo de contenido"
+
+#: Build/PostType.php:66
+msgid "Used as <code>post_type</code> on new entries. Max. 20 characters, no capital letters or spaces"
+msgstr "Se utiliza como <code>post_type</code> en las nuevas entradas. 20 caracteres máx; sin mayúsculas ni espacios"
+
+#: Build/PostType.php:72
+msgid "Label"
+msgstr "Etiqueta"
+
+#: Build/PostType.php:76
+msgid "A <strong>plural</strong> descriptive name for the post type"
+msgstr "Un nombre descriptivo en <stong>plural</strong> para este tipo de contenido"
+
+#: Build/PostType.php:81
+msgid "Labels"
+msgstr "Etiquetas"
+
+#: Build/PostType.php:85
+msgid "Name"
+msgstr "Nombre"
+
+#: Build/PostType.php:89
+msgid "Name for the post type, plural"
+msgstr "Nombre del tipo de contenido, en plural"
+
+#: Build/PostType.php:92
+#: Build/PostType.php:118
+#: Build/PostType.php:199
+msgid "%s"
+msgstr "%s"
+
+#: Build/PostType.php:96
+msgid "Singular Name"
+msgstr "Nombre en singular"
+
+#: Build/PostType.php:100
+msgid "Name for one object of this post type"
+msgstr "El nombre para 1 objeto de este tipo de contenido"
+
+#: Build/PostType.php:105
+msgid "Add New"
+msgstr "Agregar nuevo"
+
+#: Build/PostType.php:109
+#: Build/PostType.php:127
+msgid "Add new %s"
+msgstr "Agregar nuevo %s"
+
+#: Build/PostType.php:114
+msgid "All Items"
+msgstr "Todos los elementos"
+
+#: Build/PostType.php:123
+msgid "Add New Item"
+msgstr "Agregar nuevo elemento"
+
+#: Build/PostType.php:132
+msgid "Edit Item"
+msgstr "Editar elemento"
+
+#: Build/PostType.php:136
+msgid "Edit %s"
+msgstr "Editar %s"
+
+#: Build/PostType.php:141
+msgid "New Item"
+msgstr "Nuevo elemento"
+
+#: Build/PostType.php:145
+msgid "New %s"
+msgstr "Nuevo %s"
+
+#: Build/PostType.php:150
+msgid "View Item"
+msgstr "Ver elemento"
+
+#: Build/PostType.php:154
+msgid "View %s"
+msgstr "Ver %s"
+
+#: Build/PostType.php:159
+msgid "Search Items"
+msgstr "Buscar elementos"
+
+#: Build/PostType.php:163
+msgid "Search %s"
+msgstr "Buscar %s"
+
+#: Build/PostType.php:168
+msgid "Not Found"
+msgstr "No encontrado"
+
+#: Build/PostType.php:172
+msgid "No %s found"
+msgstr "No se han encontrado %s"
+
+#: Build/PostType.php:177
+msgid "Not Found in Trash"
+msgstr "No encontrado en la papelera"
+
+#: Build/PostType.php:181
+msgid "No %s found in trash"
+msgstr "No se han encontrado %s en la papelera"
+
+#: Build/PostType.php:186
+msgid "Parent Item"
+msgstr "Elemento padre"
+
+#: Build/PostType.php:190
+msgid "Parent %s"
+msgstr "%s padre"
+
+#: Build/PostType.php:195
+msgid "Menu Name"
+msgstr "Nombre en menú"
+
+#: Build/PostType.php:206
+msgid "Description"
+msgstr "Descripción"
+
+#: Build/PostType.php:211
+msgid "A short descriptive summary of what the post type is"
+msgstr "Un breve sumario que describa qué es este tipo de contenido"
+
+#: Build/PostType.php:215
+msgid "Public"
+msgstr "Público"
+
+#: Build/PostType.php:218
+msgid "True: Post type is intended for public use. This includes on the front end and in wp-admin"
+msgstr "Verdadero: el tipo de contenido tiene uso público. Esto incluye la parte pública y la administración"
+
+#: Build/PostType.php:219
+msgid "False: Post type is not intended to be used publicly and should generally be unavailable in wp-admin and on the front end unless explicitly planned for elsewhere"
+msgstr "Falso: el tipo de contenido no tiene uso público y por lo general no debe estar disponible en la administración ni en la parte pública a menos que se indique específicamente en otra parte"
+
+#: Build/PostType.php:223
+msgid "Whether a post type is intended to be used publicly either via the admin interface or by front-end users"
+msgstr "Indicar si un tipo de contenido tendrá uso público ya sea a través de la interfaz de administración o por los usuarios de la parte pública"
+
+#: Build/PostType.php:227
+msgid "Exclude from search"
+msgstr "Excluir de la búsqueda"
+
+#: Build/PostType.php:230
+msgid "True: search will not include posts of this post type"
+msgstr "Verdadero: la búsqueda no incluirá contenidos de este tipo"
+
+#: Build/PostType.php:231
+msgid "False: search <strong>will</strong> posts of this post type"
+msgstr "Falso: la búsqueda <strong>sí incluirá</strong> contenidos de este tipo"
+
+#: Build/PostType.php:234
+msgid "Note: If you want to show these posts on taxonomy terms lists, you must set it to True"
+msgstr "Nota: si quieres mostrar estos contenidos en listas de términos de taxonomías, debes indicar \"Verdadero\""
+
+#: Build/PostType.php:239
+msgid "Publicly Queryable"
+msgstr "Consultable públicamente"
+
+#: Build/PostType.php:242
+msgid "Whether queries can be performed on the front end as part of <code>parse_request()</code>"
+msgstr "Indica si se pueden realizar consultas en la parte pública como parte de <code>parse_request()</code>"
+
+#: Build/PostType.php:248
+msgid "Show UI"
+msgstr "Mostrar UI"
+
+#: Build/PostType.php:251
+msgid "Whether to generate a default UI for managing this post type in the admin"
+msgstr "Indica si se generará la Interfaz de Usuario predeterminada para gestionar este tipo de contenidos en la administración"
+
+#: Build/PostType.php:257
+msgid "Show in Nav Menus"
+msgstr "Mostrar en Menús de navegación"
+
+#: Build/PostType.php:260
+msgid "Whether this post type is available for selection in navigation menus"
+msgstr "Indica si este tipo de contenido está disponible para seleccionarlo en los menús de navegación"
+
+#: Build/PostType.php:266
+msgid "Show in menu"
+msgstr "Mostrar en el menú"
+
+#: Build/PostType.php:270
+msgid "Do not display in the admin menu"
+msgstr "No mostrar en el menú de administración"
+
+#: Build/PostType.php:271
+msgid "Display as a top level menu"
+msgstr "Mostrar como menú de primer nivel"
+
+#: Build/PostType.php:276
+msgid "Where to show the post type in the admin menu. \"Show UI\" must be True"
+msgstr "Dónde se mostrará el tipo de contenido en el menú de administración. \"Mostrar UI\" debe ser Verdadero"
+
+#: Build/PostType.php:281
+msgid "Show in admin bar"
+msgstr "Mostrar en el menú de administración"
+
+#: Build/PostType.php:284
+msgid "Whether to make this post type available in the WordPress admin bar"
+msgstr "Indica si este tipo de contenido estará disponible en la barra de administración de WordPress"
+
+#: Build/PostType.php:290
+msgid "Menu position"
+msgstr "Posición en el menú"
+
+#: Build/PostType.php:294
+msgid "The position in the menu order the post type should appear. \"Show in menu\" must be true"
+msgstr "La posición en el orden del menú en que se debería mostrar este tipo de contenido. \"Mostrar en el menú\" debe ser verdadero"
+
+#: Build/PostType.php:299
+msgid "Menu icon"
+msgstr "Ícono del menú"
+
+#: Build/PostType.php:303
+msgid "The URL to the icon to be used for this menu"
+msgstr "La URL al ícono utilizado en este menú"
+
+#: Build/PostType.php:307
+msgid "Supports"
+msgstr "Soporta"
+
+#: Build/PostType.php:310
+msgid "Title"
+msgstr "Título"
+
+#: Build/PostType.php:311
+msgid "Editor (content)"
+msgstr "Editor (contenido)"
+
+#: Build/PostType.php:312
+msgid "Author"
+msgstr "Autor"
+
+#: Build/PostType.php:313
+msgid "Featured image"
+msgstr "Imagen destacada"
+
+#: Build/PostType.php:314
+msgid "Excerpt"
+msgstr "Extracto"
+
+#: Build/PostType.php:315
+msgid "Trackbacks"
+msgstr "Trackbacks"
+
+#: Build/PostType.php:316
+msgid "Custom fields"
+msgstr "Campos personalizados"
+
+#: Build/PostType.php:317
+msgid "Comments"
+msgstr "Comentarios"
+
+#: Build/PostType.php:318
+msgid "Revisions"
+msgstr "Revisiones"
+
+#: Build/PostType.php:319
+msgid "Page attributes: menu order, parent (if hierarchical is true)"
+msgstr "Atributos de página: orden del menú, padre (si \"jerárquico\" es verdadero)"
+
+#: Build/PostType.php:320
+msgid "Post formats"
+msgstr "Formatos de contenido"
+
+#: Build/PostType.php:325
+msgid "Capability Type"
+msgstr "Tipo de capacidad"
+
+#: Build/PostType.php:327
+msgid "A singular and plural slug to use as base to construct the capabilities."
+msgstr "Un slug en singular y plural que se usarán como base para construir las capacidades."
+
+#: Build/PostType.php:331
+msgid "Singular slug"
+msgstr "Slug singular"
+
+#: Build/PostType.php:338
+msgid "Plural slug"
+msgstr "Slug plural"
+
+#: Build/PostType.php:347
+msgid "Hierarchical"
+msgstr "Jerárquico"
+
+#: Build/PostType.php:350
+msgid "Whether the post type is hierarchical. Allows Parent to be specified. The 'supports' parameter should contain 'page-attributes' to show the parent select box on the editor page"
+msgstr "Indica si este tipo de contenido es jerárquico. Permite que se especifique un padre. El parámetro \"Soporta\" debe contemplar los \"atributos de página\" para mostrar la caja de selección del padre en la página del editor."
+
+#: Build/PostType.php:355
+msgid "Has archive"
+msgstr "Tiene archivo"
+
+#: Build/PostType.php:358
+msgid "Enables post type archives"
+msgstr "Habilita el archivo de este tipo de contenido"
+
+#: Build/PostType.php:365
+msgid "Rewrite"
+msgstr "Reescritura"
+
+#: Build/PostType.php:369
+msgid "Slug"
+msgstr "Slug"
+
+#: Build/PostType.php:373
+msgid "Customize the permastruct slug"
+msgstr "Personalizar el slug para los permalinks"
+
+#: Build/PostType.php:377
+msgid "With Front"
+msgstr "Con Frontal"
+
+#: Build/PostType.php:381
+msgid "Buid feeds permastruct"
+msgstr ""
+
+#: Build/PostType.php:385
+msgid "Build pagination permastruct"
+msgstr "Construir permalinks para paginación"
+
+#: Build/PostType.php:391
+msgid "Query Var"
+msgstr "Variable para consultas"
+
+#: Build/PostType.php:394
+msgid "True: can use <code>/?{post_type}={single_post_slug}</code> to load an specific post"
+msgstr "Verdadero: se puede utilizar <code>/?{post_type}={slug_de_entrada}</code> para cargar un contenido específico"
+
+#: Build/PostType.php:395
+msgid "False: can't use <code>$post_type</code> to load a post"
+msgstr "Falso: no se puede utilizar <code>$post_type</code> para cargar un post"
+
+#: Build/PostType.php:402
+msgid "Can export?"
+msgstr "¿Se puede exportar?"
+
+#: Build/PostType.php:405
+msgid "Can this post type be exported?"
+msgstr "¿Se puede exportar este tipo de contenido?"
+
+#: Build/PostType.php:410
+msgid "Submit"
+msgstr "Enviar"
+
+#: Forms/Element/YesNo.php:8
+msgid "Yes"
+msgstr "Sí"
+
+#: Forms/Element/YesNo.php:9
+msgid "No"
+msgstr "No"
+
+#: Forms/Form.php:42
+msgid "The $view parameter must be a subclass of \\GutenPress\\Forms\\View"
+msgstr ""
+
+#: Helpers/Exception.php:7
+msgid "Exception: %1$s (on %2$s:%3$s)"
+msgstr ""
+
+#: Helpers/Exceptions/NonceFail.php:14
+msgid "Nonce verification Exception: nonce value it's empty on action '%1$s' (on %2$s:%3$s)"
+msgstr ""
+
+#: Helpers/Exceptions/NonceFail.php:16
+msgid "Nonce verification Exception: '%1$s' it's not a valid nonce for the '%2$s' action (on %3$s:%4$s)"
+msgstr ""
+
+#: Validate/Validate.php:48
+msgid "There is no data to validate on index %1$s"
+msgstr ""
+
+#: Validate/Validations/Boolean.php:34
+msgid "The value for this field should be of a true/false type"
+msgstr ""
+
+#: Validate/Validations/Required.php:12
+msgid "Please complete this field"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "GutenPress"
+msgstr ""
+
+#. #-#-#-#-#  GutenPress.pot (GutenPress 0.1)  #-#-#-#-#
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  GutenPress.pot (GutenPress 0.1)  #-#-#-#-#
+#. Author URI of the plugin/theme
+msgid "http://www.yukei.net"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "WordPress development toolset"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Felipe Lavin"
+msgstr ""
+
