@@ -26,6 +26,10 @@ function gp_register_autoload(){
 
 }
 
+if ( is_readable(__DIR__ .'/GutenPress/CustomBootstrap.php' ) ) {
+	include_once __DIR__ .'/GutenPress/CustomBootstrap.php';
+}
+
 add_action('plugins_loaded', 'gp_admin_bootstrap');
 function gp_admin_bootstrap(){
 	if ( ! is_admin() )
