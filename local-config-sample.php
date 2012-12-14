@@ -12,12 +12,13 @@ define( 'DB_PASSWORD', 'local-db-password' );
 define( 'DB_HOST', 'localhost' ); // Probably 'localhost'
 
 // ==================================================
-// Log Errors
+// Log Errors and save $wpdb queries
 // Should be turned on for development
 // Also, super-useful when using the Debug Bar plugin
 // ==================================================
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
+define( 'SAVEQUERIES', true );
 
 // ================================
 // Language
