@@ -7,3 +7,4 @@
 /content/debug.log
 *.sublime-*
 /content/mu-plugins/GutenPress/CustomBootstrap.php
+/content/languages/
