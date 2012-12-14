@@ -64,9 +64,9 @@ abstract class Generator{
 	public function commit(){
 		// check if the target path exists or try to create it
 		if ( ! file_exists($this->target_path) ) {
-			$mkdir = mkdir( $this->target_path, 0775, true );
+			$mkdir = mkdir( $this->target_path, 0777, true );
 			if ( ! $mkdir ) {
-				throw new \Exception( __( sprintf('Failed to create directory at $1%s', $this->target_path), 'gutenpress' ) );
+				throw new \Exception( __( sprintf('Failed to create directory at %1$s', $this->target_path), 'gutenpress' ) );
 			}
 		}
 
@@ -78,7 +78,6 @@ abstract class Generator{
 			$this->writer->createFile( $path, $contents );
 		}
 
-		$this->writer->write();
-
+		return $this->writer->write();
 	}
 }

@@ -472,9 +472,10 @@ class PostType{
 			$cpt = new \GutenPress\Generate\Generators\PostType( $post_type, $args );
 			if( $cpt->commit() ) {
 				// redirect to plugins page, with some custom notification info
-				//wp_redirect()
+				wp_redirect( admin_url('plugins.php'), 303 );
+				exit;
 			} else {
-				throw new \Exception( sprintf( __('Error creating post type $1%s', 'gutenpress'), $post_type ) );
+				throw new \Exception( sprintf( __('Error creating post type %1$s', 'gutenpress'), $post_type ) );
 			}
 
 		} catch ( Exception $e ) {

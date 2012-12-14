@@ -90,7 +90,7 @@ class PostType extends \GutenPress\Generate\Generator{
 		return "'". $str ."'";
 	}
 	public function getRewrite(){
-		if ( (bool)$this->args['rewrite'] === false )
+		if ( (bool)$this->args['rewrite'] === false || empty($this->args['rewrite']) )
 			return 'false';
 		$vars = array();
 		foreach ( $this->args['rewrite'] as $key => $val ) {
@@ -103,10 +103,12 @@ class PostType extends \GutenPress\Generate\Generator{
 		return 'array( '. implode(', ', $vars) .' )';
 	}
 	public function getSupports(){
-		$supports = array_map( array($this, 'quoteString'), $this->args['supports'] );
+		$supports = empty($this->args['supports']) ? array() : array_map( array($this, 'quoteString'), $this->args['supports'] );
 		return 'array( '. implode(', ', $supports) .' )';
 	}
 	public function getCapabilityType(){
+		if ( empty($this->args['capabilities']) )
+			return '';
 		$capabilities = array_map( array($this, 'quoteString'), $this->args['capabilities'] );
 		return 'array( '.  implode(', ', $capabilities) .' )';
 	}
@@ -120,6 +122,8 @@ class PostType extends \GutenPress\Generate\Generator{
 		$this->args['show_in_menu'];
 	}
 	public function getMenuIcon(){
+		if ( empty($this->args['menu_icon']) )
+			return '';
 		$url = filter_var( $this->args['menu_icon'], FILTER_VALIDATE_URL );
 		$url = empty( $url ) ? 'null' : esc_url( $url );
 		return $url;
