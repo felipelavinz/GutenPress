@@ -98,6 +98,17 @@ class PostType{
 			__('Labels', 'gutenpress'),
 			array(),
 			array(
+				new Element\Select(
+					__('Use gender', 'gutenpress'),
+					'labels_gender',
+					array(
+						'masculine' => _x('Masculine', 'gutenpress labels gender', 'gutenpress'),
+						'feminine' => _x('Feminine', 'gutenpress labels gender', 'gutenpress')
+					),
+					array(
+						'id' => 'gp-build-post_type-labels-gender'
+					)
+				),
 				new Element\InputText(
 					__('Name', 'gutenpress'),
 					$form->getName('labels][name'),
@@ -106,7 +117,11 @@ class PostType{
 						'placeholder' => __('Name for the post type, plural', 'gutenpress'),
 						'readonly' => 'readonly',
 						'class' => 'regular-text',
-						'data-format' => __('%s', 'gutenpress')
+						'data-number' => 'plural',
+						/* translators: name label masculine format */
+						'data-format-masculine' => _x('%s', 'name label masculine format', 'gutenpress'),
+						/* translators: name label feminine format */
+						'data-format-feminine' => _x('%s', 'name label feminine format', 'gutenpress')
 					)
 				),
 				new Element\InputText(
@@ -123,7 +138,10 @@ class PostType{
 					$form->getName('labels][add_new'),
 					array(
 						'data-number' => 'singular',
-						'data-format' => __('Add new %s', 'gutenpress'),
+						/* translators: add new label masculine format */
+						'data-format-masculine' => _x('Add new %s', 'add new label masculine format', 'gutenpress'),
+						/* translators: add new label feminine format */
+						'data-format-feminine' => _x('Add new %s', 'add new label feminine format', 'gutenpress'),
 						'class' => 'regular-text'
 					)
 				),
@@ -132,7 +150,10 @@ class PostType{
 					$form->getName('labels][all_items'),
 					array(
 						'data-number' => 'plural',
-						'data-format' => __('%s', 'gutenpress'),
+						/* translators: all items label masculine format */
+						'data-format-masculine' => _x('%s', 'all items label masculine format', 'gutenpress'),
+						/* translators: all items label feminine format */
+						'data-format-feminine' => _x('%s', 'all items label feminine format', 'gutenpress'),
 						'class' => 'regular-text'
 					)
 				),
@@ -141,7 +162,10 @@ class PostType{
 					$form->getName('labels][add_new_item'),
 					array(
 						'data-number' => 'singular',
-						'data-format' => __('Add new %s', 'gutenpress'),
+						/* translators: add new item label masculine format */
+						'data-format-masculine' => _x('Add new %s', 'add new item label masculine format', 'gutenpress'),
+						/* translators: add new item label feminine format */
+						'data-format-feminine' => _x('Add new %s', 'add new item label feminine format', 'gutenpress'),
 						'class' => 'regular-text'
 					)
 				),
@@ -150,7 +174,10 @@ class PostType{
 					$form->getName('labels][edit_item'),
 					array(
 						'data-number' => 'singular',
-						'data-format' => __('Edit %s', 'gutenpress'),
+						/* translators: edit item label masculine format */
+						'data-format-masculine' => _x('Edit %s', 'edit item label masculine format', 'gutenpress'),
+						/* translators: edit item label feminine format */
+						'data-format-feminine' => _x('Edit %s', 'edit item label feminine format', 'gutenpress'),
 						'class' => 'regular-text'
 					)
 				),
@@ -159,7 +186,10 @@ class PostType{
 					$form->getName('labels][new_item'),
 					array(
 						'data-number' => 'singular',
-						'data-format' => __('New %s', 'gutenpress'),
+						/* translators: new item label masculine format */
+						'data-format-masculine' => _x('New %s', 'new item label masculine format', 'gutenpress'),
+						/* translators: new item label feminine format */
+						'data-format-feminine' => _x('New %s', 'new item label feminine format', 'gutenpress'),
 						'class' => 'regular-text'
 					)
 				),
@@ -168,7 +198,10 @@ class PostType{
 					$form->getName('labels][view_item'),
 					array(
 						'data-number' => 'singular',
-						'data-format' => __('View %s', 'gutenpress'),
+						/* translators: view item label masculine format */
+						'data-format-masculine' => _x('View %s', 'view item label masculine format', 'gutenpress'),
+						/* translators: view item label feminine format */
+						'data-format-feminine' => _x('View %s', 'view item label feminine format', 'gutenpress'),
 						'class' => 'regular-text'
 					)
 				),
@@ -177,7 +210,10 @@ class PostType{
 					$form->getName('labels][search_items'),
 					array(
 						'data-number' => 'plural',
-						'data-format' => __('Search %s', 'gutenpress'),
+						/* translators: search items label masculine format */
+						'data-format-masculine' => _x('Search %s', 'search items label masculine format', 'gutenpress'),
+						/* translators: search items label femimine format */
+						'data-format-feminine' => _x('Search %s', 'search items label feminine format', 'gutenpress'),
 						'class' => 'regular-text'
 					)
 				),
@@ -186,7 +222,10 @@ class PostType{
 					$form->getName('labels][not_found'),
 					array(
 						'data-number' => 'plural',
-						'data-format' => __('No %s found', 'gutenpress'),
+						/* translators: not found label masculine format */
+						'data-format-masculine' => _x('No %s found', 'not found label masculine format', 'gutenpress'),
+						/* translators: not found label feminine format */
+						'data-format-feminine' => _x('No %s found', 'not found label feminine format', 'gutenpress'),
 						'class' => 'regular-text'
 					)
 				),
@@ -195,7 +234,10 @@ class PostType{
 					$form->getName('labels][not_found_in_trash'),
 					array(
 						'data-number' => 'plural',
-						'data-format' => __('No %s found in trash', 'gutenpress'),
+						/* translators: not found in trash label masculine format */
+						'data-format-masculine' => _x('No %s found in trash', 'not found in trash label masculine format', 'gutenpress'),
+						/* translators: not found in trash label feminine format */
+						'data-format-feminine' => _x('No %s found in trash', 'not found in trash label feminine format', 'gutenpress'),
 						'class' => 'regular-text'
 					)
 				),
@@ -204,7 +246,10 @@ class PostType{
 					$form->getName('labels][parent_item_colon'),
 					array(
 						'data-number' => 'singular',
-						'data-format' => __('Parent %s', 'gutenpress'),
+						/* translators: paren item label masculine format */
+						'data-format-masculine' => _x('Parent %s', 'parent item label masculine format', 'gutenpress'),
+						/* translators: parent item label feminine format */
+						'data-format-feminine' => _x('Parent %s', 'parent item label feminine format', 'gutenpress'),
 						'class' => 'regular-text'
 					)
 				),
@@ -213,7 +258,10 @@ class PostType{
 					$form->getName('labels][menu_name'),
 					array(
 						'data-number' => 'plural',
-						'data-format' => __('%s', 'gutenpress'),
+						/* translators: menu name label masculine format */
+						'data-format-masculine' => _x('%s', 'menu name label masculine format', 'gutenpress'),
+						/* translators: menu name label feminie format */
+						'data-format-feminine' => _x('%s', 'menu name label feminine format', 'gutenpress'),
 						'class' => 'regular-text'
 					)
 				)

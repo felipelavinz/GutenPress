@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GutenPress 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/GutenPress\n"
-"POT-Creation-Date: 2012-12-10 14:50:27+00:00\n"
+"POT-Creation-Date: 2012-12-17 04:26:44+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,382 +20,518 @@ msgstr ""
 msgid "Guardar"
 msgstr ""
 
-#: Build/PostType.php:43
+#: Build/PostType.php:44
 msgid "Custom Post Type generator"
 msgstr ""
 
-#: Build/PostType.php:44
+#: Build/PostType.php:45
 msgid "Post Type generator"
 msgstr ""
 
-#: Build/PostType.php:59
-msgid "Post type slug"
-msgstr ""
-
-#: Build/PostType.php:66
+#: Build/PostType.php:57
 msgid ""
-"Used as <code>post_type</code> on new entries. Max. 20 characters, no "
-"capital letters or spaces"
-msgstr ""
-
-#: Build/PostType.php:72
-msgid "Label"
+"Custom post type <strong>%1$s</strong> was correctly created. Please "
+"activate the plugin to enable"
 msgstr ""
 
 #: Build/PostType.php:76
-msgid "A <strong>plural</strong> descriptive name for the post type"
+msgid "Post type slug"
 msgstr ""
 
-#: Build/PostType.php:81
-msgid "Labels"
-msgstr ""
-
-#: Build/PostType.php:85
-msgid "Name"
+#: Build/PostType.php:83
+msgid ""
+"A <strong>singular</strong> slug, used as <code>post_type</code> on new "
+"entries. Max. 20 characters, no capital letters or spaces"
 msgstr ""
 
 #: Build/PostType.php:89
-msgid "Name for the post type, plural"
+msgid "Label"
 msgstr ""
 
-#: Build/PostType.php:92 Build/PostType.php:118 Build/PostType.php:199
-msgid "%s"
+#: Build/PostType.php:93
+msgid "A <strong>plural</strong> descriptive name for the post type"
 msgstr ""
 
-#: Build/PostType.php:96
-msgid "Singular Name"
+#: Build/PostType.php:98
+msgid "Labels"
 msgstr ""
 
-#: Build/PostType.php:100
-msgid "Name for one object of this post type"
+#: Build/PostType.php:102
+msgid "Use gender"
 msgstr ""
 
 #: Build/PostType.php:105
-msgid "Add New"
+msgctxt "gutenpress labels gender"
+msgid "Masculine"
 msgstr ""
 
-#: Build/PostType.php:109 Build/PostType.php:127
-msgid "Add new %s"
+#: Build/PostType.php:106
+msgctxt "gutenpress labels gender"
+msgid "Feminine"
 msgstr ""
 
-#: Build/PostType.php:114
-msgid "All Items"
+#: Build/PostType.php:113
+msgid "Name"
 msgstr ""
 
+#: Build/PostType.php:117
+msgid "Name for the post type, plural"
+msgstr ""
+
+#. translators: name label masculine format
+#: Build/PostType.php:121
+msgctxt "name label masculine format"
+msgid "%s"
+msgstr ""
+
+#. translators: name label feminine format
 #: Build/PostType.php:123
-msgid "Add New Item"
+msgctxt "name label feminine format"
+msgid "%s"
 msgstr ""
 
-#: Build/PostType.php:132
-msgid "Edit Item"
+#: Build/PostType.php:127
+msgid "Singular Name"
+msgstr ""
+
+#: Build/PostType.php:131
+msgid "Name for one object of this post type"
 msgstr ""
 
 #: Build/PostType.php:136
-msgid "Edit %s"
+msgid "Add New"
 msgstr ""
 
+#. translators: add new label masculine format
 #: Build/PostType.php:141
-msgid "New Item"
+msgctxt "add new label masculine format"
+msgid "Add new %s"
 msgstr ""
 
-#: Build/PostType.php:145
-msgid "New %s"
+#. translators: add new label feminine format
+#: Build/PostType.php:143
+msgctxt "add new label feminine format"
+msgid "Add new %s"
 msgstr ""
 
-#: Build/PostType.php:150
-msgid "View Item"
+#: Build/PostType.php:148
+msgid "All Items"
 msgstr ""
 
-#: Build/PostType.php:154
-msgid "View %s"
+#. translators: all items label masculine format
+#: Build/PostType.php:153
+msgctxt "all items label masculine format"
+msgid "%s"
 msgstr ""
 
-#: Build/PostType.php:159
-msgid "Search Items"
+#. translators: all items label feminine format
+#: Build/PostType.php:155
+msgctxt "all items label feminine format"
+msgid "%s"
 msgstr ""
 
-#: Build/PostType.php:163
-msgid "Search %s"
+#: Build/PostType.php:160
+msgid "Add New Item"
 msgstr ""
 
-#: Build/PostType.php:168
-msgid "Not Found"
+#. translators: add new item label masculine format
+#: Build/PostType.php:165
+msgctxt "add new item label masculine format"
+msgid "Add new %s"
+msgstr ""
+
+#. translators: add new item label feminine format
+#: Build/PostType.php:167
+msgctxt "add new item label feminine format"
+msgid "Add new %s"
 msgstr ""
 
 #: Build/PostType.php:172
+msgid "Edit Item"
+msgstr ""
+
+#. translators: edit item label masculine format
+#: Build/PostType.php:177
+msgctxt "edit item label masculine format"
+msgid "Edit %s"
+msgstr ""
+
+#. translators: edit item label feminine format
+#: Build/PostType.php:179
+msgctxt "edit item label feminine format"
+msgid "Edit %s"
+msgstr ""
+
+#: Build/PostType.php:184
+msgid "New Item"
+msgstr ""
+
+#. translators: new item label masculine format
+#: Build/PostType.php:189
+msgctxt "new item label masculine format"
+msgid "New %s"
+msgstr ""
+
+#. translators: new item label feminine format
+#: Build/PostType.php:191
+msgctxt "new item label feminine format"
+msgid "New %s"
+msgstr ""
+
+#: Build/PostType.php:196
+msgid "View Item"
+msgstr ""
+
+#. translators: view item label masculine format
+#: Build/PostType.php:201
+msgctxt "view item label masculine format"
+msgid "View %s"
+msgstr ""
+
+#. translators: view item label feminine format
+#: Build/PostType.php:203
+msgctxt "view item label feminine format"
+msgid "View %s"
+msgstr ""
+
+#: Build/PostType.php:208
+msgid "Search Items"
+msgstr ""
+
+#. translators: search items label masculine format
+#: Build/PostType.php:213
+msgctxt "search items label masculine format"
+msgid "Search %s"
+msgstr ""
+
+#. translators: search items label femimine format
+#: Build/PostType.php:215
+msgctxt "search items label feminine format"
+msgid "Search %s"
+msgstr ""
+
+#: Build/PostType.php:220
+msgid "Not Found"
+msgstr ""
+
+#. translators: not found label masculine format
+#: Build/PostType.php:225
+msgctxt "not found label masculine format"
 msgid "No %s found"
 msgstr ""
 
-#: Build/PostType.php:177
+#. translators: not found label feminine format
+#: Build/PostType.php:227
+msgctxt "not found label feminine format"
+msgid "No %s found"
+msgstr ""
+
+#: Build/PostType.php:232
 msgid "Not Found in Trash"
 msgstr ""
 
-#: Build/PostType.php:181
+#. translators: not found in trash label masculine format
+#: Build/PostType.php:237
+msgctxt "not found in trash label masculine format"
 msgid "No %s found in trash"
 msgstr ""
 
-#: Build/PostType.php:186
+#. translators: not found in trash label feminine format
+#: Build/PostType.php:239
+msgctxt "not found in trash label feminine format"
+msgid "No %s found in trash"
+msgstr ""
+
+#: Build/PostType.php:244
 msgid "Parent Item"
 msgstr ""
 
-#: Build/PostType.php:190
+#. translators: paren item label masculine format
+#: Build/PostType.php:249
+msgctxt "parent item label masculine format"
 msgid "Parent %s"
 msgstr ""
 
-#: Build/PostType.php:195
+#. translators: parent item label feminine format
+#: Build/PostType.php:251
+msgctxt "parent item label feminine format"
+msgid "Parent %s"
+msgstr ""
+
+#: Build/PostType.php:256
 msgid "Menu Name"
 msgstr ""
 
-#: Build/PostType.php:206
+#. translators: menu name label masculine format
+#: Build/PostType.php:261
+msgctxt "menu name label masculine format"
+msgid "%s"
+msgstr ""
+
+#. translators: menu name label feminie format
+#: Build/PostType.php:263
+msgctxt "menu name label feminine format"
+msgid "%s"
+msgstr ""
+
+#: Build/PostType.php:270
 msgid "Description"
 msgstr ""
 
-#: Build/PostType.php:211
+#: Build/PostType.php:275
 msgid "A short descriptive summary of what the post type is"
 msgstr ""
 
-#: Build/PostType.php:215
+#: Build/PostType.php:279
 msgid "Public"
 msgstr ""
 
-#: Build/PostType.php:218
+#: Build/PostType.php:282
 msgid ""
 "True: Post type is intended for public use. This includes on the front end "
 "and in wp-admin"
 msgstr ""
 
-#: Build/PostType.php:219
+#: Build/PostType.php:283
 msgid ""
 "False: Post type is not intended to be used publicly and should generally be "
 "unavailable in wp-admin and on the front end unless explicitly planned for "
 "elsewhere"
 msgstr ""
 
-#: Build/PostType.php:223
+#: Build/PostType.php:287
 msgid ""
 "Whether a post type is intended to be used publicly either via the admin "
 "interface or by front-end users"
 msgstr ""
 
-#: Build/PostType.php:227
+#: Build/PostType.php:291
 msgid "Exclude from search"
 msgstr ""
 
-#: Build/PostType.php:230
+#: Build/PostType.php:294
 msgid "True: search will not include posts of this post type"
 msgstr ""
 
-#: Build/PostType.php:231
+#: Build/PostType.php:295
 msgid "False: search <strong>will</strong> posts of this post type"
 msgstr ""
 
-#: Build/PostType.php:234
+#: Build/PostType.php:298
 msgid ""
 "Note: If you want to show these posts on taxonomy terms lists, you must set "
 "it to True"
 msgstr ""
 
-#: Build/PostType.php:239
+#: Build/PostType.php:303
 msgid "Publicly Queryable"
 msgstr ""
 
-#: Build/PostType.php:242
+#: Build/PostType.php:306
 msgid ""
 "Whether queries can be performed on the front end as part of "
 "<code>parse_request()</code>"
 msgstr ""
 
-#: Build/PostType.php:248
+#: Build/PostType.php:312
 msgid "Show UI"
 msgstr ""
 
-#: Build/PostType.php:251
+#: Build/PostType.php:315
 msgid ""
 "Whether to generate a default UI for managing this post type in the admin"
 msgstr ""
 
-#: Build/PostType.php:257
+#: Build/PostType.php:321
 msgid "Show in Nav Menus"
 msgstr ""
 
-#: Build/PostType.php:260
+#: Build/PostType.php:324
 msgid "Whether this post type is available for selection in navigation menus"
 msgstr ""
 
-#: Build/PostType.php:266
+#: Build/PostType.php:330
 msgid "Show in menu"
 msgstr ""
 
-#: Build/PostType.php:270
+#: Build/PostType.php:334
 msgid "Do not display in the admin menu"
 msgstr ""
 
-#: Build/PostType.php:271
+#: Build/PostType.php:335
 msgid "Display as a top level menu"
 msgstr ""
 
-#: Build/PostType.php:276
+#: Build/PostType.php:340
 msgid "Where to show the post type in the admin menu. \"Show UI\" must be True"
 msgstr ""
 
-#: Build/PostType.php:281
+#: Build/PostType.php:345
 msgid "Show in admin bar"
 msgstr ""
 
-#: Build/PostType.php:284
+#: Build/PostType.php:348
 msgid "Whether to make this post type available in the WordPress admin bar"
 msgstr ""
 
-#: Build/PostType.php:290
+#: Build/PostType.php:354
 msgid "Menu position"
 msgstr ""
 
-#: Build/PostType.php:294
+#: Build/PostType.php:358
 msgid ""
 "The position in the menu order the post type should appear. \"Show in menu\" "
 "must be true"
 msgstr ""
 
-#: Build/PostType.php:299
+#: Build/PostType.php:363
 msgid "Menu icon"
 msgstr ""
 
-#: Build/PostType.php:303
+#: Build/PostType.php:367
 msgid "The URL to the icon to be used for this menu"
 msgstr ""
 
-#: Build/PostType.php:307
+#: Build/PostType.php:371
 msgid "Supports"
 msgstr ""
 
-#: Build/PostType.php:310
+#: Build/PostType.php:374
 msgid "Title"
 msgstr ""
 
-#: Build/PostType.php:311
+#: Build/PostType.php:375
 msgid "Editor (content)"
 msgstr ""
 
-#: Build/PostType.php:312
+#: Build/PostType.php:376
 msgid "Author"
 msgstr ""
 
-#: Build/PostType.php:313
+#: Build/PostType.php:377
 msgid "Featured image"
 msgstr ""
 
-#: Build/PostType.php:314
+#: Build/PostType.php:378
 msgid "Excerpt"
 msgstr ""
 
-#: Build/PostType.php:315
+#: Build/PostType.php:379
 msgid "Trackbacks"
 msgstr ""
 
-#: Build/PostType.php:316
+#: Build/PostType.php:380
 msgid "Custom fields"
 msgstr ""
 
-#: Build/PostType.php:317
+#: Build/PostType.php:381
 msgid "Comments"
 msgstr ""
 
-#: Build/PostType.php:318
+#: Build/PostType.php:382
 msgid "Revisions"
 msgstr ""
 
-#: Build/PostType.php:319
+#: Build/PostType.php:383
 msgid "Page attributes: menu order, parent (if hierarchical is true)"
 msgstr ""
 
-#: Build/PostType.php:320
+#: Build/PostType.php:384
 msgid "Post formats"
 msgstr ""
 
-#: Build/PostType.php:325
+#: Build/PostType.php:389
 msgid "Capability Type"
 msgstr ""
 
-#: Build/PostType.php:327
+#: Build/PostType.php:391
 msgid ""
 "A singular and plural slug to use as base to construct the capabilities."
 msgstr ""
 
-#: Build/PostType.php:331
+#: Build/PostType.php:395
 msgid "Singular slug"
 msgstr ""
 
-#: Build/PostType.php:338
+#: Build/PostType.php:402
 msgid "Plural slug"
 msgstr ""
 
-#: Build/PostType.php:347
+#: Build/PostType.php:411
 msgid "Hierarchical"
 msgstr ""
 
-#: Build/PostType.php:350
+#: Build/PostType.php:414
 msgid ""
 "Whether the post type is hierarchical. Allows Parent to be specified. The "
 "'supports' parameter should contain 'page-attributes' to show the parent "
 "select box on the editor page"
 msgstr ""
 
-#: Build/PostType.php:355
+#: Build/PostType.php:419
 msgid "Has archive"
 msgstr ""
 
-#: Build/PostType.php:358
+#: Build/PostType.php:422
 msgid "Enables post type archives"
 msgstr ""
 
-#: Build/PostType.php:365
+#: Build/PostType.php:429
 msgid "Rewrite"
 msgstr ""
 
-#: Build/PostType.php:369
+#: Build/PostType.php:433
+msgid "Enable"
+msgstr ""
+
+#: Build/PostType.php:437
 msgid "Slug"
 msgstr ""
 
-#: Build/PostType.php:373
+#: Build/PostType.php:441
 msgid "Customize the permastruct slug"
 msgstr ""
 
-#: Build/PostType.php:377
+#: Build/PostType.php:445
 msgid "With Front"
 msgstr ""
 
-#: Build/PostType.php:381
-msgid "Buid feeds permastruct"
+#: Build/PostType.php:452
+msgid "Build feeds permastruct"
 msgstr ""
 
-#: Build/PostType.php:385
+#: Build/PostType.php:459
 msgid "Build pagination permastruct"
 msgstr ""
 
-#: Build/PostType.php:391
+#: Build/PostType.php:468
 msgid "Query Var"
 msgstr ""
 
-#: Build/PostType.php:394
+#: Build/PostType.php:471
 msgid ""
 "True: can use <code>/?{post_type}={single_post_slug}</code> to load an "
 "specific post"
 msgstr ""
 
-#: Build/PostType.php:395
+#: Build/PostType.php:472
 msgid "False: can't use <code>$post_type</code> to load a post"
 msgstr ""
 
-#: Build/PostType.php:402
+#: Build/PostType.php:479
 msgid "Can export?"
 msgstr ""
 
-#: Build/PostType.php:405
+#: Build/PostType.php:482
 msgid "Can this post type be exported?"
 msgstr ""
 
-#: Build/PostType.php:410
+#: Build/PostType.php:487
 msgid "Submit"
+msgstr ""
+
+#: Build/PostType.php:548
+msgid "Error creating post type %1$s"
 msgstr ""
 
 #: Forms/Element/YesNo.php:8
@@ -408,6 +544,10 @@ msgstr ""
 
 #: Forms/Form.php:42
 msgid "The $view parameter must be a subclass of \\GutenPress\\Forms\\View"
+msgstr ""
+
+#: Generate/Writer.php:33
+msgid "Couldn't write to file %1$s"
 msgstr ""
 
 #: Helpers/Exception.php:7

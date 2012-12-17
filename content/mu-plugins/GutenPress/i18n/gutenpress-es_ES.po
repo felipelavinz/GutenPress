@@ -4,13 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GutenPress 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/GutenPress\n"
-"POT-Creation-Date: 2012-12-10 14:50:27+00:00\n"
+"POT-Creation-Date: 2012-12-17 04:26:44+00:00\n"
+"PO-Revision-Date: 2012-12-17 01:28-0300\n"
+"Last-Translator: Felipe Lavín Z <felipe@yukei.net>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2012-12-10 16:25-0300\n"
-"Last-Translator: Felipe Lavín <flavin@ayerviernes.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
 
 #: AdminPages/AdminPage.php:37
 msgid "Las opciones se han guardado correctamente"
@@ -20,364 +21,495 @@ msgstr ""
 msgid "Guardar"
 msgstr ""
 
-#: Build/PostType.php:43
+#: Build/PostType.php:44
 msgid "Custom Post Type generator"
 msgstr "Generador de Tipos de contenido personalizados"
 
-#: Build/PostType.php:44
+#: Build/PostType.php:45
 msgid "Post Type generator"
 msgstr "Generador de tipos de contenido"
 
-#: Build/PostType.php:59
+#: Build/PostType.php:57
+msgid "Custom post type <strong>%1$s</strong> was correctly created. Please activate the plugin to enable"
+msgstr "El tipo personalizado de contenido <strong>%1$s</strong> fue creado correctamente. Por favor activa el plugin para habilitarlo"
+
+#: Build/PostType.php:76
 msgid "Post type slug"
 msgstr "Slug del tipo de contenido"
 
-#: Build/PostType.php:66
-msgid "Used as <code>post_type</code> on new entries. Max. 20 characters, no capital letters or spaces"
-msgstr "Se utiliza como <code>post_type</code> en las nuevas entradas. 20 caracteres máx; sin mayúsculas ni espacios"
+#: Build/PostType.php:83
+msgid "A <strong>singular</strong> slug, used as <code>post_type</code> on new entries. Max. 20 characters, no capital letters or spaces"
+msgstr "Un slug <strong>singular</strong>, se utiliza como <code>post_type</code> en las nuevas entradas. 20 caracteres máx; sin mayúsculas ni espacios"
 
-#: Build/PostType.php:72
+#: Build/PostType.php:89
 msgid "Label"
 msgstr "Etiqueta"
 
-#: Build/PostType.php:76
+#: Build/PostType.php:93
 msgid "A <strong>plural</strong> descriptive name for the post type"
 msgstr "Un nombre descriptivo en <stong>plural</strong> para este tipo de contenido"
 
-#: Build/PostType.php:81
+#: Build/PostType.php:98
 msgid "Labels"
 msgstr "Etiquetas"
 
-#: Build/PostType.php:85
+#: Build/PostType.php:102
+msgid "Use gender"
+msgstr "Usar género"
+
+#: Build/PostType.php:105
+msgctxt "gutenpress labels gender"
+msgid "Masculine"
+msgstr "Masculino"
+
+#: Build/PostType.php:106
+msgctxt "gutenpress labels gender"
+msgid "Feminine"
+msgstr "Femenino"
+
+#: Build/PostType.php:113
 msgid "Name"
 msgstr "Nombre"
 
-#: Build/PostType.php:89
+#: Build/PostType.php:117
 msgid "Name for the post type, plural"
 msgstr "Nombre del tipo de contenido, en plural"
 
-#: Build/PostType.php:92
-#: Build/PostType.php:118
-#: Build/PostType.php:199
+#. translators: name label masculine format
+#: Build/PostType.php:121
+msgctxt "name label masculine format"
 msgid "%s"
 msgstr "%s"
 
-#: Build/PostType.php:96
+#. translators: name label feminine format
+#: Build/PostType.php:123
+msgctxt "name label feminine format"
+msgid "%s"
+msgstr "%s"
+
+#: Build/PostType.php:127
 msgid "Singular Name"
 msgstr "Nombre en singular"
 
-#: Build/PostType.php:100
+#: Build/PostType.php:131
 msgid "Name for one object of this post type"
 msgstr "El nombre para 1 objeto de este tipo de contenido"
 
-#: Build/PostType.php:105
+#: Build/PostType.php:136
 msgid "Add New"
 msgstr "Agregar nuevo"
 
-#: Build/PostType.php:109
-#: Build/PostType.php:127
+#. translators: add new label masculine format
+#: Build/PostType.php:141
+msgctxt "add new label masculine format"
 msgid "Add new %s"
 msgstr "Agregar nuevo %s"
 
-#: Build/PostType.php:114
+#. translators: add new label feminine format
+#: Build/PostType.php:143
+msgctxt "add new label feminine format"
+msgid "Add new %s"
+msgstr "Agregar nueva %s"
+
+#: Build/PostType.php:148
 msgid "All Items"
 msgstr "Todos los elementos"
 
-#: Build/PostType.php:123
+#. translators: all items label masculine format
+#: Build/PostType.php:153
+msgctxt "all items label masculine format"
+msgid "%s"
+msgstr "%s"
+
+#. translators: all items label feminine format
+#: Build/PostType.php:155
+msgctxt "all items label feminine format"
+msgid "%s"
+msgstr "%s"
+
+#: Build/PostType.php:160
 msgid "Add New Item"
 msgstr "Agregar nuevo elemento"
 
-#: Build/PostType.php:132
+#. translators: add new item label masculine format
+#: Build/PostType.php:165
+msgctxt "add new item label masculine format"
+msgid "Add new %s"
+msgstr "Agregar nuevo %s"
+
+#. translators: add new item label feminine format
+#: Build/PostType.php:167
+msgctxt "add new item label feminine format"
+msgid "Add new %s"
+msgstr "Agregar nueva %s"
+
+#: Build/PostType.php:172
 msgid "Edit Item"
 msgstr "Editar elemento"
 
-#: Build/PostType.php:136
+#. translators: edit item label masculine format
+#: Build/PostType.php:177
+msgctxt "edit item label masculine format"
 msgid "Edit %s"
 msgstr "Editar %s"
 
-#: Build/PostType.php:141
+#. translators: edit item label feminine format
+#: Build/PostType.php:179
+msgctxt "edit item label feminine format"
+msgid "Edit %s"
+msgstr "Editar %s"
+
+#: Build/PostType.php:184
 msgid "New Item"
 msgstr "Nuevo elemento"
 
-#: Build/PostType.php:145
+#. translators: new item label masculine format
+#: Build/PostType.php:189
+msgctxt "new item label masculine format"
 msgid "New %s"
 msgstr "Nuevo %s"
 
-#: Build/PostType.php:150
+#. translators: new item label feminine format
+#: Build/PostType.php:191
+msgctxt "new item label feminine format"
+msgid "New %s"
+msgstr "Nueva %s"
+
+#: Build/PostType.php:196
 msgid "View Item"
 msgstr "Ver elemento"
 
-#: Build/PostType.php:154
+#. translators: view item label masculine format
+#: Build/PostType.php:201
+msgctxt "view item label masculine format"
 msgid "View %s"
 msgstr "Ver %s"
 
-#: Build/PostType.php:159
+#. translators: view item label feminine format
+#: Build/PostType.php:203
+msgctxt "view item label feminine format"
+msgid "View %s"
+msgstr "Ver %s"
+
+#: Build/PostType.php:208
 msgid "Search Items"
 msgstr "Buscar elementos"
 
-#: Build/PostType.php:163
+#. translators: search items label masculine format
+#: Build/PostType.php:213
+msgctxt "search items label masculine format"
 msgid "Search %s"
 msgstr "Buscar %s"
 
-#: Build/PostType.php:168
+#. translators: search items label femimine format
+#: Build/PostType.php:215
+msgctxt "search items label feminine format"
+msgid "Search %s"
+msgstr "Buscar %s"
+
+#: Build/PostType.php:220
 msgid "Not Found"
 msgstr "No encontrado"
 
-#: Build/PostType.php:172
+#. translators: not found label masculine format
+#: Build/PostType.php:225
+msgctxt "not found label masculine format"
 msgid "No %s found"
 msgstr "No se han encontrado %s"
 
-#: Build/PostType.php:177
+#. translators: not found label feminine format
+#: Build/PostType.php:227
+msgctxt "not found label feminine format"
+msgid "No %s found"
+msgstr "No se han encontrado %s"
+
+#: Build/PostType.php:232
 msgid "Not Found in Trash"
 msgstr "No encontrado en la papelera"
 
-#: Build/PostType.php:181
+#. translators: not found in trash label masculine format
+#: Build/PostType.php:237
+msgctxt "not found in trash label masculine format"
 msgid "No %s found in trash"
 msgstr "No se han encontrado %s en la papelera"
 
-#: Build/PostType.php:186
+#. translators: not found in trash label feminine format
+#: Build/PostType.php:239
+msgctxt "not found in trash label feminine format"
+msgid "No %s found in trash"
+msgstr "No se han encontrado %s en la papelera"
+
+#: Build/PostType.php:244
 msgid "Parent Item"
 msgstr "Elemento padre"
 
-#: Build/PostType.php:190
+#. translators: paren item label masculine format
+#: Build/PostType.php:249
+msgctxt "parent item label masculine format"
 msgid "Parent %s"
 msgstr "%s padre"
 
-#: Build/PostType.php:195
+#. translators: parent item label feminine format
+#: Build/PostType.php:251
+msgctxt "parent item label feminine format"
+msgid "Parent %s"
+msgstr "%s padre"
+
+#: Build/PostType.php:256
 msgid "Menu Name"
 msgstr "Nombre en menú"
 
-#: Build/PostType.php:206
+#. translators: menu name label masculine format
+#: Build/PostType.php:261
+msgctxt "menu name label masculine format"
+msgid "%s"
+msgstr "%s"
+
+#. translators: menu name label feminie format
+#: Build/PostType.php:263
+msgctxt "menu name label feminine format"
+msgid "%s"
+msgstr "%s"
+
+#: Build/PostType.php:270
 msgid "Description"
 msgstr "Descripción"
 
-#: Build/PostType.php:211
+#: Build/PostType.php:275
 msgid "A short descriptive summary of what the post type is"
 msgstr "Un breve sumario que describa qué es este tipo de contenido"
 
-#: Build/PostType.php:215
+#: Build/PostType.php:279
 msgid "Public"
 msgstr "Público"
 
-#: Build/PostType.php:218
+#: Build/PostType.php:282
 msgid "True: Post type is intended for public use. This includes on the front end and in wp-admin"
 msgstr "Verdadero: el tipo de contenido tiene uso público. Esto incluye la parte pública y la administración"
 
-#: Build/PostType.php:219
+#: Build/PostType.php:283
 msgid "False: Post type is not intended to be used publicly and should generally be unavailable in wp-admin and on the front end unless explicitly planned for elsewhere"
 msgstr "Falso: el tipo de contenido no tiene uso público y por lo general no debe estar disponible en la administración ni en la parte pública a menos que se indique específicamente en otra parte"
 
-#: Build/PostType.php:223
+#: Build/PostType.php:287
 msgid "Whether a post type is intended to be used publicly either via the admin interface or by front-end users"
 msgstr "Indicar si un tipo de contenido tendrá uso público ya sea a través de la interfaz de administración o por los usuarios de la parte pública"
 
-#: Build/PostType.php:227
+#: Build/PostType.php:291
 msgid "Exclude from search"
 msgstr "Excluir de la búsqueda"
 
-#: Build/PostType.php:230
+#: Build/PostType.php:294
 msgid "True: search will not include posts of this post type"
 msgstr "Verdadero: la búsqueda no incluirá contenidos de este tipo"
 
-#: Build/PostType.php:231
+#: Build/PostType.php:295
 msgid "False: search <strong>will</strong> posts of this post type"
 msgstr "Falso: la búsqueda <strong>sí incluirá</strong> contenidos de este tipo"
 
-#: Build/PostType.php:234
+#: Build/PostType.php:298
 msgid "Note: If you want to show these posts on taxonomy terms lists, you must set it to True"
 msgstr "Nota: si quieres mostrar estos contenidos en listas de términos de taxonomías, debes indicar \"Verdadero\""
 
-#: Build/PostType.php:239
+#: Build/PostType.php:303
 msgid "Publicly Queryable"
 msgstr "Consultable públicamente"
 
-#: Build/PostType.php:242
+#: Build/PostType.php:306
 msgid "Whether queries can be performed on the front end as part of <code>parse_request()</code>"
 msgstr "Indica si se pueden realizar consultas en la parte pública como parte de <code>parse_request()</code>"
 
-#: Build/PostType.php:248
+#: Build/PostType.php:312
 msgid "Show UI"
 msgstr "Mostrar UI"
 
-#: Build/PostType.php:251
+#: Build/PostType.php:315
 msgid "Whether to generate a default UI for managing this post type in the admin"
 msgstr "Indica si se generará la Interfaz de Usuario predeterminada para gestionar este tipo de contenidos en la administración"
 
-#: Build/PostType.php:257
+#: Build/PostType.php:321
 msgid "Show in Nav Menus"
 msgstr "Mostrar en Menús de navegación"
 
-#: Build/PostType.php:260
+#: Build/PostType.php:324
 msgid "Whether this post type is available for selection in navigation menus"
 msgstr "Indica si este tipo de contenido está disponible para seleccionarlo en los menús de navegación"
 
-#: Build/PostType.php:266
+#: Build/PostType.php:330
 msgid "Show in menu"
 msgstr "Mostrar en el menú"
 
-#: Build/PostType.php:270
+#: Build/PostType.php:334
 msgid "Do not display in the admin menu"
 msgstr "No mostrar en el menú de administración"
 
-#: Build/PostType.php:271
+#: Build/PostType.php:335
 msgid "Display as a top level menu"
 msgstr "Mostrar como menú de primer nivel"
 
-#: Build/PostType.php:276
+#: Build/PostType.php:340
 msgid "Where to show the post type in the admin menu. \"Show UI\" must be True"
 msgstr "Dónde se mostrará el tipo de contenido en el menú de administración. \"Mostrar UI\" debe ser Verdadero"
 
-#: Build/PostType.php:281
+#: Build/PostType.php:345
 msgid "Show in admin bar"
 msgstr "Mostrar en el menú de administración"
 
-#: Build/PostType.php:284
+#: Build/PostType.php:348
 msgid "Whether to make this post type available in the WordPress admin bar"
 msgstr "Indica si este tipo de contenido estará disponible en la barra de administración de WordPress"
 
-#: Build/PostType.php:290
+#: Build/PostType.php:354
 msgid "Menu position"
 msgstr "Posición en el menú"
 
-#: Build/PostType.php:294
+#: Build/PostType.php:358
 msgid "The position in the menu order the post type should appear. \"Show in menu\" must be true"
 msgstr "La posición en el orden del menú en que se debería mostrar este tipo de contenido. \"Mostrar en el menú\" debe ser verdadero"
 
-#: Build/PostType.php:299
+#: Build/PostType.php:363
 msgid "Menu icon"
 msgstr "Ícono del menú"
 
-#: Build/PostType.php:303
+#: Build/PostType.php:367
 msgid "The URL to the icon to be used for this menu"
 msgstr "La URL al ícono utilizado en este menú"
 
-#: Build/PostType.php:307
+#: Build/PostType.php:371
 msgid "Supports"
 msgstr "Soporta"
 
-#: Build/PostType.php:310
+#: Build/PostType.php:374
 msgid "Title"
 msgstr "Título"
 
-#: Build/PostType.php:311
+#: Build/PostType.php:375
 msgid "Editor (content)"
 msgstr "Editor (contenido)"
 
-#: Build/PostType.php:312
+#: Build/PostType.php:376
 msgid "Author"
 msgstr "Autor"
 
-#: Build/PostType.php:313
+#: Build/PostType.php:377
 msgid "Featured image"
 msgstr "Imagen destacada"
 
-#: Build/PostType.php:314
+#: Build/PostType.php:378
 msgid "Excerpt"
 msgstr "Extracto"
 
-#: Build/PostType.php:315
+#: Build/PostType.php:379
 msgid "Trackbacks"
 msgstr "Trackbacks"
 
-#: Build/PostType.php:316
+#: Build/PostType.php:380
 msgid "Custom fields"
 msgstr "Campos personalizados"
 
-#: Build/PostType.php:317
+#: Build/PostType.php:381
 msgid "Comments"
 msgstr "Comentarios"
 
-#: Build/PostType.php:318
+#: Build/PostType.php:382
 msgid "Revisions"
 msgstr "Revisiones"
 
-#: Build/PostType.php:319
+#: Build/PostType.php:383
 msgid "Page attributes: menu order, parent (if hierarchical is true)"
 msgstr "Atributos de página: orden del menú, padre (si \"jerárquico\" es verdadero)"
 
-#: Build/PostType.php:320
+#: Build/PostType.php:384
 msgid "Post formats"
 msgstr "Formatos de contenido"
 
-#: Build/PostType.php:325
+#: Build/PostType.php:389
 msgid "Capability Type"
 msgstr "Tipo de capacidad"
 
-#: Build/PostType.php:327
+#: Build/PostType.php:391
 msgid "A singular and plural slug to use as base to construct the capabilities."
 msgstr "Un slug en singular y plural que se usarán como base para construir las capacidades."
 
-#: Build/PostType.php:331
+#: Build/PostType.php:395
 msgid "Singular slug"
 msgstr "Slug singular"
 
-#: Build/PostType.php:338
+#: Build/PostType.php:402
 msgid "Plural slug"
 msgstr "Slug plural"
 
-#: Build/PostType.php:347
+#: Build/PostType.php:411
 msgid "Hierarchical"
 msgstr "Jerárquico"
 
-#: Build/PostType.php:350
+#: Build/PostType.php:414
 msgid "Whether the post type is hierarchical. Allows Parent to be specified. The 'supports' parameter should contain 'page-attributes' to show the parent select box on the editor page"
 msgstr "Indica si este tipo de contenido es jerárquico. Permite que se especifique un padre. El parámetro \"Soporta\" debe contemplar los \"atributos de página\" para mostrar la caja de selección del padre en la página del editor."
 
-#: Build/PostType.php:355
+#: Build/PostType.php:419
 msgid "Has archive"
 msgstr "Tiene archivo"
 
-#: Build/PostType.php:358
+#: Build/PostType.php:422
 msgid "Enables post type archives"
 msgstr "Habilita el archivo de este tipo de contenido"
 
-#: Build/PostType.php:365
+#: Build/PostType.php:429
 msgid "Rewrite"
-msgstr "Reescritura"
+msgstr "Reescribir URLs"
 
-#: Build/PostType.php:369
+#: Build/PostType.php:433
+msgid "Enable"
+msgstr "Habilitar"
+
+#: Build/PostType.php:437
 msgid "Slug"
 msgstr "Slug"
 
-#: Build/PostType.php:373
+#: Build/PostType.php:441
 msgid "Customize the permastruct slug"
 msgstr "Personalizar el slug para los permalinks"
 
-#: Build/PostType.php:377
+#: Build/PostType.php:445
 msgid "With Front"
 msgstr "Con Frontal"
 
-#: Build/PostType.php:381
-msgid "Buid feeds permastruct"
-msgstr ""
+#: Build/PostType.php:452
+msgid "Build feeds permastruct"
+msgstr "Construir permalinks para feeds"
 
-#: Build/PostType.php:385
+#: Build/PostType.php:459
 msgid "Build pagination permastruct"
 msgstr "Construir permalinks para paginación"
 
-#: Build/PostType.php:391
+#: Build/PostType.php:468
 msgid "Query Var"
 msgstr "Variable para consultas"
 
-#: Build/PostType.php:394
+#: Build/PostType.php:471
 msgid "True: can use <code>/?{post_type}={single_post_slug}</code> to load an specific post"
 msgstr "Verdadero: se puede utilizar <code>/?{post_type}={slug_de_entrada}</code> para cargar un contenido específico"
 
-#: Build/PostType.php:395
+#: Build/PostType.php:472
 msgid "False: can't use <code>$post_type</code> to load a post"
 msgstr "Falso: no se puede utilizar <code>$post_type</code> para cargar un post"
 
-#: Build/PostType.php:402
+#: Build/PostType.php:479
 msgid "Can export?"
 msgstr "¿Se puede exportar?"
 
-#: Build/PostType.php:405
+#: Build/PostType.php:482
 msgid "Can this post type be exported?"
 msgstr "¿Se puede exportar este tipo de contenido?"
 
-#: Build/PostType.php:410
+#: Build/PostType.php:487
 msgid "Submit"
 msgstr "Enviar"
+
+#: Build/PostType.php:548
+msgid "Error creating post type %1$s"
+msgstr "Error al crear el tipo de contenido %1$s"
 
 #: Forms/Element/YesNo.php:8
 msgid "Yes"
@@ -389,31 +521,35 @@ msgstr "No"
 
 #: Forms/Form.php:42
 msgid "The $view parameter must be a subclass of \\GutenPress\\Forms\\View"
-msgstr ""
+msgstr "El parámetro $view debe ser una subclase de \\GutenPress\\Forms\\View"
+
+#: Generate/Writer.php:33
+msgid "Couldn't write to file %1$s"
+msgstr "No se puede escribir al archivo %1$s"
 
 #: Helpers/Exception.php:7
 msgid "Exception: %1$s (on %2$s:%3$s)"
-msgstr ""
+msgstr "Excepción: %1$s (en %2$s:%3$s)"
 
 #: Helpers/Exceptions/NonceFail.php:14
 msgid "Nonce verification Exception: nonce value it's empty on action '%1$s' (on %2$s:%3$s)"
-msgstr ""
+msgstr "Excepción al verificar nonce: el valor del nonce para la acción '%1$s' está vacío (en %2$s:%3$s)"
 
 #: Helpers/Exceptions/NonceFail.php:16
 msgid "Nonce verification Exception: '%1$s' it's not a valid nonce for the '%2$s' action (on %3$s:%4$s)"
-msgstr ""
+msgstr "Excepción al verificar nonce: %1$s no es un nonce válido para la acción '%2$s' (en %3$s:%4$s)"
 
 #: Validate/Validate.php:48
 msgid "There is no data to validate on index %1$s"
-msgstr ""
+msgstr "No hay datos para validar en el índice %1$s"
 
 #: Validate/Validations/Boolean.php:34
 msgid "The value for this field should be of a true/false type"
-msgstr ""
+msgstr "El valor de este campo debe ser de tipo verdadero/falso"
 
 #: Validate/Validations/Required.php:12
 msgid "Please complete this field"
-msgstr ""
+msgstr "Por favor completa este dato"
 
 #. Plugin Name of the plugin/theme
 msgid "GutenPress"

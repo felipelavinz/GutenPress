@@ -34,19 +34,35 @@ jQuery(document).ready(function($){
 		$('#gp-build-post_type-capability-type-2, #gp-build-post_type-rewrite-2').val( val +'s' );
 	}).on('keyup', '#gp-build-post_type-label', function(){
 		var el = $(this),
-			val = el.val();
-		Form.find('input[data-number="plural"], #gp-build-post_type-labels-1').each(function(){
+			val = el.val(),
+			gender = $('#gp-build-post_type-labels-1').val();
+		Form.find('input[data-number="plural"]').each(function(){
 			var el = $(this),
-				format = el.data('format');
+				format = el.data('format-'+ gender);
 			el.val( format.replace('%s', val) );
 		});
 	}).on('keyup', 'input[name="gp-build-post_type[labels][singular_name]"]', function(){
 		var el = $(this),
-			val = el.val();
+			val = el.val(),
+			gender = $('#gp-build-post_type-labels-1').val();
 		Form.find('input[data-number="singular"]').each(function(){
 			var el = $(this),
-				format = el.data('format');
+				format = el.data('format-'+ gender);
 			el.val( format.replace('%s', val) );
+		});
+	}).on('change', '#gp-build-post_type-labels-1', function(){
+		var el = $(this),
+			gender = el.val(),
+			plural_seed = $('#gp-build-post_type-label').val(),
+			singular_seed = $('input[name="gp-build-post_type[labels][singular_name]"]').val();
+		$('#gp-build-post_type-labels').find('input[type="text"]').each(function(){
+			var el = $(this),
+				format = el.data('format-' + gender);
+			if ( el.data('number') === 'singular' ) {
+				el.val( format.replace('%s', singular_seed) );
+			} else if ( el.data('number') === 'plural' ) {
+				el.val( format.replace('%s', plural_seed) );
+			}
 		});
 	}).on('change', 'select[name="gp-build-post_type[rewrite_enable]"]', function(){
 		var el = $(this),
