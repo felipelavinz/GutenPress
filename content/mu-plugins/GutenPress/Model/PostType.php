@@ -11,10 +11,10 @@ abstract class PostType{
 
 	}
 	public static function getPostTypeObject(){
-		return self::$post_type_object;
+		return static::$post_type_object;
 	}
 	public static function getPostType(){
-
+		return static::$post_type;
 	}
 	public static function registerPostType(){
 		$post_type = static::setPostType();
@@ -22,6 +22,22 @@ abstract class PostType{
 		if ( is_wp_error( $post_type_object ) ) {
 			throw new \Exception( $post_type_object->get_error_message() );
 		}
+		static::setActions();
+	}
+	private static function setActions(){
+		$class = get_called_class();
+		add_action('add_meta_boxes_'. $class::getPostType(), array($class, 'addMetaBoxes'));
+	}
+	/**
+	 * Initialize metaboxes for this post type
+	 */
+	public static function addMetaBoxes(){
+		foreach ( static::$registered_metaboxes as $metabox ) {
+			$metabox->init();
+		}
+	}
+	public static function registerMetabox( \GutenPress\Model\PostMeta $metabox ){
+		self::$registered_metaboxes = $metabox;
 	}
 	abstract protected static function setPostType();
 	abstract protected static function setPostTypeObject();
