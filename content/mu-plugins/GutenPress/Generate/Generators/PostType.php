@@ -9,13 +9,16 @@ class PostType extends \GutenPress\Generate\Generator{
 	public function __construct( $post_type, $args ){
 		$this->args = $args;
 		$this->post_type = sanitize_key( $post_type );
+		if ( strlen($this->post_type) > 20 ) {
+			throw new Exception(  );
+		}
 		$this->args_map = new \GutenPress\Helpers\ArrayMap( $this->args );
 		parent::__construct();
 	}
 	// protected function setDefaults(){
 	// }
 	protected function setTargetPath(){
-		$this->target_path = WP_PLUGIN_DIR .'/gp-cpt-'. $this->post_type;
+		$this->target_path = WP_PLUGIN_DIR .'/'. $this->classname;
 	}
 	protected function setTemplateVars(){
 		$this->template_vars = array(
@@ -50,7 +53,8 @@ class PostType extends \GutenPress\Generate\Generator{
 			$this->truthy( $this->has_archive ),
 			$this->rewrite,
 			$this->truthy( $this->query_var ),
-			$this->truthy( $this->can_expor )
+			$this->truthy( $this->can_expor ),
+			$this->classname
 		);
 	}
 	private function truthy( $val ){
@@ -65,7 +69,14 @@ class PostType extends \GutenPress\Generate\Generator{
 		}
 		return 'false';
 	}
+	private function getClassName(){
+		$words = str_replace('_', ' ', $this->post_type);
+		$words = ucwords( $words );
+		return str_replace(' ', '', $words);
+	}
 	public function __get( $key ){
+		if ( $key === 'classname' )
+			return $this->getClassName();
 		if ( $key === 'show_in_menu' ) {
 			return $this->getShowInMenu();
 		}
@@ -132,7 +143,7 @@ class PostType extends \GutenPress\Generate\Generator{
 		return empty( $this->args['menu_position'] ) ? 'null' : (int)$this->args['menu_position'];
 	}
 	protected function prepareCommit(){
-		$file = trailingslashit( $this->target_path ) .'gp_cpt_'. $this->post_type .'.php';
+		$file = trailingslashit( $this->target_path ) . $this->classname .'.php';
 		$this->parseTemplate( $this->readTemplate(), $this->template_vars, $file );
 	}
 }

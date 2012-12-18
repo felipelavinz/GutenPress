@@ -540,7 +540,7 @@ class PostType{
 				$success_url = add_query_arg(array(
 					'gp_msg' => 'post_type_created',
 					'gp_msg_params' => array(
-						$cpt->label
+						urlencode( $cpt->label )
 					)
 				), admin_url('plugins.php'));
 				wp_redirect( $success_url, 303 );

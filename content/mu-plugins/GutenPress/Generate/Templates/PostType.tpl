@@ -8,11 +8,21 @@ Author: Name Of The Plugin Author
 Author URI: http://URI_Of_The_Plugin_Author
 License: A "Slug" license name e.g. GPL2
 */
+namespace GutenPress\CustomPostType;
 
-class gp_cpt_%1$s extends GutenPress\Model\PostType{
+class %33$s extends \GutenPress\Model\PostType{
+	/**
+	 * Set post_type value
+	 * @return string
+	 */
 	protected static function setPostType(){
 		return '%1$s';
 	}
+
+	/**
+	 * Set post type object properties
+	 * @return array
+	 */
 	protected static function setPostTypeObject(){
 		return array(
 			'label' => _x('%2$s', '%1$s', 'cpt_%1$s'),
@@ -51,5 +61,9 @@ class gp_cpt_%1$s extends GutenPress\Model\PostType{
 		);
 	}
 }
-add_action( 'init', array('gp_cpt_%1$s', 'registerPostType') );
-register_activation_hook( __FILE__, array('gp_cpt_%1$s', 'activatePlugin') );
+
+/* register post type on the init action */
+add_action( 'init', array('\GutenPress\CustomPostType\%33$s', 'registerPostType') );
+
+/* register plugin activation hook: add capabilities for admin users */
+register_activation_hook( __FILE__, array('\GutenPress\CustomPostType\%33$s', 'activatePlugin') );

@@ -21,6 +21,9 @@ function gp_register_autoload(){
 	$GutenPress = new SplClassLoader('GutenPress', WPMU_PLUGIN_DIR);
 	$GutenPress->register();
 
+	$GutenPressCPT = new SplClassLoader('GutenPress\CustomPostType', WP_PLUGIN_DIR);
+	$GutenPressCPT->register();
+
 	/**
 	 * register autoloader for generated plugins
 	 * @todo
