@@ -8,14 +8,14 @@ Author: Name Of The Plugin Author
 Author URI: http://URI_Of_The_Plugin_Author
 License: A "Slug" license name e.g. GPL2
 */
-namespace GutenPress\CustomPostType;
+use \GutenPress\Model as Model;
 
-class %33$s extends \GutenPress\Model\PostType{
+class %33$sPostType extends \GutenPress\Model\PostType{
 	/**
 	 * Set post_type value
 	 * @return string
 	 */
-	protected static function setPostType(){
+	protected function setPostType(){
 		return '%1$s';
 	}
 
@@ -23,7 +23,7 @@ class %33$s extends \GutenPress\Model\PostType{
 	 * Set post type object properties
 	 * @return array
 	 */
-	protected static function setPostTypeObject(){
+	protected function setPostTypeObject(){
 		return array(
 			'label' => _x('%2$s', '%1$s', 'cpt_%1$s'),
 			'labels' => array(
@@ -62,8 +62,20 @@ class %33$s extends \GutenPress\Model\PostType{
 	}
 }
 
-/* register post type on the init action */
-add_action( 'init', array('\GutenPress\CustomPostType\%33$s', 'registerPostType') );
+// register plugin activation hook: add capabilities for admin users
+register_activation_hook( __FILE__, array('%33$sPostType', 'activatePlugin') );
+// register post type
+add_action('init', array('%33$sPostType', 'registerPostType'));
 
-/* register plugin activation hook: add capabilities for admin users */
-register_activation_hook( __FILE__, array('\GutenPress\CustomPostType\%33$s', 'activatePlugin') );
+class %33$sQuery extends Model\PostQuery{
+	protected function setPostType(){
+		return '%1$s';
+	}
+	protected function setDecorator(){
+		return '%33$sObject';
+	}
+}
+
+class %33$sObject extends Model\PostObject{
+	// controller methods
+}
