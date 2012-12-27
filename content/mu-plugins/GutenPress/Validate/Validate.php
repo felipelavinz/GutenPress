@@ -44,9 +44,6 @@ class Validate{
 		}
 
 		foreach ( $this->rules as $key => $val ) {
-			if ( ! isset($this->data[$key]) ) {
-				throw new OutOfRangeException( __('There is no data to validate on index %1$s', $key) );
-			}
 			if ( is_array($val) ) {
 				foreach ( $val as $validator ) {
 					$this->validateData( $key, $this->data[$key], $validator );
