@@ -71,6 +71,10 @@ class Metabox{
 		) );
 		echo $form;
 	}
+
+	/**
+	 * @todo Replace reflection magic with some interface compliance
+	 */
 	private function createElement( $field, $form ){
 		global $post;
 
