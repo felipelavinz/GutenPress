@@ -23,8 +23,10 @@ abstract class FormElement extends \GutenPress\Forms\Element{
 		$properties['name']	= $this->name;
 		parent::__construct( $properties );
 	}
-	protected function setValue( $value ){
+	public function setValue( $value ){
 		$this->value = $value;
+		if ( in_array('value', static::$element_attributes) )
+			$this->setAttribute('value', $value);
 	}
 	public function getValue(){
 		return $this->value;
