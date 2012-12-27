@@ -130,7 +130,7 @@ class PostType extends \GutenPress\Generate\Generator{
 		if ( is_numeric($this->args['show_in_menu']) ) {
 			return $this->truthy( $this->args['show_in_menu'] );
 		}
-		$this->args['show_in_menu'];
+		return "'". $this->args['show_in_menu'] ."'";
 	}
 	public function getMenuIcon(){
 		if ( empty($this->args['menu_icon']) )
