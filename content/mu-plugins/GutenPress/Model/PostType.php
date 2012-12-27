@@ -3,56 +3,47 @@
 namespace GutenPress\Model;
 
 abstract class PostType{
-
-	protected static $post_type;
-	protected static $post_type_object;
-
-	public function __construct(){
-
+	private $args;
+	private $post_type;
+	final public function __construct(){
+		$this->post_type = $this->setPostType();
+		$this->args = $this->setPostTypeObject();
+		$this->setActions();
 	}
-	public static function getPostTypeObject(){
-		return static::$post_type_object;
+	final public function getPostType(){
+		return $this->post_type;
 	}
-	public static function getPostType(){
-		return static::$post_type;
+	final public function getPostTypeObject(){
+		return $this->args;
 	}
-	public static function registerPostType(){
-		$post_type = static::setPostType();
-		$post_type_object = register_post_type( $post_type, static::setPostTypeObject() );
-		if ( is_wp_error( $post_type_object ) ) {
-			throw new \Exception( $post_type_object->get_error_message() );
-		}
-		static::setActions();
+	abstract protected function setPostType();
+	abstract protected function setPostTypeObject();
+	private function setActions(){
+		add_action( 'init', array($this, 'registerPostType') );
 	}
-	private static function setActions(){
+	final public static function registerPostType(){
 		$class = get_called_class();
-		add_action('add_meta_boxes_'. $class::getPostType(), array($class, 'addMetaBoxes'));
-	}
-	/**
-	 * Initialize metaboxes for this post type
-	 */
-	public static function addMetaBoxes(){
-		foreach ( static::$registered_metaboxes as $metabox ) {
-			$metabox->init();
+		$post_type = new $class;
+		$register = register_post_type( $post_type->getPostType(), $post_type->getPostTypeObject() );
+		if ( is_wp_error( $register ) ) {
+			throw new \Exception( $register->get_error_message() );
 		}
 	}
-	public static function registerMetabox( \GutenPress\Model\PostMeta $metabox ){
-		self::$registered_metaboxes = $metabox;
-	}
-	abstract protected static function setPostType();
-	abstract protected static function setPostTypeObject();
-
-	/**
-	 * Add capabilities for admin on plugin activation
-	 */
 	public static function activatePlugin(){
 		$admin = get_role('administrator');
-		$post_type_object = (object)static::setPostTypeObject();
+		$class = get_called_class();
+		$post_type = new $class;
+		$post_type_object = (object)$post_type->getPostTypeObject();
+
+		// add capabilites for admin
 		$post_type_object->map_meta_cap = true;
 		$post_type_object->capabilities = array();
-		$capabilities = get_post_type_capabilities( $post_type_object );
+		$capabilities = (array)get_post_type_capabilities( $post_type_object );
 		foreach ( $capabilities as $key => $val ){
 			$admin->add_cap( $val );
 		}
+
+		// regenerate permalinks structure
+		flush_rewrite_rules();
 	}
 }
