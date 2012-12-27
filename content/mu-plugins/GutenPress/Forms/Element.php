@@ -68,6 +68,9 @@ abstract class Element{
 			}
 		}
 	}
+	public function __get( $key ){
+		return $this->getAttribute( $key );
+	}
 	public function getAttribute( $attr ){
 		return isset($this->attributes[$attr]) ? $this->attributes[$attr] : '';
 	}
