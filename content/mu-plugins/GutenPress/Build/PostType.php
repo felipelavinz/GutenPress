@@ -521,7 +521,7 @@ class PostType{
 
 			$rules = array(
 				'post_type' => new Validation\Required(),
-				'public' => array( new Validation\Required(), new Validation\Boolean() )
+				'public' => array( new Validation\Boolean( true ) )
 			);
 
 			$validate = new Validate\Validate( $postdata, $rules );
