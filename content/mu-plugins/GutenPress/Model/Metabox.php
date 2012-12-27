@@ -38,6 +38,8 @@ class Metabox{
 		add_action( 'add_meta_boxes_'. $this->post_type, array($this, 'addMetabox') );
 		// save
 		add_action( 'save_post', array($this, 'saveMetabox'), 10, 2 );
+		// allow file uploads
+		add_action('post_edit_form_tag', array($this, 'allowFormUploads'));
 	}
 	final public function addMetabox(){
 		// instantiate PostMeta
@@ -47,10 +49,18 @@ class Metabox{
 	private function initPostMeta(){
 		$this->postmeta = new $this->model;
 		if ( ! $this->postmeta instanceof PostMeta ) {
-			throw new Exception( sprintf( __('%s must be a subclass of \GutenPress\Model\PostMeta', 'gutenpress'), $this->model ) );
+			throw new \Exception( sprintf( __('%s must be a subclass of \GutenPress\Model\PostMeta', 'gutenpress'), $this->model ) );
 		}
 		$this->id = $this->postmeta->id;
 	}
+
+	/**
+	 * @todo Detect if it's necesarray (go through metabox elements to check if there's a file upload)
+	 */
+	final public function allowFormUploads(){
+		echo ' enctype="multipart/form-data"';
+	}
+
 	final public function contentCallback(){
 		global $post;
 		// create "form"... wich are not actually forms, since they are part
@@ -130,6 +140,12 @@ class Metabox{
 		if ( empty($data) )
 			return;
 
+		// handle file uploads
+		if ( ! empty($_FILES[ $this->id .'-form' ]) ) {
+			$uploads = $this->handleUploads( $post_id );
+			$data = array_merge( $data, $uploads );
+		}
+
 		foreach ( $this->postmeta->data as $meta ) {
 			if ( isset( $data[ $meta->name ] ) ) {
 				if ( is_array($data[ $meta->name] ) ) {
@@ -147,6 +163,63 @@ class Metabox{
 				delete_post_meta( $post_id, $this->id .'_'. $meta->name );
 			}
 		}
+	}
+	private function handleUploads( $post_id ){
+		$files = array();
+
+		foreach ( (array)$_FILES[ $this->id .'-form'] as $prop => $file ) {
+			foreach ( $file as $key => $val ) {
+				$files[ $key ][ $prop ] = $val;
+			}
+		}
+		if ( empty($files) )
+			return;
+
+		$uploads = array();
+
+		foreach ( $files as $name => $file ) {
+			$date = date('Y/m');
+
+			/**
+			 * returns:
+			 * - file
+			 * - url
+			 * - type
+			 */
+			$upload = wp_handle_upload( $file, array('test_form' => false), $date );
+
+			// errors
+			if ( isset($upload['error']) ) {
+				throw new Exception( $upload['error'] );
+			}
+			if ( ! isset($upload['file']) ) {
+				throw new Exception( sprintf( __('Error uploading file %s', 'gutenpress'), $file['name'] ) );
+			}
+
+			$current_user_id  = wp_get_current_user()->ID;
+			$wp_filetype = wp_check_filetype( basename($upload['file']) );
+
+			$attachment = array(
+				'post_mime_type' => $wp_filetype,
+				'guid' => $upload['url'],
+				'post_title' => preg_replace('/\.[^.]+$/', '', basename($upload['file'])),
+				'post_content' => '',
+				'post_status' => 'inherit',
+				'post_author' => $current_user_id,
+				'post_parent' => $post_id
+			);
+
+			$attach_id = wp_insert_attachment( $attachment, $upload['file'], $post_id );
+			$uploads[$name] = $attach_id;
+
+			require_once ABSPATH .'wp-admin/includes/image.php';
+
+			$attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
+			wp_update_attachment_metadata( $attach_id, $attach_data );
+
+		}
+
+		return $uploads;
 	}
 	private function checkPermissions( $postid ){
 		$this->initPostMeta();
