@@ -172,8 +172,14 @@ class Metabox{
 				$files[ $key ][ $prop ] = $val;
 			}
 		}
+
+		// check if no file was uploaded
+		foreach ( $files as $name => $upload ) {
+			if ( $upload['error'] === 4 ) unset($files[$name]);
+		}
+
 		if ( empty($files) )
-			return;
+			return array();
 
 		$uploads = array();
 
@@ -190,10 +196,10 @@ class Metabox{
 
 			// errors
 			if ( isset($upload['error']) ) {
-				throw new Exception( $upload['error'] );
+				throw new \Exception( $upload['error'] );
 			}
 			if ( ! isset($upload['file']) ) {
-				throw new Exception( sprintf( __('Error uploading file %s', 'gutenpress'), $file['name'] ) );
+				throw new \Exception( sprintf( __('Error uploading file %s', 'gutenpress'), $file['name'] ) );
 			}
 
 			$current_user_id  = wp_get_current_user()->ID;
