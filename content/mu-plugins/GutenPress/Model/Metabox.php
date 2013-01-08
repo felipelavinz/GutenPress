@@ -4,19 +4,69 @@ namespace GutenPress\Model;
 
 class Metabox{
 
+	/**
+	 * Hold the metabox ID
+	 * @var string
+	 * @access protected
+	 */
 	protected $id;
+
+	/**
+	 * Hold the (localized) metabox title
+	 * @var string
+	 * @access protected
+	 */
 	protected $title;
+
+	/**
+	 * Hold the metabox context (normal, advanced or side)
+	 * @var string
+	 * @access protected
+	 */
 	protected $context;
-	protected $priorty;
+
+	/**
+	 * Hold the metabox priority (high, low or default)
+	 * @var string
+	 * @access protected
+	 */
+	protected $priority;
+
+	/**
+	 * Hold the post type(s) the metabox was registered for
+	 * @var string
+	 * @access protected
+	 */
 	protected $post_type;
+
+	/**
+	 * Hold the callback args
+	 * @access protected
+	 */
 	protected $callback_args;
 
+	/**
+	 * Set some default args for the metabox registration
+	 * @var array
+	 * @access private
+	 */
 	private $default_args = array(
 		'context' => 'normal',
 		'priority' => 'default'
 	);
 
+	/**
+	 * Hold the FQN of a \GutenPress\Models\PostMeta class
+	 * @var string
+	 * @access private
+	 */
 	private $model;
+
+	/**
+	 * Hold an instance of the \GutenPress\Models\PostMeta object with the data definition
+	 * @var object
+	 * @access private
+	 */
 	private $postmeta;
 
 	/**
@@ -25,6 +75,7 @@ class Metabox{
 	 * @param string $title Localized title of the metabox
 	 * @param string $post_type The post type where the metabox will be shown
 	 * @param array $args Metabox arguments
+	 * @return void
 	 */
 	public function __construct( $postmeta, $title, $post_type, array $args = array() ){
 		$this->model = $postmeta;
@@ -33,6 +84,11 @@ class Metabox{
 		$this->args = wp_parse_args( $args, $this->default_args );
 		$this->setActions();
 	}
+
+	/**
+	 * Set-up common metabox actions
+	 * @return void
+	 */
 	protected function setActions(){
 		// add meta box
 		add_action( 'add_meta_boxes_'. $this->post_type, array($this, 'addMetabox') );
@@ -41,11 +97,21 @@ class Metabox{
 		// allow file uploads
 		add_action('post_edit_form_tag', array($this, 'allowFormUploads'));
 	}
+
+	/**
+	 * Do the actual metabox registration for the given post-type
+	 * @return void
+	 */
 	final public function addMetabox(){
 		// instantiate PostMeta
 		$this->initPostMeta();
 		add_meta_box( $this->id, $this->title, array($this, 'contentCallback'), $this->post_type, $this->args['context'], $this->args['priority'] );
 	}
+
+	/**
+	 * Init the \GutenPress\Model\PostMeta object
+	 * @throws \Exception If the designated PostMeta it's not an instance of \GutenPress\Model\PostMeta
+	 */
 	private function initPostMeta(){
 		$this->postmeta = new $this->model;
 		if ( ! $this->postmeta instanceof PostMeta ) {
@@ -55,12 +121,18 @@ class Metabox{
 	}
 
 	/**
-	 * @todo Detect if it's necesarray (go through metabox elements to check if there's a file upload)
+	 * Enable file uploads on the #post submission form
+	 * @todo Perhaps detect if it's necessary (go through metabox elements to check if there's a file upload?)
+	 * @return void
 	 */
 	final public function allowFormUploads(){
 		echo ' enctype="multipart/form-data"';
 	}
 
+	/**
+	 * Create and echo the metabox content
+	 * @return void
+	 */
 	final public function contentCallback(){
 		global $post;
 		// create "form"... wich are not actually forms, since they are part
@@ -83,12 +155,14 @@ class Metabox{
 	}
 
 	/**
-	 * @todo Replace reflection magic with some interface compliance
+	 * Create the form element
+	 * @return object \GutenPress\Forms\Element
+	 * @todo Replace reflection voodoo with some interface compliance
 	 */
 	private function createElement( $field, $form ){
 		global $post;
 
-		// using Reflection it's kind of costly... alternatives?
+		// using Reflection it's kind of costly and hacky... alternatives?
 		$element = new \ReflectionClass( $field->element );
 		$params = $this->getElementParameters( $element );
 
@@ -99,7 +173,7 @@ class Metabox{
 
 		$i=0; foreach ( $field->args as $arg ){
 			if ( $i === $name_i ) {
-				// prefix name with the form id, so all our data its sent as an array
+				// prefix name with the form id, so all our data it's sent as an array
 				$args[] = $form->getName( $arg );
 			} else {
 				$args[] = $arg;
@@ -108,6 +182,12 @@ class Metabox{
 
 		return $element->newInstanceArgs( $args );
 	}
+
+	/**
+	 * Get the element object constructor parameters
+	 * @param object $element A \ReflectionClass object to get the constructor parameters
+	 * @return array The definition of constructor parameters
+	 */
 	private function getElementParameters( \ReflectionClass $element ){
 		$constructor = $element->getMethod('__construct');
 		$params = $constructor->getParameters();
@@ -117,6 +197,16 @@ class Metabox{
 		}
 		return $out;
 	}
+
+	/**
+	 * Save metabox data. Will add/update/delete data accordingly
+	 * @param int $post_id The post ID
+	 * @param object WP_Post object
+	 * @throws \Exception If user doesn't have permission to save data
+	 * @uses apply_filters() Calls 'filter_'. $this->id .'_metabox_data' to filter data before saving
+	 * @uses do_action() Calls $this->id .'_metabox_data_updated' after data is saved
+	 * @return void
+	 */
 	final public function saveMetabox( $post_id, \WP_Post $post ){
 		if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
 			return;
@@ -133,7 +223,7 @@ class Metabox{
 
 		$data = $_POST[ $this->id .'-form' ];
 		$data = \GutenPress\Helpers\Arrays::filterRecursive( $data );
-		// no need for slashes; WordPress will take care of sanitizing
+		// no need for slashes; WordPress will take care of sanitizing when using "add/update_post_meta"
 		$data = stripslashes_deep( $data );
 
 		// empty data
@@ -145,6 +235,10 @@ class Metabox{
 			$uploads = $this->handleUploads( $post_id );
 			$data = array_merge( $data, $uploads );
 		}
+
+		// and now, you may filter the metabox data to do some
+		// sanitizing and formatting
+		$data = apply_filters( 'filter_'. $this->id .'_metabox_data', $data, $this, $post );
 
 		foreach ( $this->postmeta->data as $meta ) {
 			if ( isset( $data[ $meta->name ] ) ) {
@@ -163,7 +257,17 @@ class Metabox{
 				delete_post_meta( $post_id, $this->id .'_'. $meta->name );
 			}
 		}
+
+		// hook into this action if you need to do something after metadata was saved
+		do_action( $this->id .'_metabox_data_updated', $data, $post_id, $post, $this );
 	}
+
+	/**
+	 * Handle file uploads and save them as attachments
+	 * @param int $post_id The post ID
+	 * @throws \Exception On upload error
+	 * @return array A collection of successful uploads, with $_FILES name as keys and attachment IDs as values
+	 */
 	private function handleUploads( $post_id ){
 		$files = array();
 
@@ -186,12 +290,6 @@ class Metabox{
 		foreach ( $files as $name => $file ) {
 			$date = date('Y/m');
 
-			/**
-			 * returns:
-			 * - file
-			 * - url
-			 * - type
-			 */
 			$upload = wp_handle_upload( $file, array('test_form' => false), $date );
 
 			// errors
@@ -227,6 +325,13 @@ class Metabox{
 
 		return $uploads;
 	}
+
+	/**
+	 * Check if the current user has permission to save data on the given post
+	 * @param int $postid The current Post ID
+	 * @throws \Exception If user doesn't have permissions on this entry
+	 * @return bool True if users passes checks
+	 */
 	private function checkPermissions( $postid ){
 		$this->initPostMeta();
 		// nonce it's not present when not saving
