@@ -3,10 +3,10 @@
 namespace GutenPress\Model;
 
 class PostObject{
-	private $post;
-	private $multiple;
-	private $postmeta;
-	final public function __construct( \WP_Post $post, array $metadata = array(), array $multiple = array() ){
+	protected $post;
+	protected $multiple;
+	protected $postmeta;
+	public function __construct( \WP_Post $post, array $metadata = array(), array $multiple = array() ){
 		$this->post = $post;
 		$this->multiple = $multiple;
 		$this->postmeta = $metadata;
