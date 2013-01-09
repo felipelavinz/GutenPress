@@ -43,6 +43,9 @@ abstract class PostType{
 			$admin->add_cap( $val );
 		}
 
+		// init post type, to include new slug on rewrite flush
+		$class::registerPostType();
+
 		// regenerate permalinks structure
 		flush_rewrite_rules();
 	}
