@@ -226,10 +226,6 @@ class Metabox{
 		// no need for slashes; WordPress will take care of sanitizing when using "add/update_post_meta"
 		$data = stripslashes_deep( $data );
 
-		// empty data
-		if ( empty($data) )
-			return;
-
 		// handle file uploads
 		if ( ! empty($_FILES[ $this->id .'-form' ]) ) {
 			$uploads = $this->handleUploads( $post_id );
