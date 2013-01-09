@@ -17,6 +17,9 @@ class Attachment{
 	 * @param int $id File object ID on $wpdb->posts
 	 * */
 	public function __construct( $id ){
+		$id = absint( $id );
+		if ( empty( $id ) )
+			throw new \Exception( __('$id must reference an attachment post entry', 'gutenpress') );
 		$this->attachment = get_post( (int)$id );
 		if ( ! $this->attachment )
 			throw new \Exception( sprintf( __('File ID %d not found', 'gutenpress'), $id ), 404 );
@@ -28,6 +31,7 @@ class Attachment{
 		// @todo : get a friendy document type (e.g. "presentation", "text", "spreadsheet")
 		// if ( $mime ) $this->type = the_doc_type($mime, false);
 	}
+
 	/**
 	 * Magic __get so attributes can be protected and read-only
 	 */
