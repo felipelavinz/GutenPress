@@ -14,10 +14,10 @@ class Select extends \GutenPress\Forms\OptionElement{
 	);
 	public function __toString(){
 		$out = '';
-		$selected = $this->getValue();
+		$selected = (string)$this->getValue();
 		$out .= '<select'. $this->renderAttributes() .'>';
 			foreach ( $this->options as $key => $val ) {
-				$is_selected = $selected === $key ? ' selected="selected"' : '';
+				$is_selected = $selected === (string)$key ? ' selected="selected"' : '';
 				$out .= '<option value="'. esc_attr($key) .'"'. $is_selected .'>'. $val .'</option>';
 			}
 		$out .= '</select>';
