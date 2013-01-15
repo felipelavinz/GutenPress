@@ -6,49 +6,49 @@ abstract class PostQuery implements \Iterator, \Countable{
 
 	/**
 	 * Holds the instance of WP_Query which we'll iterate over
-	 * @access private
+	 * @var \WP_Query
 	 */
 	private $query;
 
 	/**
 	 * Holds an instance of the current post decorator
-	 * @access private
+	 * @var \WP_Post
 	 */
 	private $the_post;
 
 	/**
 	 * Keep a copy of the global post, for those times when wp_reset_postdata doesn't work
-	 * @access private
+	 * @var \WP_Post
 	 */
 	private $_wp_post;
 
 	/**
 	 * The post type slug for this type of query
-	 * @access private
+	 * @var string
 	 */
 	private $post_type;
 
 	/**
 	 * An array of arguments passed to WP_Query
-	 * @access private
+	 * @var array
 	 */
 	private $query_args;
 
 	/**
 	 * An array of metadata definitions
-	 * @access protected
+	 * @var array
 	 */
 	protected $metadata;
 
 	/**
 	 * The FQN of a decorator for WP_Post
-	 * @access protected
+	 * @var string
 	 */
 	protected $decorator;
 
 	/**
 	 * An array of meta fields that should be interpreted as multiple
-	 * @access private
+	 * @var array
 	 */
 	private $are_multiple;
 
@@ -92,7 +92,7 @@ abstract class PostQuery implements \Iterator, \Countable{
 
 	/**
 	 * Re-use an existing WP_Query (for instance, on archive templates where it doesn't make sense to repeat the query)
-	 * @param object WP_Query object
+	 * @param \WP_Query object
 	 * @throws \Exception Fails if $this->query was already set
 	 */
 	final public function setQuery( \WP_Query $query ){
@@ -106,7 +106,7 @@ abstract class PostQuery implements \Iterator, \Countable{
 
 	/**
 	 * Return the current WP_Query
-	 * @return object The current WP_Query
+	 * @return \WP_Query The current WP_Query
 	 */
 	public function getQuery(){
 		return $this->query;
@@ -149,10 +149,10 @@ abstract class PostQuery implements \Iterator, \Countable{
 		$this->the_post = null;
 	}
 	public function rewind(){
-		// check if
+		// check if query was already made
 		if ( !isset( $this->query ) ) {
 			global $wp_query;
-			if ( $wp_query->is_archive() ) {
+			if ( $wp_query->is_archive() || $wp_query->is_singular() ) {
 				$this->setQuery( $wp_query );
 			} else {
 				$this->getObjects();
