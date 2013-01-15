@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GutenPress 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/GutenPress\n"
-"POT-Creation-Date: 2013-01-02 13:39:38+00:00\n"
+"POT-Creation-Date: 2013-01-15 19:08:16+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -572,6 +572,10 @@ msgid "Couldn't write to file %1$s"
 msgstr ""
 
 #: Helpers/Attachment.php:22
+msgid "$id must reference an attachment post entry"
+msgstr ""
+
+#: Helpers/Attachment.php:25
 msgid "File ID %d not found"
 msgstr ""
 
@@ -591,50 +595,51 @@ msgid ""
 "action (on %3$s:%4$s)"
 msgstr ""
 
-#: Model/Metabox.php:52
+#: Model/Metabox.php:118
 msgid "%s must be a subclass of \\GutenPress\\Model\\PostMeta"
 msgstr ""
 
-#: Model/Metabox.php:202
+#: Model/Metabox.php:296
 msgid "Error uploading file %s"
 msgstr ""
 
-#: Model/Metabox.php:239
+#: Model/Metabox.php:340
 msgid "It seems you're not allowed to save data on %s."
 msgstr ""
 
-#: Model/Metabox.php:245
+#: Model/Metabox.php:346
 msgid "You are not authorized to edit this content"
 msgstr ""
 
-#: Model/PostMeta.php:19
+#: Model/PostMeta.php:27
 msgid ""
 "You must define a short string as metabox ID (will also be prepended to this "
 "class of meta data)"
 msgstr ""
 
-#: Model/PostMeta.php:34
+#: Model/PostMeta.php:58
 msgid "Key %s it's too long. Please choose something shorter"
 msgstr ""
 
-#: Model/PostMeta.php:37
+#: Model/PostMeta.php:61
 msgid "Duplicate metadata name for key %s"
 msgstr ""
 
-#: Model/PostQuery.php:22
+#: Model/PostQuery.php:66
 msgid "%s must be a subclass of \\GutenPress\\Model\\PostObject"
 msgstr ""
 
-#: Validate/Validations/Boolean.php:34 Validator/Validations/Boolean.php:34
+#: Model/PostQuery.php:100
+msgid ""
+"The query for this object was already set. You might want to create a new %s"
+msgstr ""
+
+#: Validate/Validations/Boolean.php:34
 msgid "The value for this field should be of a true/false type"
 msgstr ""
 
-#: Validate/Validations/Required.php:12 Validator/Validations/Required.php:12
+#: Validate/Validations/Required.php:12
 msgid "Please complete this field"
-msgstr ""
-
-#: Validator/Validate.php:48
-msgid "There is no data to validate on index %1$s"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
