@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GutenPress 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/GutenPress\n"
-"POT-Creation-Date: 2013-01-02 13:39:38+00:00\n"
-"PO-Revision-Date: 2013-01-02 10:46-0300\n"
+"POT-Creation-Date: 2013-01-15 19:08:16+00:00\n"
+"PO-Revision-Date: 2013-01-15 16:12-0300\n"
 "Last-Translator: Felipe Lavín <flavin@ayerviernes.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -549,6 +549,10 @@ msgid "Couldn't write to file %1$s"
 msgstr "No se puede escribir al archivo %1$s"
 
 #: Helpers/Attachment.php:22
+msgid "$id must reference an attachment post entry"
+msgstr "$id debe hacer referencia a una entrada de post de un archivo multimedia"
+
+#: Helpers/Attachment.php:25
 msgid "File ID %d not found"
 msgstr "No se ha encontrado el archivo con ID %d"
 
@@ -564,51 +568,49 @@ msgstr "Excepción al verificar nonce: el valor del nonce para la acción '%1$s'
 msgid "Nonce verification Exception: '%1$s' it's not a valid nonce for the '%2$s' action (on %3$s:%4$s)"
 msgstr "Excepción al verificar nonce: %1$s no es un nonce válido para la acción '%2$s' (en %3$s:%4$s)"
 
-#: Model/Metabox.php:52
+#: Model/Metabox.php:118
 msgid "%s must be a subclass of \\GutenPress\\Model\\PostMeta"
 msgstr "%s debe ser una subclase de \\GutenPress\\Model\\PostMeta"
 
-#: Model/Metabox.php:202
+#: Model/Metabox.php:296
 msgid "Error uploading file %s"
 msgstr "Error al subir el archivo %s"
 
-#: Model/Metabox.php:239
+#: Model/Metabox.php:340
 msgid "It seems you're not allowed to save data on %s."
 msgstr "Al parecer no tienes permitido guardar datos en %s."
 
-#: Model/Metabox.php:245
+#: Model/Metabox.php:346
 msgid "You are not authorized to edit this content"
 msgstr "No estás autorizado a editar este contenido."
 
-#: Model/PostMeta.php:19
+#: Model/PostMeta.php:27
 msgid "You must define a short string as metabox ID (will also be prepended to this class of meta data)"
 msgstr "Debes definir una cadena corta como ID del metabox (también se usará como prefijo para los datos de esta clase)"
 
-#: Model/PostMeta.php:34
+#: Model/PostMeta.php:58
 msgid "Key %s it's too long. Please choose something shorter"
 msgstr "La clave %s es muy larga. Por favor elige algo más corto"
 
-#: Model/PostMeta.php:37
+#: Model/PostMeta.php:61
 msgid "Duplicate metadata name for key %s"
 msgstr "Nombre de metadatos duplicado en la clave %s"
 
-#: Model/PostQuery.php:22
+#: Model/PostQuery.php:66
 msgid "%s must be a subclass of \\GutenPress\\Model\\PostObject"
 msgstr "%s debe ser una subclase de \\GutenPress\\Model\\PostObject"
 
+#: Model/PostQuery.php:100
+msgid "The query for this object was already set. You might want to create a new %s"
+msgstr "La consulta de este objeto ya fue establecida. Quizás quieras crear una nueva instancia de %s"
+
 #: Validate/Validations/Boolean.php:34
-#: Validator/Validations/Boolean.php:34
 msgid "The value for this field should be of a true/false type"
 msgstr "El valor de este campo debe ser de tipo verdadero/falso"
 
 #: Validate/Validations/Required.php:12
-#: Validator/Validations/Required.php:12
 msgid "Please complete this field"
 msgstr "Por favor completa este dato"
-
-#: Validator/Validate.php:48
-msgid "There is no data to validate on index %1$s"
-msgstr "No hay datos para validar en el índice %1$s"
 
 #. Plugin Name of the plugin/theme
 msgid "GutenPress"
@@ -623,9 +625,11 @@ msgstr "http://www.yukei.net"
 
 #. Description of the plugin/theme
 msgid "WordPress development toolset"
-msgstr ""
+msgstr "Set de herramientas para el desarrollo en WordPress"
 
 #. Author of the plugin/theme
 msgid "Felipe Lavin"
 msgstr "Felipe Lavin"
 
+#~ msgid "There is no data to validate on index %1$s"
+#~ msgstr "No hay datos para validar en el índice %1$s"
