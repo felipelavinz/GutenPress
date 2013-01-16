@@ -137,7 +137,11 @@ class Metabox{
 		global $post;
 		// create "form"... wich are not actually forms, since they are part
 		// of the greater "post" form
-		$form = new \GutenPress\Forms\MetaboxForm( $this->id .'-form' );
+		if ( $this->args['context'] === 'side' ) {
+			$form = new \GutenPress\Forms\MetaboxForm( $this->id .'-form', '\GutenPress\Forms\View\WPSide' );
+		} else {
+			$form = new \GutenPress\Forms\MetaboxForm( $this->id .'-form' );
+		}
 		foreach ( $this->postmeta->data as $field ) {
 			$element = $this->createElement( $field, $form );
 			if ( is_callable( array($element, 'setValue') ) ) {
