@@ -34,9 +34,11 @@ function gp_admin_bootstrap(){
 
 	load_muplugin_textdomain('gutenpress', 'GutenPress/i18n/' );
 	add_action('admin_enqueue_scripts', 'gp_admin_enqueue_scripts');
+	add_action('admin_print_footer_scripts', 'gp_admin_print_footer_scripts');
 
 	// post type model generator
 	$PostTypeBuilder = GutenPress\Build\PostType::getInstance();
+	$PostMetaBuilder = GutenPress\Build\PostMeta::getInstance();
 
 	do_action('gp_admin_bootstrap');
 }
@@ -44,12 +46,21 @@ function gp_admin_bootstrap(){
 function gp_admin_enqueue_scripts(){
 	// register css and javascript assets
 	// instantiate class
-	$Assets = GutenPress\Assets\Assets::getInstance();
+	$Assets = \GutenPress\Assets\Assets::getInstance();
 	$Assets->setPrefix('gp-admin-');
 	// register assets
-	$Assets->registerStyle(
+	$Assets->enqueueScript(
+		'head_js-loader',
+		$Assets->scriptUrl('head.load')
+	);
+	$Assets->enqueueStyle(
 		'form-styles',
 		$Assets->styleUrl('FormStyles')
 	);
 	do_action('gp_admin_register_assets', $Assets);
+}
+
+function gp_admin_print_footer_scripts(){
+	$Assets = \GutenPress\Assets\Assets::getInstance();
+	$Assets->loadEnqueuedScripts();
 }
