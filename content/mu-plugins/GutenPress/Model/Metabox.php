@@ -304,7 +304,7 @@ class Metabox{
 			$wp_filetype = wp_check_filetype( basename($upload['file']) );
 
 			$attachment = array(
-				'post_mime_type' => $wp_filetype,
+				'post_mime_type' => $wp_filetype['type'],
 				'guid' => $upload['url'],
 				'post_title' => preg_replace('/\.[^.]+$/', '', basename($upload['file'])),
 				'post_content' => '',
@@ -318,7 +318,7 @@ class Metabox{
 
 			require_once ABSPATH .'wp-admin/includes/image.php';
 
-			$attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
+			$attach_data = wp_generate_attachment_metadata( $attach_id, $upload['file'] );
 			wp_update_attachment_metadata( $attach_id, $attach_data );
 
 		}
