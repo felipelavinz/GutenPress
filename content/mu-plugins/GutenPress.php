@@ -38,7 +38,7 @@ function gp_admin_bootstrap(){
 
 	// post type model generator
 	$PostTypeBuilder = GutenPress\Build\PostType::getInstance();
-	$PostMetaBuilder = GutenPress\Build\PostMeta::getInstance();
+	// $PostMetaBuilder = GutenPress\Build\PostMeta::getInstance();
 
 	do_action('gp_admin_bootstrap');
 }
