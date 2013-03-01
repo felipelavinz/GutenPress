@@ -11,7 +11,7 @@ abstract class AdminPage{
 	protected $page_title;
 	protected $menu_title;
 	protected $parent_slug;
-	const textdomain = av_chileabroad::textdomain;
+
 	public function __construct( $parent_slug, $page_title, $menu_title, $capability, $slug = '', $callback ){
 		if ( !$slug ) $slug = sanitize_html_class( $page_title );
 		$this->parent_slug = $parent_slug;
@@ -24,20 +24,21 @@ abstract class AdminPage{
 		$this->actions_manager();
 		$this->default_messages();
 	}
-	protected function actions_manager(){
+
+	protected function actionsManager(){
 		add_action( 'admin_init', array($this, 'update') );
-		add_action( 'admin_menu', array($this, 'add_menu_page') );
+		add_action( 'admin_menu', array($this, 'addMenuPage') );
 	}
-	public function add_menu_page(){
-		add_submenu_page($this->parent_slug, $this->page_title, $this->menu_title, $this->capability, $this->slug, array($this, 'settings_page') );
+	public function addMenuPage(){
+		add_submenu_page($this->parent_slug, $this->page_title, $this->menu_title, $this->capability, $this->slug, array($this, 'settingsPage') );
 	}
-	private function default_messages(){
+	private function defaultMessages(){
 		$this->messages = array(
 			0 => '',
 			1 => '<strong>'. __('Las opciones se han guardado correctamente', self::textdomain) .'</strong>'
 		);
 	}
-	public function settings_page(){
+	public function settingsPage(){
 		$data = get_option($this->slug);
 		echo '<div class="wrap">';
 			echo '<div id="icon-'. $this->icon .'" class="icon32"><br /></div>';
@@ -69,10 +70,10 @@ abstract class AdminPage{
 			}
 		}
 	}
-	public function get_field_id($id){
+	public function getFieldId($id){
 		return esc_attr( $this->slug .'_'. $id );
 	}
-	public function get_field_name($name){
+	public function getFieldName($name){
 		return $this->slug .'['. $name .']';
 	}
 }
