@@ -10,14 +10,14 @@ class PostMetaData{
 	/**
 	 * Build a metadata bit
 	 * @param string $name The field name
+	 * @param string $label The human-friendly label
 	 * @param string $element A fully qualified name of a form element class
-	 * @param array $args An array of arguments passed to the element constructor
 	 * @param array $properties A set of data properties
 	 */
-	public function __construct( $name, $element, array $args, array $properties = array() ){
+	public function __construct( $name, $label, $element, array $properties = array() ){
 		$this->name = $name;
+		$this->label = $label;
 		$this->element = $element;
-		$this->args = $args;
 		$this->properties = $properties;
 	}
 	public function __get( $key ){

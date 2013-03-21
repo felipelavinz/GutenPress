@@ -41,7 +41,10 @@ class InputRadio extends \GutenPress\Forms\OptionElement{
 		'wrap_class' => 'control-group'
 	);
 	private $i = 1;
-	public function __construct( $label, $name, array $options, array $properties = array() ) {
+	public function __construct( $label = '', $name = '', array $options = array(), array $properties = array() ) {
+		parent::__construct( $label, $name, $options, $properties );
+	}
+	public function setProperties( array $properties ){
 		$view_properties = array_intersect_key($properties, $this->view_properties);
 		$this->view_properties = wp_parse_args( $view_properties, $this->view_properties );
 		if ( empty($properties['value']) ) {
@@ -50,9 +53,10 @@ class InputRadio extends \GutenPress\Forms\OptionElement{
 			$this->setValue( (array)$properties['value'] );
 		}
 		unset($properties['value']);
-		parent::__construct( $label, $name, $options, $properties );
+		parent::setProperties( $properties );
 	}
 	public function __toString(){
+		global $post;
 		$out = '';
 		$base_id = $this->getAttribute('id');
 		$sanitized_class = sanitize_html_class( $this->view_properties['wrap_class'] );
@@ -80,7 +84,7 @@ class InputRadio extends \GutenPress\Forms\OptionElement{
 		return '<p class="'. $wrap_class .'"><label>'. $this->controlView( $key, $val ) .'</label></p>';
 	}
 	protected function controlView( $key, $val ){
-		$checked = in_array($key, $this->getValue()) ? ' checked="checked"' : '';
+		$checked = in_array($key, (array)$this->getValue()) ? ' checked="checked"' : '';
 		$this->setAttribute('value', $key);
 		return '<input type="'. static::$type .'"'. $checked . $this->renderAttributes() .'> '. $val;
 	}

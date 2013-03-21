@@ -2,23 +2,27 @@
 
 namespace GutenPress\Forms\Element;
 
-class InputTextMultiple extends Input{
+class InputTextMultiple extends Input implements \GutenPress\Forms\MultipleFormElementInterface{
 	protected $view_properties = array(
 		'display_inline' => 0
 	);
-	public function __construct( $label, $name, array $properties = array() ){
+	public function __construct( $label = '', $name = '', array $properties = array() ){
+		parent::__construct( $label, $name, $properties );
+	}
+	public function setName( $name ){
+		// use name as an array
+		parent::setName( $name .'[]' );
+	}
+	public function setProperties( array $properties ){
 		$view_properties = array_intersect_key($properties, $this->view_properties);
 		$this->view_properties = wp_parse_args( $view_properties, $this->view_properties );
-		// use name as an array
-		$name .= '[]';
-		parent::__construct( $label, $name, $properties );
-
 		// The input type can be modified through the properties (to use url, email, etc)
 		if ( empty($properties['type']) ) {
 			$this->setAttribute('type', 'text');
 		} else {
 			$this->setAttribute('type', $properties['type']);
 		}
+		parent::setProperties( $properties );
 	}
 	public function __toString(){
 		$out = '';

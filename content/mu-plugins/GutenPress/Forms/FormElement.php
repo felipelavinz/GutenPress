@@ -1,8 +1,9 @@
 <?php
 
 namespace GutenPress\Forms;
+use GutenPress\Forms;
 
-abstract class FormElement extends \GutenPress\Forms\Element{
+abstract class FormElement extends Element implements FormElementInterface{
 	protected $name;
 	protected $label;
 	protected $value;
@@ -14,9 +15,21 @@ abstract class FormElement extends \GutenPress\Forms\Element{
 	 * @param string $name The "name" for the form control
 	 * @param array  $properties An associative array of element properties, most likely attributes but it can include other kind of data to be used on the view
 	 */
-	public function __construct( $label, $name, array $properties = array() ) {
+	public function __construct( $label = '', $name = '', array $properties = array() ) {
+		if ( $label )
+			$this->setLabel( $label );
+		if ( $name )
+			$this->setName( $name );
+		if ( $properties )
+			$this->setProperties( $properties );
+	}
+	public function setLabel( $label ){
 		$this->label = $label;
-		$this->name  = $name;
+	}
+	public function setName( $name ){
+		$this->name = $name;
+	}
+	public function setProperties( array $properties ){
 		if ( ! empty($properties['value']) ) {
 			$this->setValue( $properties['value'] );
 		}

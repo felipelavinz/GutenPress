@@ -145,8 +145,9 @@ class Metabox{
 		foreach ( $this->postmeta->data as $field ) {
 			$element = $this->createElement( $field, $form );
 			if ( is_callable( array($element, 'setValue') ) ) {
-				$value = $field->isMultiple() ? get_post_meta( $post->ID, $this->id .'_'. $field->name, false ) : get_post_meta( $post->ID, $this->id .'_'. $field->name, true );
-				$element->setValue( $value );
+				$value = $element instanceof \GutenPress\Forms\MultipleFormElementInterface ? get_post_meta( $post->ID, $this->id .'_'. $field->name, false ) : get_post_meta( $post->ID, $this->id .'_'. $field->name, true );
+				if ( ! empty($value) )
+					$element->setValue( $value );
 			}
 			$form->addElement( $element );
 		}
@@ -165,41 +166,22 @@ class Metabox{
 	 */
 	private function createElement( $field, $form ){
 		global $post;
-
-		// using Reflection it's kind of costly and hacky... alternatives?
-		$element = new \ReflectionClass( $field->element );
-		$params = $this->getElementParameters( $element );
-
-
-		$name_i = array_search('name', $params);
-		$properties_i = array_search('properties', $params);
-		$args = array();
-
-		$i=0; foreach ( $field->args as $arg ){
-			if ( $i === $name_i ) {
-				// prefix name with the form id, so all our data it's sent as an array
-				$args[] = $form->getName( $arg );
-			} else {
-				$args[] = $arg;
-			}
-		++$i; }
-
-		return $element->newInstanceArgs( $args );
-	}
-
-	/**
-	 * Get the element object constructor parameters
-	 * @param object $element A \ReflectionClass object to get the constructor parameters
-	 * @return array The definition of constructor parameters
-	 */
-	private function getElementParameters( \ReflectionClass $element ){
-		$constructor = $element->getMethod('__construct');
-		$params = $constructor->getParameters();
-		$out = array();
-		foreach ( $params as $param ) {
-			$out[] = $param->name;
+		// check if desired element implements the FormElementInterface so we can know how to build it
+		if ( ! in_array('GutenPress\Forms\FormElementInterface', class_implements($field->element)) ) {
+			throw new \Exception( sprintf( __('The %s element class should implement GutenPress/Forms/FormElementInterface so we can properly instantiate it', 'gutenpress'), $field->element) );
 		}
-		return $out;
+		$element = new $field->element;
+		$element->setName( $form->getName( $field->name ) );
+		$element->setLabel( $field->label );
+		// set options for elements that should have them (radio buttons, checkboxes, selects)
+
+		$properties = $field->properties;
+		if ( $element instanceof \GutenPress\Forms\OptionsFormElementInterface && isset($properties['options']) ) {
+			$element->setOptions( $properties['options'] );
+			unset( $properties['options'] );
+		}
+		$element->setProperties( $properties );
+		return $element;
 	}
 
 	/**

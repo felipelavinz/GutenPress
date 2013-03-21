@@ -17,11 +17,14 @@ class WPEditor extends \GutenPress\Forms\FormElement{
 		'tinymce'       => true,
 		'quicktags'     => true
 	);
-	public function __construct( $label, $name, array $properties = array() ){
+	public function __construct( $label = '', $name = '', array $properties = array() ){
 		parent::__construct( $label, $name, $properties );
+	}
+	public function setProperties( array $properties ){
 		if ( ! isset($properties['textarea_name']) )
-			$properties['textarea_name'] = $name;
+			$properties['textarea_name'] = $this->name;
 		$this->editor_settings = wp_parse_args( $properties, $this->editor_settings );
+		parent::setProperties( $properties );
 	}
 	private function getSanitizedId(){
 		$id = $this->getAttribute( 'id' ) . $this->name;

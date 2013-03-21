@@ -36,9 +36,12 @@ class Input extends \GutenPress\Forms\FormElement{
 		'value',
 		'width'
 	);
-	public function __construct( $label, $name, array $properties = array() ){
-		$properties['type'] = static::$type;
+	public function __construct( $label = '', $name = '', array $properties = array() ){
 		parent::__construct( $label, $name, $properties );
+	}
+	public function setProperties( array $properties ){
+		$properties['type'] = static::$type;
+		parent::setProperties( $properties );
 	}
 	public function __toString(){
 		return '<input '. $this->renderAttributes() .'>';

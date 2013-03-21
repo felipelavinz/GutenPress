@@ -42,10 +42,28 @@ abstract class Element{
 	 * @param string $content Element content
 	 */
 	public function __construct( array $properties = array() , $content = '' ){
+		if ( $properties )
+			$this->initProperties( $properties );
+		if ( $content )
+			$this->setContent( $content );
+	}
+
+	/**
+	 * Set element content (stuff inside the tag)
+	 * @param string $content
+	 */
+	private function setContent( $content ){
+		$this->content = $content;
+	}
+
+	/**
+	 * Set element properties: attributes and others.
+	 * Will separate attributes from other types of attributes based on $global_attributes and $element_attributes
+	 * @param array $properties
+	 */
+	private function initProperties( array $properties ){
 		// recursively filter null values
 		$this->properties = \GutenPress\Helpers\Arrays::filterRecursive( $properties );
-		$this->content    = $content;
-
 		// collect all attributes properties for this element
 		$this->collectAttributes();
 	}

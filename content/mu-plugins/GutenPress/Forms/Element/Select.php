@@ -16,7 +16,7 @@ class Select extends \GutenPress\Forms\OptionElement{
 		$out = '';
 		$selected = (string)$this->getValue();
 		$out .= '<select'. $this->renderAttributes() .'>';
-			foreach ( $this->options as $key => $val ) {
+			foreach ( (array)$this->options as $key => $val ) {
 				$is_selected = $selected === (string)$key ? ' selected="selected"' : '';
 				$out .= '<option value="'. esc_attr($key) .'"'. $is_selected .'>'. $val .'</option>';
 			}
