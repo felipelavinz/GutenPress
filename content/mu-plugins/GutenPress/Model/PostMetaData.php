@@ -24,6 +24,6 @@ class PostMetaData{
 		return $this->{ $key };
 	}
 	public function isMultiple(){
-		return ! empty( $this->properties['multiple'] );
+		return $this instanceof \GutenPress\Forms\MultipleFormElementInterface;
 	}
 }
