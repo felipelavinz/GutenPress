@@ -11,6 +11,6 @@ class WPNonce extends InputHidden{
 		parent::__construct( $name, '' );
 	}
 	public function __toString(){
-		return wp_nonce_field( $this->action, $this->getAttribute('name'), $this->use_referer, false );
+		return wp_nonce_field( $this->action, $this->name, $this->use_referer, false );
 	}
 }
