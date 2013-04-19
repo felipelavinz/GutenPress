@@ -1,6 +1,6 @@
 [submodule "wp"]
 	path = wp
 	url = git://github.com/WordPress/WordPress.git
-[submodule "content/mu-plugins/GutenPress/Autoload"]
-	path = content/mu-plugins/GutenPress/Autoload
+[submodule "GutenPress/Autoload"]
+	path = GutenPress/Autoload
 	url = git://gist.github.com/221634.git
