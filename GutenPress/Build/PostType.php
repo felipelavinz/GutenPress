@@ -549,7 +549,7 @@ class PostType{
 				throw new \Exception( sprintf( __('Error creating post type %1$s', 'gutenpress'), $post_type ) );
 			}
 
-		} catch ( Exception $e ) {
+		} catch ( \Exception $e ) {
 			wp_die( $e->getMessage() );
 		}
 	}
