@@ -61,11 +61,14 @@ if ( count($latest_songs) ) :
 	foreach ( $latest_songs as $song ) :
 		// do stuff
 		// each $song will be an instance of SongObject
+		echo $song->authors;
 	endforeach;
 endif;
 ```
 
-You can extend your "Object" class to add custom methods around WP_Post, for instance:
+### Using and extending custom post type objects
+
+You can extend your "Object" class to add custom methods around WP_Post:
 
 ```php
 class SongObject extends \GutenPress\Model\PostObject{
@@ -89,4 +92,38 @@ class SongObject extends \GutenPress\Model\PostObject{
 		parent::__get( $key );
 	}
 }
+```
+
+### Adding metaboxes
+
+You can use the \GutenPress\Model\PostMeta class to add a metabox to your CPT:
+
 ```php
+class SongAuthors extends Model\PostMeta{
+	protected function setId(){
+		// will be used for the metabox ID
+		// will be prepended to the metadata defined by this class
+		return 'author';
+	}
+	protected function setDataModel(){
+		return array(
+			new Model\PostMetaData(
+				'composer',
+				'Composer',
+				'\GutenPress\Forms\Element\InputText', // can be any of the Elements defined on the corresponding folder
+				array(
+					'placeholder' => 'Who composed the music for this song?'
+				)
+			),
+			new Model\PostMetaData(
+				'lyrics',
+				'Lyrics',
+				'\GutenPress\Forms\Element\InputText',
+				array(
+					'placeholder' => 'Who wrote the lyrics?'
+				)
+			)
+		);
+	}
+}
+```
