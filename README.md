@@ -99,6 +99,7 @@ class SongObject extends \GutenPress\Model\PostObject{
 You can use the \GutenPress\Model\PostMeta class to add a metabox to your CPT:
 
 ```php
+// using the \GutenPress\Model namespace as Model;
 class SongAuthors extends Model\PostMeta{
 	protected function setId(){
 		// will be used for the metabox ID
