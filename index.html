@@ -41,12 +41,13 @@
 <ul>
 <li>A post type generator GUI that creates new custom post types as plugins</li>
 <li>A set of metabox generator classes to add custom meta data to generated custom post types</li>
-<li>A wrapper class for WP_Query that returns instances of custom post type objects wrapped on a custom class, so you can extend the post-like objects according to your needs</li>
+<li>A extendable wrapper class for WP_Query that returns instances of custom post type objects wrapped on an extendable custom class, so you can customize the post-like objects to your needs</li>
 </ul><h2>Installation</h2>
 
 <ul>
 <li>Download the <a href="https://github.com/felipelavinz/GutenPress/archive/master.zip">master archive</a> and extract into <code>wp-content/mu-plugins/</code>
 </li>
+<li>You'll need PHP 5.3 or greater, since GutenPress uses namespacing to lazy-load whenever's possible</li>
 </ul><h2>Usage</h2>
 
 <h3>Custom Post Type generator</h3>
@@ -55,8 +56,75 @@
 <li>A new sub-menu it's added to the <strong>Tools</strong> admin menu.</li>
 <li>Carefully fill the form and select the required options to configure your new custom post type.</li>
 <li>On submit, a new folder will be created on your plugins folder; you'll be redirected to the plugins management so you can activate the new CPT</li>
-<li>The plugin activation will add the relevant permissions to the admin user, if you need to add permissions for other groups, check the <a href="http://wordpress.org/extend/plugins/members/">Members</a> plugin by Justin Tadlock</li>
+<li>The plugin activation will add the relevant permissions to the admin user</li>
+<li>If you need to add permissions for other groups, check the <a href="http://wordpress.org/extend/plugins/members/">Members</a> plugin by Justin Tadlock</li>
+<li>The generated plugin consists of three classes:
+
+<ul>
+<li>A custom post type definition that extends \GutenPress\Model\PostType</li>
+<li>A custom query class that extends \GutenPress\Model\PostQuery, a wrapper for WP_Query that implements the Iterator interface</li>
+<li>A custom object class that extends \GutenPress\Model\PostObject, a wrapper for WP_Post that you can extend with custom methods</li>
 </ul>
+</li>
+</ul><h3>Using the custom query class</h3>
+
+<p>Let's suppose we just created a <strong>Songs</strong> custom post type.</p>
+
+<p>Getting a list of songs works just like directly calling WP_Query, so you can use all the arguments you could use with it, including tax queries and meta queries:</p>
+
+<div class="highlight"><pre><span class="nv">$latest_songs</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SongsQuery</span><span class="p">(</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'posts_per_page'</span> <span class="o">=&gt;</span> <span class="s1">'10'</span><span class="p">,</span>
+    <span class="s1">'tax_query'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'taxonomy'</span> <span class="o">=&gt;</span> <span class="s1">'performed_by'</span><span class="p">,</span>
+            <span class="s1">'terms'</span> <span class="o">=&gt;</span> <span class="s1">'pink-floyd'</span><span class="p">,</span>
+            <span class="s1">'field'</span> <span class="o">=&gt;</span> <span class="s1">'slug'</span>
+        <span class="p">)</span>
+    <span class="p">),</span>
+    <span class="s1">'meta_query'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'key'</span> <span class="o">=&gt;</span> <span class="s1">'author_composer'</span><span class="p">,</span>
+            <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'David Gilmour'</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span> <span class="p">);</span>
+</pre></div>
+
+<p>Since <em>SongsQuery</em> (or whatever your generated CPT class is called) implements the Iterator interface, you can loop through the objects with a simple <code>foreach</code>. It also implements the Countable interface, so you can check if your query actually has items:</p>
+
+<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$latest_songs</span><span class="p">)</span> <span class="p">)</span> <span class="o">:</span>
+    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$latest_songs</span> <span class="k">as</span> <span class="nv">$song</span> <span class="p">)</span> <span class="o">:</span>
+        <span class="c1">// do stuff</span>
+        <span class="c1">// each $song will be an instance of SongObject</span>
+    <span class="k">endforeach</span><span class="p">;</span>
+<span class="k">endif</span><span class="p">;</span>
+</pre></div>
+
+<p>You can extend your "Object" class to add custom methods around WP_Post, for instance:</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">SongObject</span> <span class="k">extends</span> <span class="nx">\GutenPress\Model\PostObject</span><span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAuthors</span><span class="p">(){</span>
+        <span class="nv">$composer</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">post</span><span class="o">-&gt;</span><span class="na">author_composer</span><span class="p">;</span>
+        <span class="nv">$lyrics</span>   <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">post</span><span class="o">-&gt;</span><span class="na">author_lyrics</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="nv">$composer</span> <span class="o">===</span> <span class="nv">$lyrics</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s1">'Music and Lyrics by '</span><span class="o">.</span> <span class="nv">$lyrics</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s1">'Music: '</span><span class="o">.</span> <span class="nv">$composer</span> <span class="o">.</span><span class="s1">' / Lyrics: '</span><span class="o">.</span> <span class="nv">$lyrics</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="sd">/**</span>
+<span class="sd">     * You can also overwrite the __get() magic method</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__get</span><span class="p">(</span> <span class="nv">$key</span> <span class="p">){</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="nv">$key</span> <span class="o">===</span> <span class="s1">'authors'</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getAuthors</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="c1">// pass it on to WP_Post</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">__get</span><span class="p">(</span> <span class="nv">$key</span> <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="sb">``</span><span class="err">`</span><span class="nx">php</span>
+</pre></div>
       </section>
       <footer>
         <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
