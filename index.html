@@ -96,11 +96,14 @@
     <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$latest_songs</span> <span class="k">as</span> <span class="nv">$song</span> <span class="p">)</span> <span class="o">:</span>
         <span class="c1">// do stuff</span>
         <span class="c1">// each $song will be an instance of SongObject</span>
+        <span class="k">echo</span> <span class="nv">$song</span><span class="o">-&gt;</span><span class="na">authors</span><span class="p">;</span>
     <span class="k">endforeach</span><span class="p">;</span>
 <span class="k">endif</span><span class="p">;</span>
 </pre></div>
 
-<p>You can extend your "Object" class to add custom methods around WP_Post, for instance:</p>
+<h3>Using and extending custom post type objects</h3>
+
+<p>You can extend your "Object" class to add custom methods around WP_Post:</p>
 
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">SongObject</span> <span class="k">extends</span> <span class="nx">\GutenPress\Model\PostObject</span><span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">getAuthors</span><span class="p">(){</span>
@@ -123,7 +126,40 @@
         <span class="k">parent</span><span class="o">::</span><span class="na">__get</span><span class="p">(</span> <span class="nv">$key</span> <span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-<span class="sb">``</span><span class="err">`</span><span class="nx">php</span>
+</pre></div>
+
+<h3>Adding metaboxes</h3>
+
+<p>You can use the \GutenPress\Model\PostMeta class to add a metabox to your CPT:</p>
+
+<div class="highlight"><pre><span class="c1">// using the \GutenPress\Model namespace as Model;</span>
+<span class="k">class</span> <span class="nc">SongAuthors</span> <span class="k">extends</span> <span class="nx">Model\PostMeta</span><span class="p">{</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">setId</span><span class="p">(){</span>
+        <span class="c1">// will be used for the metabox ID</span>
+        <span class="c1">// will be prepended to the metadata defined by this class</span>
+        <span class="k">return</span> <span class="s1">'author'</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">setDataModel</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+            <span class="k">new</span> <span class="nx">Model\PostMetaData</span><span class="p">(</span>
+                <span class="s1">'composer'</span><span class="p">,</span>
+                <span class="s1">'Composer'</span><span class="p">,</span>
+                <span class="s1">'\GutenPress\Forms\Element\InputText'</span><span class="p">,</span> <span class="c1">// can be any of the Elements defined on the corresponding folder</span>
+                <span class="k">array</span><span class="p">(</span>
+                    <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Who composed the music for this song?'</span>
+                <span class="p">)</span>
+            <span class="p">),</span>
+            <span class="k">new</span> <span class="nx">Model\PostMetaData</span><span class="p">(</span>
+                <span class="s1">'lyrics'</span><span class="p">,</span>
+                <span class="s1">'Lyrics'</span><span class="p">,</span>
+                <span class="s1">'\GutenPress\Forms\Element\InputText'</span><span class="p">,</span>
+                <span class="k">array</span><span class="p">(</span>
+                    <span class="s1">'placeholder'</span> <span class="o">=&gt;</span> <span class="s1">'Who wrote the lyrics?'</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
       </section>
       <footer>
