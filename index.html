@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Gutenpress by felipelavinz</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Gutenpress</h1>
+        <p class="header">An OOP toolset for WordPress</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/felipelavinz/GutenPress/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/felipelavinz/GutenPress/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/felipelavinz/GutenPress">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/felipelavinz">felipelavinz</a></p>
+
+
+      </header>
+      <section>
+        <h1>GutenPress</h1>
+
+<p>An OOP toolset for WordPress.</p>
+
+<p>At the moment, <strong>GutenPress</strong> it's a rough-draft for a bunch of tools for developing themes or plugins for WordPress.</p>
+
+<p>Currently working:</p>
+
+<ul>
+<li>A post type generator GUI that creates new custom post types as plugins</li>
+<li>A set of metabox generator classes to add custom meta data to generated custom post types</li>
+<li>A wrapper class for WP_Query that returns instances of custom post type objects wrapped on a custom class, so you can extend the post-like objects according to your needs</li>
+</ul><h2>Installation</h2>
+
+<ul>
+<li>Download the <a href="https://github.com/felipelavinz/GutenPress/archive/master.zip">master archive</a> and extract into <code>wp-content/mu-plugins/</code>
+</li>
+</ul><h2>Usage</h2>
+
+<h3>Custom Post Type generator</h3>
+
+<ul>
+<li>A new sub-menu it's added to the <strong>Tools</strong> admin menu.</li>
+<li>Carefully fill the form and select the required options to configure your new custom post type.</li>
+<li>On submit, a new folder will be created on your plugins folder; you'll be redirected to the plugins management so you can activate the new CPT</li>
+<li>The plugin activation will add the relevant permissions to the admin user, if you need to add permissions for other groups, check the <a href="http://wordpress.org/extend/plugins/members/">Members</a> plugin by Justin Tadlock</li>
+</ul>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-93087-16");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
