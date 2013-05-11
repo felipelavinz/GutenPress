@@ -127,4 +127,7 @@ class SongAuthors extends Model\PostMeta{
 		);
 	}
 }
+
+// finally, register as metabox
+new Model\Metabox( 'SongAuthors', 'Authorship information', 'song', array('priority' => 'high') );
 ```
