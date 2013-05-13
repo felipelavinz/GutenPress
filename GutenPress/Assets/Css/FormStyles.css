@@ -16,6 +16,27 @@
 	min-width: 165px;
 	padding-right: 1em;
 }
+.gutenpress-form .fieldset-multiple-actions{
+	margin-left: 165px;
+	padding-left: 1em;
+}
+.gutenpress-form .btn-link{
+	display: inline;
+	border: none;
+	margin: 0;
+	padding: 0;
+	background: none;
+	text-decoration: underline;
+	color: rgb(33, 117, 155);
+	cursor: pointer;
+}
+.gutenpress-form .btn-link:focus, .gutenpress-form .btn-link:active{
+	color: rgb(18, 73, 100);
+	outline: thin dotted;
+}
+.gutenpress-form .btn-link:hover{
+	color: rgb(213, 78, 33);
+}
 @media only screen and (max-width:900px){
 	.gutenpress-form fieldset .control-group{
 		margin-top: 1em;

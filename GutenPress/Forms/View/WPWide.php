@@ -9,7 +9,7 @@ class WPWide extends Forms\View{
 	private $i = 1;
 	public function __toString(){
 		$out = '';
-		$out .= '<table class="form-table">';
+		$out .= '<table class="form-table gutenpress-form">';
 			foreach ( $this->elements as $element ){
 				$this->setElementViewAttributes( $element );
 				if ( $element instanceof Element\InputHidden ) {

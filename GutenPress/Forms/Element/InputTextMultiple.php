@@ -28,7 +28,7 @@ class InputTextMultiple extends Input implements \GutenPress\Forms\MultipleFormE
 		$out = '';
 		$values = (array)$this->getValue();
 		/* translators: Add new / remove links for multiple inputs */
-		$action_links = '<a class="clone-parent" href="#clone">'. _x('Add new', 'multiple input action', 'gutenpress') .'</a> | <a class="remove-parent" href="#remove">'. _x('Remove',  'multiple input action', 'gutenpress') .'</a>';
+		$action_links = '<button class="btn-link clone-parent">'. _x('Add new', 'multiple input action', 'gutenpress') .'</button> | <button class="btn-link remove-parent">'. _x('Remove',  'multiple input action', 'gutenpress') .'</button>';
 		do {
 			$value = current( $values );
 			$this->setValue( $value );

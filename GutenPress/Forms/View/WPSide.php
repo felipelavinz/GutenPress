@@ -9,7 +9,7 @@ class WPSide extends Forms\View{
 	private $i = 1;
 	public function __toString(){
 		$out = '';
-		$out .= '<div class="form">';
+		$out .= '<div class="form gutenpress-form">';
 			foreach ( $this->elements as $element ){
 				$this->setElementViewAttributes( $element );
 				if ( $element instanceof Element\InputHidden ) {

@@ -143,13 +143,29 @@ class Metabox{
 			$form = new \GutenPress\Forms\MetaboxForm( $this->id .'-form' );
 		}
 		foreach ( $this->postmeta->data as $field ) {
-			$element = $this->createElement( $field, $form );
-			if ( is_callable( array($element, 'setValue') ) ) {
-				$value = $element instanceof \GutenPress\Forms\MultipleFormElementInterface ? get_post_meta( $post->ID, $this->id .'_'. $field->name, false ) : get_post_meta( $post->ID, $this->id .'_'. $field->name, true );
-				if ( ! empty($value) )
-					$element->setValue( $value );
+			// is this a repeatable-fieldset?
+			if ( $field->element === '\GutenPress\Forms\Element\FieldsetMultiple' ) {
+				if ( empty($field->properties['elements']) ) {
+					throw new \Exception( __('Please add some elements within this Fieldset, otherwhise it will feel very empty', 'gutenpress') );
+				}
+				$fieldset = $this->createElement( $field, $form );
+				$fieldset->setId( $field->name );
+				$values = get_post_meta( $post->ID, $this->id .'_'. $field->name, false );
+				if ( ! empty($values) ) {
+					$fieldset->setValue( $values );
+				}
+				foreach ( $field->properties['elements'] as $fieldset_element ) {
+					$el_name = $fieldset_element->name;
+					$element = $this->createElement( $fieldset_element, $form );
+					$element->setName( $el_name );
+					$element->setAttribute( 'name', $form->getName( $fieldset->id . '][__i__]['. $el_name ) );
+					$fieldset->addElement( $element );
+				}
+				$fieldset->setAttribute('id', $form->getId( $field->name ) );
+				$form->addElement( $fieldset );
+			} else {
+				$this->addField( $form, $field );
 			}
-			$form->addElement( $element );
 		}
 		// add a nonce for security...
 		$form->addElement( new \GutenPress\Forms\Element\WPNonce(
@@ -159,10 +175,20 @@ class Metabox{
 		echo $form;
 	}
 
+	private function addField( &$form, $field ){
+		global $post;
+		$element = $this->createElement( $field, $form );
+		if ( is_callable( array($element, 'setValue') ) ) {
+			$value = $element instanceof \GutenPress\Forms\MultipleFormElementInterface ? get_post_meta( $post->ID, $this->id .'_'. $field->name, false ) : get_post_meta( $post->ID, $this->id .'_'. $field->name, true );
+			if ( ! empty($value) )
+				$element->setValue( $value );
+		}
+		$form->addElement( $element );
+	}
+
 	/**
 	 * Create the form element
 	 * @return object \GutenPress\Forms\Element
-	 * @todo Replace reflection voodoo with some interface compliance
 	 */
 	private function createElement( $field, $form ){
 		global $post;

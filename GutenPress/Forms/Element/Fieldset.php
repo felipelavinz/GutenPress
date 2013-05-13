@@ -2,7 +2,7 @@
 
 namespace GutenPress\Forms\Element;
 
-class Fieldset extends \GutenPress\Forms\Element{
+class Fieldset extends \GutenPress\Forms\FormElement{
 	protected static $element_attributes = array(
 		'disabled',
 		'form',
@@ -15,16 +15,23 @@ class Fieldset extends \GutenPress\Forms\Element{
 	protected $view_properties = array(
 		'wrap_class' => 'control-group'
 	);
-	public function __construct( $id, $label, array $properties = array(), $elements = array() ){
-		$this->id = $id;
-		$this->label = $label;
-		$properties['id'] = $this->id;
+	public function __construct( $id = '', $label = '', array $properties = array(), $elements = array() ){
+		if ( $id ) {
+			$this->setId( $id );
+		}
+		if ( $label )
+			$this->label = $label;
 		if ( ! empty($elements) ) {
 			foreach ( $elements as $element ) {
 				$this->addElement( $element );
 			}
 		}
 		parent::__construct( $properties );
+	}
+	public function setId( $id ){
+		$this->id = $id;
+		$this->properties['id'] = $this->id;
+		$this->attributes['id'] = $this->id;
 	}
 	public function getLabel(){
 		return $this->label;
