@@ -95,7 +95,7 @@ class Metabox{
 		// save
 		add_action( 'save_post', array($this, 'saveMetabox'), 10, 2 );
 		// allow file uploads
-		add_action('post_edit_form_tag', array($this, 'allowFormUploads'));
+		add_action( 'post_edit_form_tag', array($this, 'allowFormUploads') );
 	}
 
 	/**
@@ -250,7 +250,7 @@ class Metabox{
 
 		foreach ( $this->postmeta->data as $meta ) {
 			if ( isset( $data[ $meta->name ] ) ) {
-				if ( is_array($data[ $meta->name] ) ) {
+				if ( in_array( 'GutenPress\Forms\MultipleFormElementInterface', class_implements($meta->element) ) ) {
 					// delete previous data
 					delete_post_meta( $post_id, $this->id .'_'. $meta->name );
 					foreach ( $data[ $meta->name ] as $value ) {

@@ -31,7 +31,7 @@ class Assets{
 		$this->prefix = $prefix;
 	}
 
-	public function enqueueScript( $handle, $src, array $deps = array(), $ver = false , $in_footer = false ){
+	public function enqueueScript( $handle, $src = '', array $deps = array(), $ver = false , $in_footer = false ){
 		wp_enqueue_script(
 			$this->sanitizeHandle( $handle ),
 			$src,
@@ -40,7 +40,23 @@ class Assets{
 		);
 	}
 
-	public function enqueueStyle( $handle, $src, array $deps = array(), $ver = false , $media = 'all' ){
+	/**
+	 * Enqueue an script that was already registered; simple wrapper for wp_enqueue_script that won't add the unique handle
+	 * @param  string  $handle    The script "handle"
+	 * @param  array   $deps      Scripts that should be loaded before this one
+	 * @param  boolean $in_footer Whether to load in footer
+	 * @return void
+	 */
+	public function enqueueRegisteredScript( $handle, array $deps = array(), $in_footer = false){
+		wp_enqueue_script(
+			$handle,
+			'',
+			$deps,
+			$in_footer
+		);
+	}
+
+	public function enqueueStyle( $handle, $src = '', array $deps = array(), $ver = false , $media = 'all' ){
 		wp_enqueue_style(
 			$this->sanitizeHandle( $handle ),
 			$src,
