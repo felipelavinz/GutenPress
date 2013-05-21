@@ -41,6 +41,8 @@ jQuery(document).ready(function($){
 				format = el.data('format-'+ gender);
 			el.val( format.replace('%s', val) );
 		});
+		var slug = val.toLowerCase().replace(/\ /g, '-').replace(/[^A-Za-z0-9-]*/g, '');
+		Form.find('#gp-build-post_type-capability-type').find('div.control-group:last-child input').val( slug );
 	}).on('keyup', 'input[name="gp-build-post_type[labels][singular_name]"]', function(){
 		var el = $(this),
 			val = el.val(),
