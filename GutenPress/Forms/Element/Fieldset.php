@@ -26,7 +26,7 @@ class Fieldset extends \GutenPress\Forms\FormElement{
 				$this->addElement( $element );
 			}
 		}
-		parent::__construct( $properties );
+		parent::__construct( $label, null, $properties );
 	}
 	public function setId( $id ){
 		$this->id = $id;
