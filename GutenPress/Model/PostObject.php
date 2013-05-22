@@ -60,7 +60,7 @@ class PostObject{
 			if ( empty($value) ) {
 				// probably not a postmeta, let WP_Post handle it
 				return $this->post->{$key};
-			} elseif ( count($value) === 0 ) {
+			} elseif ( count($value) === 1 ) {
 				$this->know_properties[ $key ] = $value[0];
 			} else {
 				$this->know_properties[ $key ] = $value;
