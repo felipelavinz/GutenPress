@@ -20,8 +20,7 @@ abstract class FormElement extends Element implements FormElementInterface{
 			$this->setLabel( $label );
 		if ( $name )
 			$this->setName( $name );
-		if ( $properties )
-			$this->setProperties( $properties );
+		$this->setProperties( $properties );
 	}
 	public function setLabel( $label ){
 		$this->label = $label;

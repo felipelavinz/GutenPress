@@ -56,7 +56,6 @@ class InputRadio extends \GutenPress\Forms\OptionElement{
 		parent::setProperties( $properties );
 	}
 	public function __toString(){
-		global $post;
 		$out = '';
 		$base_id = $this->getAttribute('id');
 		$sanitized_class = sanitize_html_class( $this->view_properties['wrap_class'] );
