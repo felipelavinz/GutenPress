@@ -7,8 +7,10 @@ At the moment, **GutenPress** it's a rough-draft for a bunch of tools for develo
 Currently working:
 
 * A post type generator GUI that creates new custom post types as plugins
+* A custom taxonomy generator GUI that creates... well.. custom taxonomies
 * A set of metabox generator classes to add custom meta data to generated custom post types
-* A extendable wrapper class for WP_Query that returns instances of custom post type objects wrapped on an extendable custom class, so you can customize the post-like objects to your needs
+* A completely extendable Forms class that integrates well with WordPress, and it's actually used within GutenPress for GUI and metaboxes
+* An extendable wrapper class for WP_Query that returns instances of custom post type objects wrapped on an extendable custom class, so you can customize the post-like objects to your needs
 
 ## Installation
 
