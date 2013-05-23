@@ -26,7 +26,7 @@ function register_%30$sTaxonomy(){
 				'add_new_item' => '%11$s',
 				'new_item_name' => '%12$s',
 				'parent_item' => '%13$s',
-				'parent_item_colon' => '%14%s',
+				'parent_item_colon' => '%14$s',
 				'search_items' => '%15$s',
 				'popular_items' => '%16$s',
 				'separate_items_with_commas' => '%17$s',
