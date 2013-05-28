@@ -12,7 +12,6 @@ Version: 0.1
 Author URI: http://www.yukei.net
 */
 
-add_action('muplugins_loaded', 'gp_register_autoload');
 function gp_register_autoload(){
 
 	require_once WPMU_PLUGIN_DIR .'/GutenPress/Autoload/SplClassLoader.php';
@@ -22,6 +21,8 @@ function gp_register_autoload(){
 	$GutenPress->register();
 
 }
+// call immediately, to avoid issues with network-activated plugins
+gp_register_autoload();
 
 if ( is_readable(__DIR__ .'/GutenPress/CustomBootstrap.php' ) ) {
 	include_once __DIR__ .'/GutenPress/CustomBootstrap.php';
@@ -39,7 +40,6 @@ function gp_admin_bootstrap(){
 	// post type model generator
 	$PostTypeBuilder = GutenPress\Build\PostType::getInstance();
 	$CustomTaxonomyBuilder = GutenPress\Build\Taxonomy::getInstance();
-	// $PostMetaBuilder = GutenPress\Build\PostMeta::getInstance();
 
 	do_action('gp_admin_bootstrap');
 }
