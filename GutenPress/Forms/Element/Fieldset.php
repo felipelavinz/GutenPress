@@ -2,7 +2,7 @@
 
 namespace GutenPress\Forms\Element;
 
-class Fieldset extends \GutenPress\Forms\FormElement{
+class Fieldset extends \GutenPress\Forms\FormElement implements \GutenPress\Forms\FieldsetElementInterface{
 	protected static $element_attributes = array(
 		'disabled',
 		'form',

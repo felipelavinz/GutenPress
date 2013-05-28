@@ -143,29 +143,27 @@ class Metabox{
 			$form = new \GutenPress\Forms\MetaboxForm( $this->id .'-form' );
 		}
 		foreach ( $this->postmeta->data as $field ) {
-			// is this a repeatable-fieldset?
-			if ( $field->element === '\GutenPress\Forms\Element\FieldsetMultiple' ) {
+			$element = $this->createElement( $field, $form );
+			if ( $element instanceof \GutenPress\Forms\FormElementInterface ) {
+				$value = $element instanceof \GutenPress\Forms\MultipleFormElementInterface ? get_post_meta( $post->ID, $this->id .'_'. $field->name, false ) : get_post_meta( $post->ID, $this->id .'_'. $field->name, true );
+				if ( ! empty($value) ) $element->setValue( $value );
+			}
+			if ( $element instanceof \GutenPress\Forms\FieldsetElementInterface ) {
+				// $element it's a Fieldset
 				if ( empty($field->properties['elements']) ) {
 					throw new \Exception( __('Please add some elements within this Fieldset, otherwhise it will feel very empty', 'gutenpress') );
 				}
-				$fieldset = $this->createElement( $field, $form );
-				$fieldset->setId( $field->name );
-				$values = get_post_meta( $post->ID, $this->id .'_'. $field->name, false );
-				if ( ! empty($values) ) {
-					$fieldset->setValue( $values );
+				$element->setId( $form->getId( $field->name ) );
+				foreach ( $field->properties['elements'] as $fs_field ) {
+					$field_name = $fs_field->name;
+					$fs_element = $this->createElement( $fs_field, $form );
+					$fs_element->setName( $field_name );
+					$fs_element->setAttribute( 'name', $form->getName( $field->name . '][__i__]['. $field_name ) );
+					$element->addElement( $fs_element );
 				}
-				foreach ( $field->properties['elements'] as $fieldset_element ) {
-					$el_name = $fieldset_element->name;
-					$element = $this->createElement( $fieldset_element, $form );
-					$element->setName( $el_name );
-					$element->setAttribute( 'name', $form->getName( $fieldset->id . '][__i__]['. $el_name ) );
-					$fieldset->addElement( $element );
-				}
-				$fieldset->setAttribute('id', $form->getId( $field->name ) );
-				$form->addElement( $fieldset );
-			} else {
-				$this->addField( $form, $field );
+				// $element->setAttribute('id', $form->getId( $element->name ) );
 			}
+			$form->addElement( $element );
 		}
 		// add a nonce for security...
 		$form->addElement( new \GutenPress\Forms\Element\WPNonce(
