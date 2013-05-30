@@ -52,8 +52,16 @@ abstract class Element{
 	 * Set element content (stuff inside the tag)
 	 * @param string $content
 	 */
-	private function setContent( $content ){
+	public function setContent( $content ){
 		$this->content = $content;
+	}
+
+	/**
+	 * Set element properties (attributes and others)
+	 * @param array $properties [description]
+	 */
+	public function setProperties( array $properties){
+		$this->initProperties( $properties );
 	}
 
 	/**

@@ -190,21 +190,26 @@ class Metabox{
 	 */
 	private function createElement( $field, $form ){
 		global $post;
-		// check if desired element implements the FormElementInterface so we can know how to build it
-		if ( ! in_array('GutenPress\Forms\FormElementInterface', class_implements($field->element)) ) {
-			throw new \Exception( sprintf( __('The %s element class should implement GutenPress/Forms/FormElementInterface so we can properly instantiate it', 'gutenpress'), $field->element) );
-		}
 		$element = new $field->element;
-		$element->setName( $form->getName( $field->name ) );
-		$element->setLabel( $field->label );
-		// set options for elements that should have them (radio buttons, checkboxes, selects)
-
 		$properties = $field->properties;
-		if ( $element instanceof \GutenPress\Forms\OptionsFormElementInterface && isset($properties['options']) ) {
-			$element->setOptions( $properties['options'] );
-			unset( $properties['options'] );
+
+		// it's most likely that the element it's a form field
+		if ( $element instanceof \GutenPress\Forms\FormElementInterface ) {
+			$element->setName( $form->getName( $field->name ) );
+			$element->setLabel( $field->label );
+			// set options for elements that should have them (radio buttons, checkboxes, selects)
+			if ( $element instanceof \GutenPress\Forms\OptionsFormElementInterface && isset($properties['options']) ) {
+				$element->setOptions( $properties['options'] );
+				unset( $properties['options'] );
+			}
+		} else {
+			if ( ! empty($properties['content']) ) {
+				$element->setContent( $properties['content'] );
+			}
 		}
+
 		$element->setProperties( $properties );
+
 		return $element;
 	}
 
