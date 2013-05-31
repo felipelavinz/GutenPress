@@ -226,6 +226,11 @@ class Metabox{
 		if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
 			return;
 
+		if ( $this->post_type !== $post->post_type )
+			return;
+
+		$this->initPostMeta();
+
 		try{
 			$this->checkPermissions( $post_id );
 		} catch ( \Exception $e ) {
@@ -344,7 +349,6 @@ class Metabox{
 	 * @return bool True if users passes checks
 	 */
 	private function checkPermissions( $postid ){
-		$this->initPostMeta();
 		// nonce it's not present when not saving
 		if ( ! isset($_POST[ $this->id .'_nonce']) ) {
 			return;

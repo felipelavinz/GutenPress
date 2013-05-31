@@ -26,9 +26,6 @@ abstract class PostMeta{
 		if ( empty( $this->id ) ) {
 			throw new \Exception( __('You must define a short string as metabox ID (will also be prepended to this class of meta data)', 'gutenpress') );
 		}
-		foreach ( $this->setDataModel() as $data ) {
-			$this->registerData( $data );
-		}
 	}
 
 	/**
@@ -42,6 +39,12 @@ abstract class PostMeta{
 	 * @return array
 	 */
 	abstract protected function setDataModel();
+
+	public function initDataModel(){
+		foreach ( $this->setDataModel() as $data ) {
+			$this->registerData( $data );
+		}
+	}
 
 	/**
 	 * Register the given meta data for this class
@@ -69,6 +72,9 @@ abstract class PostMeta{
 	 * @return bool Whether the given key it's a valid registered \GutenPress\Model\PostMetadata in this class
 	 */
 	public function __isset( $key ){
+		if ( $key === 'data' ) {
+			return empty($this->data);
+		}
 		return isset( $this->data[ $key ] );
 	}
 
@@ -82,6 +88,7 @@ abstract class PostMeta{
 			return $this->id;
 		}
 		if ( $key === 'data' ) {
+			if ( empty($this->data) ) $this->initDataModel();
 			return $this->data;
 		}
 		return $this->data[ $key ];
