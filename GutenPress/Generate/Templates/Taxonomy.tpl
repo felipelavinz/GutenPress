@@ -9,7 +9,7 @@ Author URI: http://URI_Of_The_Plugin_Author
 License: A "Slug" license name e.g. GPL2
 */
 
-function register_%30$sTaxonomy(){
+function register%30$sTaxonomy(){
 	register_taxonomy(
 		'%1$s',
 		%2$s,
