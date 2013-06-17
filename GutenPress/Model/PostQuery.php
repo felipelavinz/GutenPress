@@ -152,7 +152,7 @@ abstract class PostQuery implements \Iterator, \Countable{
 		// check if query was already made
 		if ( !isset( $this->query ) ) {
 			global $wp_query;
-			if ( $wp_query->is_archive() || $wp_query->is_singular() ) {
+			if ( empty($this->query_args) && ( $wp_query->is_archive() || $wp_query->is_singular() ) ) {
 				$this->setQuery( $wp_query );
 			} else {
 				$this->getObjects();
