@@ -1,5 +1,5 @@
 (function($){
-	jQuery(document).ready(function(){
+	$(document).ready(function(){
 		$(".clone-parent").on("click", function(event){
 			var el = $(this),
 				clone = el.parent().clone( true );

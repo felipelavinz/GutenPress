@@ -22,7 +22,7 @@
 						'<div id="gutenpress-shortcode-actions" class="gutenpress-dialog-actions hidden">' +
 							'<div class="gutenpress-dialog-actions-wrap">' +
 								'<input type="text" id="gutenpress-shortcode-preview" class="gutenpress-shortcode-preview" readonly>' +
-								'<button class="button-primary">'+ l10n.dialog.button_insert +'</button>' +
+								'<button id="gutenpress-shortcode-create" class="button-primary">'+ l10n.dialog.button_insert +'</button>' +
 							'</div>' +
 						'</div>' +
 					'</div>' +
@@ -62,15 +62,23 @@
 					// tinymce.activeEditor.save();
 					var previewShortcode = function(){
 						var preview     = $('#gutenpress-shortcode-preview'),
+							form        = $('#gutenpress-shortcode-composer'),
 							fields      = $('#gutenpress-shortcode-fields'),
 							base_format = '[%shortcode%%attributes%]',
 							attributes  = [],
 							val         = base_format.replace('%shortcode%', $('#gutenpress-shortcode-select').val());
 						fields.find('input, select').each(function(i, obj){
-							if ( obj.value && obj.checkValidity() ) attributes.push(obj.name +'="'+ obj.value +'"');
+							// @todo deal with multiple-inputs
+							// @todo deal with shortcodes with content
+							if ( obj.checkValidity ) {
+								if ( obj.value && obj.checkValidity() ) attributes.push(obj.name +'="'+ obj.value +'"');
+							} else {
+								if ( obj.value ) attributes.push(obj.name +'="'+ obj.value +'"');
+							}
 						});
 						val = attributes.length ? val.replace('%attributes%', ' '+ attributes.join(' ')) : val.replace('%attributes%', '');
 						preview.val( val );
+						return val;
 					};
 					setDialogSize();
 					$.get( l10n.settings.ajax_url, {
@@ -87,6 +95,9 @@
 									previewShortcode();
 								});
 								$('#gutenpress-shortcode-actions').fadeIn();
+								$('#gutenpress-shortcode-create').on('click', function(){
+									$('#gutenpress-dialog-shortcode').dialog('close');
+								});
 								previewShortcode();
 							});
 						});
@@ -99,14 +110,12 @@
 				},
 				close: function(event, ui){
 					// return focus to tinymce
-					tinymce.activeEditor.load();
+					// tinymce.activeEditor.load();
+					var generated_shortcode = $('#gutenpress-shortcode-preview').val(),
+						editor_content      = tinymce.activeEditor.getContent();
+					tinymce.activeEditor.selection.setContent( generated_shortcode );
+					tinymce.activeEditor.focus();
 				}
-				// buttons: [{
-				// 	text: 'bazzinga',
-				// 	click: function(){
-				// 		alert('yei');
-				// 	}
-				// }]
 			});
 			$(window).resize(function(){ setDialogSize(); });
 			return true;
