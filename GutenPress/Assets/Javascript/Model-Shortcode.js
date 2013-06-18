@@ -64,12 +64,16 @@
 						var preview     = $('#gutenpress-shortcode-preview'),
 							form        = $('#gutenpress-shortcode-composer'),
 							fields      = $('#gutenpress-shortcode-fields'),
-							base_format = '[%shortcode%%attributes%]',
+							has_content = document.getElementById('gutenpress-shortcode-content'),
+							sc_content  = has_content.value,
+							base_format = has_content && sc_content ? '[%shortcode%%attributes%]%content%[/%shortcode%]' : '[%shortcode%%attributes%]',
 							attributes  = [],
-							val         = base_format.replace('%shortcode%', $('#gutenpress-shortcode-select').val());
+							val         = base_format.replace(/%shortcode%/g, $('#gutenpress-shortcode-select').val());
 						fields.find('input, select').each(function(i, obj){
 							// @todo deal with multiple-inputs
 							// @todo deal with shortcodes with content
+							if ( obj.name === 'content' )
+								return;
 							if ( obj.checkValidity ) {
 								if ( obj.value && obj.checkValidity() ) attributes.push(obj.name +'="'+ obj.value +'"');
 							} else {
@@ -77,6 +81,9 @@
 							}
 						});
 						val = attributes.length ? val.replace('%attributes%', ' '+ attributes.join(' ')) : val.replace('%attributes%', '');
+						if ( has_content && sc_content ) {
+							val = val.replace('%content%', sc_content);
+						}
 						preview.val( val );
 						return val;
 					};
@@ -91,11 +98,12 @@
 								shortcode: $(this).val()
 							}, function(data){
 								setDialogSize();
-								$('#gutenpress-shortcode-fields').html( data ).find('input, select').on('change', function(){
+								$('#gutenpress-shortcode-fields').html( data ).find('input, select, textarea').on('change', function(){
 									previewShortcode();
 								});
 								$('#gutenpress-shortcode-actions').fadeIn();
 								$('#gutenpress-shortcode-create').on('click', function(){
+									previewShortcode();
 									$('#gutenpress-dialog-shortcode').dialog('close');
 								});
 								previewShortcode();
@@ -103,14 +111,8 @@
 						});
 					} );
 				},
-				beforeClose: function(event, ui){
-					// this is the tricky part, where we must
-					// insert the generated shortcode into the editor
-					// tinymce.activeEditor.load();
-				},
 				close: function(event, ui){
 					// return focus to tinymce
-					// tinymce.activeEditor.load();
 					var generated_shortcode = $('#gutenpress-shortcode-preview').val(),
 						editor_content      = tinymce.activeEditor.getContent();
 					tinymce.activeEditor.selection.setContent( generated_shortcode );
