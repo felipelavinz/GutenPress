@@ -50,3 +50,37 @@
 		text-align: left;
 	}
 }
+
+/** Dialogs **/
+.gutenpress-dialog .gutenpress-dialog-content{
+	padding: 10px;
+}
+/*.has-actions .gutenpress-dialog .gutenpress-dialog-content{
+	padding-bottom: 55px;
+}*/
+.gutenpress-dialog-actions{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 44px;
+	background: #eee;
+	margin-top: 1em;
+	border-top: 1px solid #eee;
+}
+.gutenpress-dialog-actions-wrap{
+	padding: 10px 10px 20px;
+}
+.gutenpress-dialog-actions-wrap button, .gutenpress-dialog-actions-wrap input[type="submit"]{
+	float: right;
+}
+.gutenpress-dialog-content{
+	overflow: auto;
+}
+.gutenpress-shortcode-preview{
+	float: left;
+	width: 70%;
+	border: 1px solid #eee;
+	color: #999;
+	padding: 3px;
+}
