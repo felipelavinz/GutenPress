@@ -67,9 +67,16 @@ class Assets{
 	}
 
 	public function loadScript( $handle ){
-		if ( ! in_array($handle, self::$enqueued_scripts) ) {
-			// if it ends on .js, assume it's a full path
-			self::$enqueued_scripts[] = stripos($handle, '.js') === false ? $this->scriptUrl( $handle ) : $handle;
+		// if loading with ajax, load inmediately
+		if ( defined('DOING_AJAX') && DOING_AJAX ) {
+			echo '<script type="text/javascript">';
+				echo 'head.js("'. ( stripos($handle, '.js') === false ? $this->scriptUrl( $handle ) : $handle ) .'");';
+			echo '</script>';
+		} else {
+			if ( ! in_array($handle, self::$enqueued_scripts) ) {
+				// if it ends on .js, assume it's a full path
+				self::$enqueued_scripts[] = stripos($handle, '.js') === false ? $this->scriptUrl( $handle ) : $handle;
+			}
 		}
 	}
 
