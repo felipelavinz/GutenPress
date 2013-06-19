@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * This class attempts to ease the management of WordPress shortcodes, by providing an standard way
+ * to integrate shortcode options into the visual editor and generating shortcodes that are
+ * obvious to use
+ */
 namespace GutenPress\Model;
 use GutenPress\Forms as Forms;
 use GutenPress\Forms\Element as Element;
@@ -8,12 +12,15 @@ class ShortcodeFactory{
 	private $shortcodes;
 	private $sc_classes;
 	private static $instance;
+
+	/**
+	 * Set factory actions within WordPress
+	 */
 	private function __construct(){
 		$this->setActions();
 	}
 	private function __clone(){	}
 	private function __wakeup(){ }
-
 	public static function getInstance(){
 		if ( !isset(self::$instance) ){
 			$c = __CLASS__;
@@ -22,25 +29,40 @@ class ShortcodeFactory{
 		return self::$instance;
 	}
 
-	// Factory methods
-
-	public static function create( $class ){
+	/**
+	 * Instantiate a shortcode class
+	 * @param  string $classname The FQN of the shortcode class handler
+	 * @return \GutenPress\Model\Shortcode A shortcode object
+	 * @throws \Exception If the class does not inherit from \GutenPress\Model\Shortcode
+	 */
+	public static function create( $classname ){
 		$factory   = self::getInstance();
-		$shortcode = new $class;
+		$shortcode = new $classname;
 		if ( ! $shortcode instanceof \GutenPress\Model\Shortcode ) {
-			throw new \Exception( sprintf( __('%s must be a subclass of \GutenPress\Model\Shortcode', 'gutenpress'), $class ) );
+			throw new \Exception( sprintf( __('%s must be a subclass of \GutenPress\Model\Shortcode', 'gutenpress'), $classname ) );
 		}
+
 		// register wordpress shortcode
 		$shortcode->register();
+
 		// add to the internal shortcode list
-		$factory->register( $class, $shortcode );
-		// add_shortcode( $tag, array($shortcode, 'display') );
-		// $this->shortcodes[ $class ] = $shortcode;
+		$factory->register( $classname, $shortcode );
+
+		return $shortcode;
 	}
 
-	public static function destroy( $class ){
-		// destroy object and remove from registered shortcodes
-		// remove_shortcode( $tag );
+	/**
+	 * Remove registered shortcode object and delete tag
+	 * @param  string $classname The name of the class handler
+	 * @return bool False if wasn't registered, true if successfuly removed
+	 */
+	public static function destroy( $classname ){
+		if ( ! isset($this->shortcodes[ $classname ]) )
+			return false;
+		$tag = $this->shortcodes[ $classname ]->tag;
+		unset( $this->shortcodes[ $classname ]);
+		unset( $this->sc_classes[ $tag ] );
+		return true;
 	}
 
 	/**
@@ -59,7 +81,7 @@ class ShortcodeFactory{
 	 * @param  string $id The shortcode class name
 	 * @return bool       False if wasn't on the list
 	 */
-	public function unregister( $id, $remove_shortcode = true ){
+	public function unregister( $id ){
 		if ( !isset($this->shortcodes[$id]) )
 			return false;
 		unset($this->shortcodes[$id]);
@@ -128,6 +150,10 @@ class ShortcodeFactory{
 		return $plugin_arr;
 	}
 
+	/**
+	 * Create the shortcode compose form that will allow to select the desired shortcode
+	 * @return void
+	 */
 	public function getComposeForm(){
 		$form = new Forms\Form('gutenpress-shortcode-composer', '\GutenPress\Forms\View\GPShortcode');
 		$form->addElement( new Element\Select(
@@ -142,6 +168,10 @@ class ShortcodeFactory{
 		exit;
 	}
 
+	/**
+	 * Echo the shortcode configuration form
+	 * @return void
+	 */
 	public function getFormFields(){
 		$shortcode_tag = trim( $_GET['shortcode'] );
 		if ( ! isset($this->sc_classes[ $shortcode_tag]) )
@@ -151,6 +181,10 @@ class ShortcodeFactory{
 		exit;
 	}
 
+	/**
+	 * Build a list of shortcode options
+	 * @return array List of available shortcodes
+	 */
 	private function getShortcodeOptions(){
 		$options = array( '' => __('(Select a Shortcode)', 'gutenpress') );
 		foreach ( $this->shortcodes as $classname => $shortcode ) {
@@ -159,4 +193,3 @@ class ShortcodeFactory{
 		return $options;
 	}
 }
-// Instantiate the class object

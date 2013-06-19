@@ -1,19 +1,6 @@
 <?php
 /**
  * GutenPress Shortcode Model
- *
- * This class attempts to ease the management of WordPress shortcodes, by providing an standard way
- * to integrate shortcode options into the visual editor and generating shortcodes that are
- * obvious to use
- *
- * Should do:
- *
- * - registration of the shortcode
- * - add a unique "shortcode" button to the visual editor
- * - manage shortcode options and expose them to the user
- * - insert the generated shortcode into the editor
- * - (?) allow easy edition of a generated shortcode
- * - (?) allow a better representation of the shortcode within the editor
  */
 namespace GutenPress\Model;
 
@@ -26,14 +13,28 @@ abstract class Shortcode{
 	protected static $instance;
 
 	public function __construct(){
-		$this->tag = $this->getTag();
-		$this->friendly_name = $this->getFriendlyName();
-		$this->description = $this->getDescription();
+		$this->setTag();
+		$this->setFriendlyName();
+		$this->setDescription();
+		if ( ! isset($this->tag, $this->friendly_name, $this->description) ) {
+			throw new \Exception( sprintf( __('You must set the required class variables for %s', 'gutenpress'), get_called_class() ) );
+		}
 	}
 
-	abstract public function getTag();
-	abstract public function getFriendlyName();
-	abstract public function getDescription();
+	/**
+	 * Set the shortcode tag name ($this->tag)
+	 */
+	abstract public function setTag();
+
+	/**
+	 * Set the shortcode friendly name ($this->friendly_name)
+	 */
+	abstract public function setFriendlyName();
+
+	/**
+	 * Set a brief description for the shortcode ($this->description)
+	 */
+	abstract public function setDescription();
 
 	/**
 	 * Define the output of the shortcode. Must RETURN a string
@@ -57,17 +58,29 @@ abstract class Shortcode{
 	public function __get( $key ){
 		return $this->$key;
 	}
+
+	/**
+	 * Destroy and remove shortcode tag
+	 * @return void
+	 */
 	public function __destroy(){
 		$this->unregister();
 	}
 
+	/**
+	 * Register the shortcode tag
+	 * @return void
+	 */
 	final public function register(){
 		add_shortcode( $this->tag, array($this, 'display') );
 	}
 
+	/**
+	 * Remove the shortcode tag
+	 * @return void
+	 */
 	final public function unregister(){
 		remove_shortcode( $this->tag );
 	}
-
 
 }
