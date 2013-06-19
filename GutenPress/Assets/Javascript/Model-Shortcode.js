@@ -59,13 +59,19 @@
 				draggable     : true,
 				closeOnEscape : true,
 				open: function(event, ui){
-					// tinymce.activeEditor.save();
+					// does the shortcode accepts internal content?
+					var has_content;
+					var setSelectionAsContent = function(){
+						var selectedContent = tinymce.activeEditor.selection.getContent();
+						if ( selectedContent ) {
+							has_content.value = selectedContent;
+						}
+					};
 					var previewShortcode = function(){
 						var preview     = $('#gutenpress-shortcode-preview'),
 							form        = $('#gutenpress-shortcode-composer'),
 							fields      = $('#gutenpress-shortcode-fields'),
-							has_content = document.getElementById('gutenpress-shortcode-content'),
-							sc_content  = has_content.value,
+							sc_content  = has_content ? has_content.value : '',
 							base_format = has_content && sc_content ? '[%shortcode%%attributes%]%content%[/%shortcode%]' : '[%shortcode%%attributes%]',
 							attributes  = [],
 							val         = base_format.replace(/%shortcode%/g, $('#gutenpress-shortcode-select').val());
@@ -101,6 +107,9 @@
 								$('#gutenpress-shortcode-fields').html( data ).find('input, select, textarea').on('change', function(){
 									previewShortcode();
 								});
+								has_content = document.getElementById('gutenpress-shortcode-content');
+								// ... if the shortcode can use a content, we should use the selected text as value
+								if ( has_content ) setSelectionAsContent();
 								$('#gutenpress-shortcode-actions').fadeIn();
 								$('#gutenpress-shortcode-create').on('click', function(){
 									previewShortcode();
