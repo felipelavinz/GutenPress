@@ -4,611 +4,1053 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GutenPress 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/GutenPress\n"
-"POT-Creation-Date: 2013-01-15 19:08:16+00:00\n"
-"PO-Revision-Date: 2013-01-15 16:12-0300\n"
-"Last-Translator: Felipe Lavín <flavin@ayerviernes.com>\n"
+"POT-Creation-Date: 2013-06-19 05:27:52+00:00\n"
+"PO-Revision-Date: 2013-06-19 01:49-0300\n"
+"Last-Translator: Felipe Lavín Z <felipe@yukei.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
 
-#: AdminPages/AdminPage.php:37
+#: GutenPress/AdminPages/AdminPage.php:38
 msgid "Las opciones se han guardado correctamente"
 msgstr ""
 
-#: AdminPages/Theme.php:17
+#: GutenPress/AdminPages/Theme.php:17
 msgid "Guardar"
 msgstr ""
 
-#: Build/PostType.php:44
+#: GutenPress/Build/PostMeta.php:44
+msgid "Custom Post Meta generator"
+msgstr "Generador de metatados personalizados para entradas"
+
+#: GutenPress/Build/PostMeta.php:45
+msgid "Post Meta generator"
+msgstr "Generador de metadatos para entradas"
+
+#: GutenPress/Build/PostMeta.php:57
+msgid "Custom post meta <strong>%1$s</strong> was correctly created."
+msgstr ""
+"Los metadatos personalizados <strong>%1$s</strong> fueron creados "
+"correctamente."
+
+#: GutenPress/Build/PostMeta.php:75
+msgid "Text input"
+msgstr "Entrada de texto"
+
+#: GutenPress/Build/PostMeta.php:76
+msgid "Checkboxes"
+msgstr "Checkboxes"
+
+#: GutenPress/Build/PostMeta.php:77
+msgid "Radio button"
+msgstr "Botones de radio"
+
+#: GutenPress/Build/PostMeta.php:78
+msgid "E-mail"
+msgstr "Correo electrónico"
+
+#: GutenPress/Build/PostMeta.php:79
+msgid "Selectable"
+msgstr "Seleccionable"
+
+#: GutenPress/Build/PostMeta.php:80
+msgid "URL"
+msgstr "URL"
+
+#: GutenPress/Build/PostMeta.php:81
+msgid "Number"
+msgstr "Número"
+
+#: GutenPress/Build/PostMeta.php:82
+msgid "Multiple text input"
+msgstr "Entrada de texto múltiple"
+
+#: GutenPress/Build/PostMeta.php:83
+msgid "Text area"
+msgstr "Área de texto"
+
+#: GutenPress/Build/PostMeta.php:84
+msgid "Rich text editor"
+msgstr "Editor visual"
+
+#: GutenPress/Build/PostMeta.php:85
+msgid "File upload"
+msgstr "Subida de archivo"
+
+#: GutenPress/Build/PostMeta.php:92
+msgid "Post Meta Title"
+msgstr "Título de los metadatos"
+
+#: GutenPress/Build/PostMeta.php:97
+msgid "Will be used as metabox title"
+msgstr "Se usará como título del metabox"
+
+#: GutenPress/Build/PostMeta.php:101
+msgid "Post Meta ID"
+msgstr "ID de los metadatos"
+
+#: GutenPress/Build/PostMeta.php:107
+msgid ""
+"A <strong>short and unique</strong> slug to identify this kind of meta data. "
+"Used as id for the metabox and prepended to data defined within this class"
+msgstr ""
+"Un \"slug\" <strong>breve y único</strong> para identificar este tipo de "
+"meta datos. Se usa como ID del metabox y como prefijo en los datos definidos "
+"en esta clase"
+
+#: GutenPress/Build/PostMeta.php:112
+msgid "Define meta data"
+msgstr "Definir meta datos"
+
+#: GutenPress/Build/PostMeta.php:116
+msgid "Data name"
+msgstr "Nombre del dato"
+
+#: GutenPress/Build/PostMeta.php:119
+msgid "A unique slug for this data entry"
+msgstr "Un \"slug\" único para esta entrada de datos"
+
+#: GutenPress/Build/PostMeta.php:124
+msgid "Element type"
+msgstr "Tipo de elemento"
+
+#: GutenPress/Build/PostMeta.php:544 GutenPress/Build/PostType.php:488
+#: GutenPress/Build/Taxonomy.php:415
+msgid "Submit"
+msgstr "Enviar"
+
+#: GutenPress/Build/PostMeta.php:605 GutenPress/Build/PostType.php:549
+msgid "Error creating post type %1$s"
+msgstr "Error al crear el tipo de contenido %1$s"
+
+#: GutenPress/Build/PostType.php:44
 msgid "Custom Post Type generator"
 msgstr "Generador de Tipos de contenido personalizados"
 
-#: Build/PostType.php:45
+#: GutenPress/Build/PostType.php:45
 msgid "Post Type generator"
 msgstr "Generador de tipos de contenido"
 
-#: Build/PostType.php:57
-msgid "Custom post type <strong>%1$s</strong> was correctly created. Please activate the plugin to enable"
-msgstr "El tipo personalizado de contenido <strong>%1$s</strong> fue creado correctamente. Por favor activa el plugin para habilitarlo"
+#: GutenPress/Build/PostType.php:57
+msgid ""
+"Custom post type <strong>%1$s</strong> was correctly created. Please "
+"activate the plugin to enable"
+msgstr ""
+"El tipo personalizado de contenido <strong>%1$s</strong> fue creado "
+"correctamente. Por favor activa el plugin para habilitarlo"
 
-#: Build/PostType.php:76
+#: GutenPress/Build/PostType.php:76
 msgid "Post type slug"
 msgstr "Slug del tipo de contenido"
 
-#: Build/PostType.php:83
-msgid "A <strong>singular</strong> slug, used as <code>post_type</code> on new entries. Max. 20 characters, no capital letters or spaces"
-msgstr "Un slug <strong>singular</strong>, se utiliza como <code>post_type</code> en las nuevas entradas. 20 caracteres máx; sin mayúsculas ni espacios"
+#: GutenPress/Build/PostType.php:83
+msgid ""
+"A <strong>singular</strong> slug, used as <code>post_type</code> on new "
+"entries. Max. 20 characters, no capital letters or spaces"
+msgstr ""
+"Un slug <strong>singular</strong>, se utiliza como <code>post_type</code> en "
+"las nuevas entradas. 20 caracteres máx; sin mayúsculas ni espacios"
 
-#: Build/PostType.php:89
+#: GutenPress/Build/PostType.php:89 GutenPress/Build/Taxonomy.php:93
 msgid "Label"
 msgstr "Etiqueta"
 
-#: Build/PostType.php:93
+#: GutenPress/Build/PostType.php:93
 msgid "A <strong>plural</strong> descriptive name for the post type"
-msgstr "Un nombre descriptivo en <stong>plural</strong> para este tipo de contenido"
+msgstr ""
+"Un nombre descriptivo en <stong>plural</strong> para este tipo de contenido"
 
-#: Build/PostType.php:98
+#: GutenPress/Build/PostType.php:98 GutenPress/Build/Taxonomy.php:102
 msgid "Labels"
 msgstr "Etiquetas"
 
-#: Build/PostType.php:102
+#: GutenPress/Build/PostType.php:102 GutenPress/Build/Taxonomy.php:106
 msgid "Use gender"
 msgstr "Usar género"
 
-#: Build/PostType.php:105
+#: GutenPress/Build/PostType.php:105 GutenPress/Build/Taxonomy.php:109
 msgctxt "gutenpress labels gender"
 msgid "Masculine"
 msgstr "Masculino"
 
-#: Build/PostType.php:106
+#: GutenPress/Build/PostType.php:106 GutenPress/Build/Taxonomy.php:110
 msgctxt "gutenpress labels gender"
 msgid "Feminine"
 msgstr "Femenino"
 
-#: Build/PostType.php:113
+#: GutenPress/Build/PostType.php:113 GutenPress/Build/Taxonomy.php:117
 msgid "Name"
 msgstr "Nombre"
 
-#: Build/PostType.php:117
+#: GutenPress/Build/PostType.php:117
 msgid "Name for the post type, plural"
 msgstr "Nombre del tipo de contenido, en plural"
 
 #. translators: name label masculine format
-#: Build/PostType.php:122
+#: GutenPress/Build/PostType.php:122 GutenPress/Build/Taxonomy.php:125
 msgctxt "name label masculine format"
 msgid "%s"
 msgstr "%s"
 
 #. translators: name label feminine format
-#: Build/PostType.php:124
+#: GutenPress/Build/PostType.php:124 GutenPress/Build/Taxonomy.php:127
 msgctxt "name label feminine format"
 msgid "%s"
 msgstr "%s"
 
-#: Build/PostType.php:128
+#: GutenPress/Build/PostType.php:128 GutenPress/Build/Taxonomy.php:131
 msgid "Singular Name"
 msgstr "Nombre en singular"
 
-#: Build/PostType.php:132
+#: GutenPress/Build/PostType.php:132
 msgid "Name for one object of this post type"
 msgstr "El nombre para 1 objeto de este tipo de contenido"
 
-#: Build/PostType.php:137
+#: GutenPress/Build/PostType.php:137
 msgid "Add New"
 msgstr "Agregar nuevo"
 
 #. translators: add new label masculine format
-#: Build/PostType.php:142
+#: GutenPress/Build/PostType.php:142
 msgctxt "add new label masculine format"
 msgid "Add new %s"
 msgstr "Agregar nuevo %s"
 
 #. translators: add new label feminine format
-#: Build/PostType.php:144
+#: GutenPress/Build/PostType.php:144
 msgctxt "add new label feminine format"
 msgid "Add new %s"
 msgstr "Agregar nueva %s"
 
-#: Build/PostType.php:149
+#: GutenPress/Build/PostType.php:149 GutenPress/Build/Taxonomy.php:152
 msgid "All Items"
 msgstr "Todos los elementos"
 
 #. translators: all items label masculine format
-#: Build/PostType.php:154
+#: GutenPress/Build/PostType.php:154 GutenPress/Build/Taxonomy.php:157
 msgctxt "all items label masculine format"
 msgid "%s"
 msgstr "%s"
 
 #. translators: all items label feminine format
-#: Build/PostType.php:156
+#: GutenPress/Build/PostType.php:156 GutenPress/Build/Taxonomy.php:159
 msgctxt "all items label feminine format"
 msgid "%s"
 msgstr "%s"
 
-#: Build/PostType.php:161
+#: GutenPress/Build/PostType.php:161 GutenPress/Build/Taxonomy.php:200
 msgid "Add New Item"
 msgstr "Agregar nuevo elemento"
 
 #. translators: add new item label masculine format
-#: Build/PostType.php:166
+#: GutenPress/Build/PostType.php:166 GutenPress/Build/Taxonomy.php:205
 msgctxt "add new item label masculine format"
 msgid "Add new %s"
 msgstr "Agregar nuevo %s"
 
 #. translators: add new item label feminine format
-#: Build/PostType.php:168
+#: GutenPress/Build/PostType.php:168 GutenPress/Build/Taxonomy.php:207
 msgctxt "add new item label feminine format"
 msgid "Add new %s"
 msgstr "Agregar nueva %s"
 
-#: Build/PostType.php:173
+#: GutenPress/Build/PostType.php:173 GutenPress/Build/Taxonomy.php:164
 msgid "Edit Item"
 msgstr "Editar elemento"
 
 #. translators: edit item label masculine format
-#: Build/PostType.php:178
+#: GutenPress/Build/PostType.php:178 GutenPress/Build/Taxonomy.php:169
 msgctxt "edit item label masculine format"
 msgid "Edit %s"
 msgstr "Editar %s"
 
 #. translators: edit item label feminine format
-#: Build/PostType.php:180
+#: GutenPress/Build/PostType.php:180 GutenPress/Build/Taxonomy.php:171
 msgctxt "edit item label feminine format"
 msgid "Edit %s"
 msgstr "Editar %s"
 
-#: Build/PostType.php:185
+#: GutenPress/Build/PostType.php:185
 msgid "New Item"
 msgstr "Nuevo elemento"
 
 #. translators: new item label masculine format
-#: Build/PostType.php:190
+#: GutenPress/Build/PostType.php:190
 msgctxt "new item label masculine format"
 msgid "New %s"
 msgstr "Nuevo %s"
 
 #. translators: new item label feminine format
-#: Build/PostType.php:192
+#: GutenPress/Build/PostType.php:192
 msgctxt "new item label feminine format"
 msgid "New %s"
 msgstr "Nueva %s"
 
-#: Build/PostType.php:197
+#: GutenPress/Build/PostType.php:197 GutenPress/Build/Taxonomy.php:176
 msgid "View Item"
 msgstr "Ver elemento"
 
 #. translators: view item label masculine format
-#: Build/PostType.php:202
+#: GutenPress/Build/PostType.php:202 GutenPress/Build/Taxonomy.php:181
 msgctxt "view item label masculine format"
 msgid "View %s"
 msgstr "Ver %s"
 
 #. translators: view item label feminine format
-#: Build/PostType.php:204
+#: GutenPress/Build/PostType.php:204 GutenPress/Build/Taxonomy.php:183
 msgctxt "view item label feminine format"
 msgid "View %s"
 msgstr "Ver %s"
 
-#: Build/PostType.php:209
+#: GutenPress/Build/PostType.php:209 GutenPress/Build/Taxonomy.php:236
 msgid "Search Items"
 msgstr "Buscar elementos"
 
 #. translators: search items label masculine format
-#: Build/PostType.php:214
+#: GutenPress/Build/PostType.php:214 GutenPress/Build/Taxonomy.php:241
 msgctxt "search items label masculine format"
 msgid "Search %s"
 msgstr "Buscar %s"
 
 #. translators: search items label femimine format
-#: Build/PostType.php:216
+#: GutenPress/Build/PostType.php:216 GutenPress/Build/Taxonomy.php:243
 msgctxt "search items label feminine format"
 msgid "Search %s"
 msgstr "Buscar %s"
 
-#: Build/PostType.php:221
+#: GutenPress/Build/PostType.php:221 GutenPress/Build/Taxonomy.php:296
 msgid "Not Found"
 msgstr "No encontrado"
 
 #. translators: not found label masculine format
-#: Build/PostType.php:226
+#: GutenPress/Build/PostType.php:226 GutenPress/Build/Taxonomy.php:301
 msgctxt "not found label masculine format"
 msgid "No %s found"
 msgstr "No se han encontrado %s"
 
 #. translators: not found label feminine format
-#: Build/PostType.php:228
+#: GutenPress/Build/PostType.php:228 GutenPress/Build/Taxonomy.php:303
 msgctxt "not found label feminine format"
 msgid "No %s found"
 msgstr "No se han encontrado %s"
 
-#: Build/PostType.php:233
+#: GutenPress/Build/PostType.php:233
 msgid "Not Found in Trash"
 msgstr "No encontrado en la papelera"
 
 #. translators: not found in trash label masculine format
-#: Build/PostType.php:238
+#: GutenPress/Build/PostType.php:238
 msgctxt "not found in trash label masculine format"
 msgid "No %s found in trash"
 msgstr "No se han encontrado %s en la papelera"
 
 #. translators: not found in trash label feminine format
-#: Build/PostType.php:240
+#: GutenPress/Build/PostType.php:240
 msgctxt "not found in trash label feminine format"
 msgid "No %s found in trash"
 msgstr "No se han encontrado %s en la papelera"
 
-#: Build/PostType.php:245
+#: GutenPress/Build/PostType.php:245 GutenPress/Build/Taxonomy.php:224
 msgid "Parent Item"
 msgstr "Elemento padre"
 
 #. translators: paren item label masculine format
-#: Build/PostType.php:250
+#: GutenPress/Build/PostType.php:250 GutenPress/Build/Taxonomy.php:229
 msgctxt "parent item label masculine format"
 msgid "Parent %s"
 msgstr "%s padre"
 
 #. translators: parent item label feminine format
-#: Build/PostType.php:252
+#: GutenPress/Build/PostType.php:252 GutenPress/Build/Taxonomy.php:231
 msgctxt "parent item label feminine format"
 msgid "Parent %s"
 msgstr "%s padre"
 
-#: Build/PostType.php:257
+#: GutenPress/Build/PostType.php:257 GutenPress/Build/Taxonomy.php:140
 msgid "Menu Name"
 msgstr "Nombre en menú"
 
 #. translators: menu name label masculine format
-#: Build/PostType.php:262
+#: GutenPress/Build/PostType.php:262 GutenPress/Build/Taxonomy.php:145
 msgctxt "menu name label masculine format"
 msgid "%s"
 msgstr "%s"
 
 #. translators: menu name label feminie format
-#: Build/PostType.php:264
+#: GutenPress/Build/PostType.php:264 GutenPress/Build/Taxonomy.php:147
 msgctxt "menu name label feminine format"
 msgid "%s"
 msgstr "%s"
 
-#: Build/PostType.php:271
+#: GutenPress/Build/PostType.php:271
 msgid "Description"
 msgstr "Descripción"
 
-#: Build/PostType.php:276
+#: GutenPress/Build/PostType.php:276
 msgid "A short descriptive summary of what the post type is"
 msgstr "Un breve sumario que describa qué es este tipo de contenido"
 
-#: Build/PostType.php:280
+#: GutenPress/Build/PostType.php:280 GutenPress/Build/Taxonomy.php:310
 msgid "Public"
 msgstr "Público"
 
-#: Build/PostType.php:283
-msgid "True: Post type is intended for public use. This includes on the front end and in wp-admin"
-msgstr "Verdadero: el tipo de contenido tiene uso público. Esto incluye la parte pública y la administración"
+#: GutenPress/Build/PostType.php:283
+msgid ""
+"True: Post type is intended for public use. This includes on the front end "
+"and in wp-admin"
+msgstr ""
+"Verdadero: el tipo de contenido tiene uso público. Esto incluye la parte "
+"pública y la administración"
 
-#: Build/PostType.php:284
-msgid "False: Post type is not intended to be used publicly and should generally be unavailable in wp-admin and on the front end unless explicitly planned for elsewhere"
-msgstr "Falso: el tipo de contenido no tiene uso público y por lo general no debe estar disponible en la administración ni en la parte pública a menos que se indique específicamente en otra parte"
+#: GutenPress/Build/PostType.php:284
+msgid ""
+"False: Post type is not intended to be used publicly and should generally be "
+"unavailable in wp-admin and on the front end unless explicitly planned for "
+"elsewhere"
+msgstr ""
+"Falso: el tipo de contenido no tiene uso público y por lo general no debe "
+"estar disponible en la administración ni en la parte pública a menos que se "
+"indique específicamente en otra parte"
 
-#: Build/PostType.php:288
-msgid "Whether a post type is intended to be used publicly either via the admin interface or by front-end users"
-msgstr "Indicar si un tipo de contenido tendrá uso público ya sea a través de la interfaz de administración o por los usuarios de la parte pública"
+#: GutenPress/Build/PostType.php:288
+msgid ""
+"Whether a post type is intended to be used publicly either via the admin "
+"interface or by front-end users"
+msgstr ""
+"Indicar si un tipo de contenido tendrá uso público ya sea a través de la "
+"interfaz de administración o por los usuarios de la parte pública"
 
-#: Build/PostType.php:292
+#: GutenPress/Build/PostType.php:292
 msgid "Exclude from search"
 msgstr "Excluir de la búsqueda"
 
-#: Build/PostType.php:295
+#: GutenPress/Build/PostType.php:295
 msgid "True: search will not include posts of this post type"
 msgstr "Verdadero: la búsqueda no incluirá contenidos de este tipo"
 
-#: Build/PostType.php:296
+#: GutenPress/Build/PostType.php:296
 msgid "False: search <strong>will</strong> posts of this post type"
-msgstr "Falso: la búsqueda <strong>sí incluirá</strong> contenidos de este tipo"
+msgstr ""
+"Falso: la búsqueda <strong>sí incluirá</strong> contenidos de este tipo"
 
-#: Build/PostType.php:299
-msgid "Note: If you want to show these posts on taxonomy terms lists, you must set it to True"
-msgstr "Nota: si quieres mostrar estos contenidos en listas de términos de taxonomías, debes indicar \"Verdadero\""
+#: GutenPress/Build/PostType.php:299
+msgid ""
+"Note: If you want to show these posts on taxonomy terms lists, you must set "
+"it to True"
+msgstr ""
+"Nota: si quieres mostrar estos contenidos en listas de términos de "
+"taxonomías, debes indicar \"Verdadero\""
 
-#: Build/PostType.php:304
+#: GutenPress/Build/PostType.php:304
 msgid "Publicly Queryable"
 msgstr "Consultable públicamente"
 
-#: Build/PostType.php:307
-msgid "Whether queries can be performed on the front end as part of <code>parse_request()</code>"
-msgstr "Indica si se pueden realizar consultas en la parte pública como parte de <code>parse_request()</code>"
+#: GutenPress/Build/PostType.php:307
+msgid ""
+"Whether queries can be performed on the front end as part of "
+"<code>parse_request()</code>"
+msgstr ""
+"Indica si se pueden realizar consultas en la parte pública como parte de "
+"<code>parse_request()</code>"
 
-#: Build/PostType.php:313
+#: GutenPress/Build/PostType.php:313 GutenPress/Build/Taxonomy.php:321
 msgid "Show UI"
 msgstr "Mostrar UI"
 
-#: Build/PostType.php:316
-msgid "Whether to generate a default UI for managing this post type in the admin"
-msgstr "Indica si se generará la Interfaz de Usuario predeterminada para gestionar este tipo de contenidos en la administración"
+#: GutenPress/Build/PostType.php:316
+msgid ""
+"Whether to generate a default UI for managing this post type in the admin"
+msgstr ""
+"Indica si se generará la Interfaz de Usuario predeterminada para gestionar "
+"este tipo de contenidos en la administración"
 
-#: Build/PostType.php:322
+#: GutenPress/Build/PostType.php:322 GutenPress/Build/Taxonomy.php:330
 msgid "Show in Nav Menus"
 msgstr "Mostrar en Menús de navegación"
 
-#: Build/PostType.php:325
+#: GutenPress/Build/PostType.php:325
 msgid "Whether this post type is available for selection in navigation menus"
-msgstr "Indica si este tipo de contenido está disponible para seleccionarlo en los menús de navegación"
+msgstr ""
+"Indica si este tipo de contenido está disponible para seleccionarlo en los "
+"menús de navegación"
 
-#: Build/PostType.php:331
+#: GutenPress/Build/PostType.php:331
 msgid "Show in menu"
 msgstr "Mostrar en el menú"
 
-#: Build/PostType.php:335
+#: GutenPress/Build/PostType.php:335
 msgid "Do not display in the admin menu"
 msgstr "No mostrar en el menú de administración"
 
-#: Build/PostType.php:336
+#: GutenPress/Build/PostType.php:336
 msgid "Display as a top level menu"
 msgstr "Mostrar como menú de primer nivel"
 
-#: Build/PostType.php:341
+#: GutenPress/Build/PostType.php:341
 msgid "Where to show the post type in the admin menu. \"Show UI\" must be True"
-msgstr "Dónde se mostrará el tipo de contenido en el menú de administración. \"Mostrar UI\" debe ser Verdadero"
+msgstr ""
+"Dónde se mostrará el tipo de contenido en el menú de administración. "
+"\"Mostrar UI\" debe ser Verdadero"
 
-#: Build/PostType.php:346
+#: GutenPress/Build/PostType.php:346
 msgid "Show in admin bar"
 msgstr "Mostrar en el menú de administración"
 
-#: Build/PostType.php:349
+#: GutenPress/Build/PostType.php:349
 msgid "Whether to make this post type available in the WordPress admin bar"
-msgstr "Indica si este tipo de contenido estará disponible en la barra de administración de WordPress"
+msgstr ""
+"Indica si este tipo de contenido estará disponible en la barra de "
+"administración de WordPress"
 
-#: Build/PostType.php:355
+#: GutenPress/Build/PostType.php:355
 msgid "Menu position"
 msgstr "Posición en el menú"
 
-#: Build/PostType.php:359
-msgid "The position in the menu order the post type should appear. \"Show in menu\" must be true"
-msgstr "La posición en el orden del menú en que se debería mostrar este tipo de contenido. \"Mostrar en el menú\" debe ser verdadero"
+#: GutenPress/Build/PostType.php:359
+msgid ""
+"The position in the menu order the post type should appear. \"Show in menu\" "
+"must be true"
+msgstr ""
+"La posición en el orden del menú en que se debería mostrar este tipo de "
+"contenido. \"Mostrar en el menú\" debe ser verdadero"
 
-#: Build/PostType.php:364
+#: GutenPress/Build/PostType.php:364
 msgid "Menu icon"
 msgstr "Ícono del menú"
 
-#: Build/PostType.php:368
+#: GutenPress/Build/PostType.php:368
 msgid "The URL to the icon to be used for this menu"
 msgstr "La URL al ícono utilizado en este menú"
 
-#: Build/PostType.php:372
+#: GutenPress/Build/PostType.php:372
 msgid "Supports"
 msgstr "Soporta"
 
-#: Build/PostType.php:375
+#: GutenPress/Build/PostType.php:375
 msgid "Title"
 msgstr "Título"
 
-#: Build/PostType.php:376
+#: GutenPress/Build/PostType.php:376
 msgid "Editor (content)"
 msgstr "Editor (contenido)"
 
-#: Build/PostType.php:377
+#: GutenPress/Build/PostType.php:377
 msgid "Author"
 msgstr "Autor"
 
-#: Build/PostType.php:378
+#: GutenPress/Build/PostType.php:378
 msgid "Featured image"
 msgstr "Imagen destacada"
 
-#: Build/PostType.php:379
+#: GutenPress/Build/PostType.php:379
 msgid "Excerpt"
 msgstr "Extracto"
 
-#: Build/PostType.php:380
+#: GutenPress/Build/PostType.php:380
 msgid "Trackbacks"
 msgstr "Trackbacks"
 
-#: Build/PostType.php:381
+#: GutenPress/Build/PostType.php:381
 msgid "Custom fields"
 msgstr "Campos personalizados"
 
-#: Build/PostType.php:382
+#: GutenPress/Build/PostType.php:382
 msgid "Comments"
 msgstr "Comentarios"
 
-#: Build/PostType.php:383
+#: GutenPress/Build/PostType.php:383
 msgid "Revisions"
 msgstr "Revisiones"
 
-#: Build/PostType.php:384
+#: GutenPress/Build/PostType.php:384
 msgid "Page attributes: menu order, parent (if hierarchical is true)"
-msgstr "Atributos de página: orden del menú, padre (si \"jerárquico\" es verdadero)"
+msgstr ""
+"Atributos de página: orden del menú, padre (si \"jerárquico\" es verdadero)"
 
-#: Build/PostType.php:385
+#: GutenPress/Build/PostType.php:385
 msgid "Post formats"
 msgstr "Formatos de contenido"
 
-#: Build/PostType.php:390
+#: GutenPress/Build/PostType.php:390
 msgid "Capability Type"
 msgstr "Tipo de capacidad"
 
-#: Build/PostType.php:392
-msgid "A singular and plural slug to use as base to construct the capabilities."
-msgstr "Un slug en singular y plural que se usarán como base para construir las capacidades."
+#: GutenPress/Build/PostType.php:392
+msgid ""
+"A singular and plural slug to use as base to construct the capabilities."
+msgstr ""
+"Un slug en singular y plural que se usarán como base para construir las "
+"capacidades."
 
-#: Build/PostType.php:396
+#: GutenPress/Build/PostType.php:396
 msgid "Singular slug"
 msgstr "Slug singular"
 
-#: Build/PostType.php:403
+#: GutenPress/Build/PostType.php:403
 msgid "Plural slug"
 msgstr "Slug plural"
 
-#: Build/PostType.php:412
+#: GutenPress/Build/PostType.php:412 GutenPress/Build/Taxonomy.php:357
+#: GutenPress/Build/Taxonomy.php:397
 msgid "Hierarchical"
 msgstr "Jerárquico"
 
-#: Build/PostType.php:415
-msgid "Whether the post type is hierarchical. Allows Parent to be specified. The 'supports' parameter should contain 'page-attributes' to show the parent select box on the editor page"
-msgstr "Indica si este tipo de contenido es jerárquico. Permite que se especifique un padre. El parámetro \"Soporta\" debe contemplar los \"atributos de página\" para mostrar la caja de selección del padre en la página del editor."
+#: GutenPress/Build/PostType.php:415
+msgid ""
+"Whether the post type is hierarchical. Allows Parent to be specified. The "
+"'supports' parameter should contain 'page-attributes' to show the parent "
+"select box on the editor page"
+msgstr ""
+"Indica si este tipo de contenido es jerárquico. Permite que se especifique "
+"un padre. El parámetro \"Soporta\" debe contemplar los \"atributos de página"
+"\" para mostrar la caja de selección del padre en la página del editor."
 
-#: Build/PostType.php:420
+#: GutenPress/Build/PostType.php:420
 msgid "Has archive"
 msgstr "Tiene archivo"
 
-#: Build/PostType.php:423
+#: GutenPress/Build/PostType.php:423
 msgid "Enables post type archives"
 msgstr "Habilita el archivo de este tipo de contenido"
 
-#: Build/PostType.php:430
+#: GutenPress/Build/PostType.php:430 GutenPress/Build/Taxonomy.php:374
 msgid "Rewrite"
 msgstr "Reescribir URLs"
 
-#: Build/PostType.php:434
+#: GutenPress/Build/PostType.php:434 GutenPress/Build/Taxonomy.php:378
 msgid "Enable"
 msgstr "Habilitar"
 
-#: Build/PostType.php:438
+#: GutenPress/Build/PostType.php:438 GutenPress/Build/Taxonomy.php:382
 msgid "Slug"
 msgstr "Slug"
 
-#: Build/PostType.php:442
+#: GutenPress/Build/PostType.php:442 GutenPress/Build/Taxonomy.php:386
 msgid "Customize the permastruct slug"
 msgstr "Personalizar el slug para los permalinks"
 
-#: Build/PostType.php:446
+#: GutenPress/Build/PostType.php:446 GutenPress/Build/Taxonomy.php:390
 msgid "With Front"
 msgstr "Con Frontal"
 
-#: Build/PostType.php:453
+#: GutenPress/Build/PostType.php:453
 msgid "Build feeds permastruct"
 msgstr "Construir permalinks para feeds"
 
-#: Build/PostType.php:460
+#: GutenPress/Build/PostType.php:460
 msgid "Build pagination permastruct"
 msgstr "Construir permalinks para paginación"
 
-#: Build/PostType.php:469
+#: GutenPress/Build/PostType.php:469 GutenPress/Build/Taxonomy.php:365
 msgid "Query Var"
 msgstr "Variable para consultas"
 
-#: Build/PostType.php:472
-msgid "True: can use <code>/?{post_type}={single_post_slug}</code> to load an specific post"
-msgstr "Verdadero: se puede utilizar <code>/?{post_type}={slug_de_entrada}</code> para cargar un contenido específico"
+#: GutenPress/Build/PostType.php:472
+msgid ""
+"True: can use <code>/?{post_type}={single_post_slug}</code> to load an "
+"specific post"
+msgstr ""
+"Verdadero: se puede utilizar <code>/?{post_type}={slug_de_entrada}</code> "
+"para cargar un contenido específico"
 
-#: Build/PostType.php:473
+#: GutenPress/Build/PostType.php:473
 msgid "False: can't use <code>$post_type</code> to load a post"
-msgstr "Falso: no se puede utilizar <code>$post_type</code> para cargar un post"
+msgstr ""
+"Falso: no se puede utilizar <code>$post_type</code> para cargar un post"
 
-#: Build/PostType.php:480
+#: GutenPress/Build/PostType.php:480
 msgid "Can export?"
 msgstr "¿Se puede exportar?"
 
-#: Build/PostType.php:483
+#: GutenPress/Build/PostType.php:483
 msgid "Can this post type be exported?"
 msgstr "¿Se puede exportar este tipo de contenido?"
 
-#: Build/PostType.php:488
-msgid "Submit"
-msgstr "Enviar"
+#: GutenPress/Build/Taxonomy.php:44
+msgid "Custom Taxonomy generator"
+msgstr "Generador de taxonomías personalizadas"
 
-#: Build/PostType.php:549
-msgid "Error creating post type %1$s"
-msgstr "Error al crear el tipo de contenido %1$s"
+#: GutenPress/Build/Taxonomy.php:45
+msgid "Taxonomy generator"
+msgstr "Generador de taxonomías"
 
-#: Forms/Element/InputFile.php:20
+#: GutenPress/Build/Taxonomy.php:57
+msgid ""
+"Custom taxonomy <strong>%1$s</strong> was correctly created. Please activate "
+"the plugin to enable"
+msgstr ""
+"La taxonomía personalizada <strong>%1$s</strong> fue creada correctamente. "
+"Por favor activa el plugin para habilitarla"
+
+#: GutenPress/Build/Taxonomy.php:76
+msgid "Taxonomy slug"
+msgstr "\"Slug\" de la taxonomía"
+
+#: GutenPress/Build/Taxonomy.php:83
+msgid ""
+"The name of the taxonomy; should be in <em>slug</em> form (no uppercase nor "
+"spaces)"
+msgstr ""
+"El nombre de la taxonomía, debe estar en forma de <em>slug</em> (sin "
+"mayúsculas ni espacios)"
+
+#: GutenPress/Build/Taxonomy.php:88
+msgid "Object type"
+msgstr "Tipo de objeto"
+
+#: GutenPress/Build/Taxonomy.php:97
+msgid "General name for the taxonomy, <strong>plural</strong>"
+msgstr "Nombre general de la taxonomía, en <strong>plural</strong>"
+
+#: GutenPress/Build/Taxonomy.php:135
+msgid "Name for one object of this taxonomy"
+msgstr "El nombre para un objeto de esta taxonomía"
+
+#: GutenPress/Build/Taxonomy.php:188
+msgid "Update Item"
+msgstr "Actualizar elemento"
+
+#. translators: update item label masculine format
+#: GutenPress/Build/Taxonomy.php:193
+msgctxt "view item label masculine format"
+msgid "Update %s"
+msgstr "Actualizar %s"
+
+#. translators: update item label feminine format
+#: GutenPress/Build/Taxonomy.php:195
+msgctxt "view item label feminine format"
+msgid "Update %s"
+msgstr "Actualizar %s"
+
+#: GutenPress/Build/Taxonomy.php:212
+msgid "New Item Name"
+msgstr "Nuevo nombre del elemento"
+
+#. translators: new item name label masculine format
+#: GutenPress/Build/Taxonomy.php:217
+msgctxt "new item name label masculine format"
+msgid "New %s name"
+msgstr "Nuevo nombre del %s"
+
+#. translators: new item name label feminine format
+#: GutenPress/Build/Taxonomy.php:219
+msgctxt "new item name label feminine format"
+msgid "New %s name"
+msgstr "Nuevo nombre de la %s"
+
+#: GutenPress/Build/Taxonomy.php:248
+msgid "Popular Items"
+msgstr "Elementos populares"
+
+#. translators: popular items label masculine format
+#: GutenPress/Build/Taxonomy.php:253
+msgctxt "Popular items label masculine format"
+msgid "Popular %s"
+msgstr "%s populares"
+
+#. translators: popular items label femimine format
+#: GutenPress/Build/Taxonomy.php:255
+msgctxt "Popular items label feminine format"
+msgid "Popular %s"
+msgstr "%s populares"
+
+#: GutenPress/Build/Taxonomy.php:260
+msgid "Separate items with commas"
+msgstr "Separar elementos con comas"
+
+#. translators: separate items with commas label masculine format
+#: GutenPress/Build/Taxonomy.php:265
+msgctxt "separate items with commas label masculine format"
+msgid "Separate %s with commas"
+msgstr "Separar los %s con comas"
+
+#. translators: separate items with commas label femimine format
+#: GutenPress/Build/Taxonomy.php:267
+msgctxt "separate items with commas label feminine format"
+msgid "Separate %s with commas"
+msgstr "Separar las %s con comas"
+
+#: GutenPress/Build/Taxonomy.php:272
+msgid "Add or remove items"
+msgstr "Agregar o eliminar elementos"
+
+#. translators: add or remove label masculine format
+#: GutenPress/Build/Taxonomy.php:277
+msgctxt "add or remove label masculine format"
+msgid "Add or remove %s"
+msgstr "Agregar o eliminar %s"
+
+#. translators: add or remove label femimine format
+#: GutenPress/Build/Taxonomy.php:279
+msgctxt "add or remove label feminine format"
+msgid "Add or remove %s"
+msgstr "Agregar o eliminar %s"
+
+#: GutenPress/Build/Taxonomy.php:284
+msgid "Choose from most used"
+msgstr "Elegir entre los más usados"
+
+#. translators: choose from most used label masculine format
+#: GutenPress/Build/Taxonomy.php:289
+msgctxt "choose from most used label masculine format"
+msgid "Choose from most used %s"
+msgstr "Elegir entre los %s más usados"
+
+#. translators: choose from most used label femimine format
+#: GutenPress/Build/Taxonomy.php:291
+msgctxt "choose from most used label feminine format"
+msgid "Choose from most used %s"
+msgstr "Elegir entre las %s más usadas"
+
+#: GutenPress/Build/Taxonomy.php:313
+msgid "True: Should this taxonomy be exposed in the admin UI"
+msgstr ""
+"Verdadero: esta taxonomía se debería mostrar en la interfaz de administración"
+
+#: GutenPress/Build/Taxonomy.php:314
+msgid ""
+"False: This taxonomy should <strong>not</strong> be exposed in the admin UI"
+msgstr ""
+"Falso: esta taxonomía <strong>no</strong> se debería mostrar en la interfaz "
+"de administración"
+
+#: GutenPress/Build/Taxonomy.php:324
+msgid ""
+"Whether to generate a default UI for managing this taxonomy in the admin"
+msgstr ""
+"Indica si se generará la Interfaz de Usuario predeterminada para gestionar "
+"esta taxonomía en la administración"
+
+#: GutenPress/Build/Taxonomy.php:333
+msgid "Whether this taxonomy is available for selection in navigation menus"
+msgstr ""
+"Indica si esta taxonomía está disponible para seleccionarla en los menús de "
+"navegación"
+
+#: GutenPress/Build/Taxonomy.php:339
+msgid "Show tag cloud"
+msgstr "Mostrar nube de elementos"
+
+#: GutenPress/Build/Taxonomy.php:342
+msgid "Whether to allo the tag cloud widget to use this taxonomy"
+msgstr ""
+"Indica si se debe permitir el widget de nube de elementos para esta taxonomía"
+
+#. translators: Show admin column for a custom taxonomy
+#: GutenPress/Build/Taxonomy.php:349
+msgid "Show admin column"
+msgstr "Mostrar columna de administración"
+
+#: GutenPress/Build/Taxonomy.php:352
+msgid ""
+"Whether to allow automatic creation of taxonomy columns on associated post-"
+"type"
+msgstr ""
+"Indica si se debe permitir la creación automática de columnas de la "
+"taxonomía en los tipos de contenido asociados"
+
+#: GutenPress/Build/Taxonomy.php:360
+msgid ""
+"Whether the taxonomy is hierarchical (has descendants, like categories) or "
+"not (like tags)"
+msgstr ""
+"Indica si esta taxonomía es jerárquica (tiene descendentes, como las "
+"categorías) o no (como las etiquetas)"
+
+#: GutenPress/Build/Taxonomy.php:368
+msgid ""
+"True: can use <code>/?{taxonomy}={term_slug}</code> to load an taxonomy term"
+msgstr ""
+"Verdadero: se puede utilizar <code>/?{taxonomía}={slug_del_término}</code> "
+"para cargar un término de la taxonomía"
+
+#: GutenPress/Build/Taxonomy.php:369
+msgid "False: can't use <code>$taxonomy</code> to load a taxonomy"
+msgstr ""
+"Falso: no se puede utilizar <code>$taxonomia</code> para cargar una taxonomía"
+
+#. translators: enable or disable the "sort" property on custom taxonomies
+#: GutenPress/Build/Taxonomy.php:407
+msgid "Sort"
+msgstr "Ordenar"
+
+#: GutenPress/Build/Taxonomy.php:410
+msgid ""
+"Whether this taxonomy should remember the order in which terms are added to "
+"objects"
+msgstr ""
+"Indica si esta taxonomía debe recordar el orde en que los términos se "
+"agregan a los objetos"
+
+#: GutenPress/Build/Taxonomy.php:474
+msgid "Error creating custom taxonomy %1$s"
+msgstr "Error al crear la taxonomía personalizada %$1s"
+
+#. translators: Add new / remove links for multiple fieldsets
+#: GutenPress/Forms/Element/FieldsetMultiple.php:14
+msgctxt "multiple fieldset action"
+msgid "Add new"
+msgstr "Agregar nuevo"
+
+#: GutenPress/Forms/Element/FieldsetMultiple.php:14
+msgctxt "multiple fieldset action"
+msgid "Remove"
+msgstr "Eliminar"
+
+#: GutenPress/Forms/Element/InputFile.php:20
 msgid "edit attachment"
 msgstr "editar adjunto"
 
 #. translators: remove attachment link
-#: Forms/Element/InputFile.php:22
+#: GutenPress/Forms/Element/InputFile.php:22
 msgctxt "remove attachment"
 msgid "remove"
 msgstr "eliminar"
 
 #. translators: Add new / remove links for multiple inputs
-#: Forms/Element/InputTextMultiple.php:27
+#: GutenPress/Forms/Element/InputTextMultiple.php:31
 msgctxt "multiple input action"
 msgid "Add new"
 msgstr "Agregar nuevo"
 
-#: Forms/Element/InputTextMultiple.php:27
+#: GutenPress/Forms/Element/InputTextMultiple.php:31
 msgctxt "multiple input action"
 msgid "Remove"
 msgstr "Eliminar"
 
-#: Forms/Element/YesNo.php:8
+#. translators: Sortable element has no options
+#: GutenPress/Forms/Element/Sortable.php:35
+msgid "There are no elements to order"
+msgstr "No hay elementos para ordenar"
+
+#: GutenPress/Forms/Element/YesNo.php:8
 msgid "Yes"
 msgstr "Sí"
 
-#: Forms/Element/YesNo.php:9
+#: GutenPress/Forms/Element/YesNo.php:9
 msgid "No"
 msgstr "No"
 
-#: Forms/Form.php:42
+#: GutenPress/Forms/Form.php:42
 msgid "The $view parameter must be a subclass of \\GutenPress\\Forms\\View"
 msgstr "El parámetro $view debe ser una subclase de \\GutenPress\\Forms\\View"
 
-#: Generate/Writer.php:33
+#: GutenPress/Generate/Writer.php:33
 msgid "Couldn't write to file %1$s"
 msgstr "No se puede escribir al archivo %1$s"
 
-#: Helpers/Attachment.php:22
+#: GutenPress/Helpers/Attachment.php:22
 msgid "$id must reference an attachment post entry"
-msgstr "$id debe hacer referencia a una entrada de post de un archivo multimedia"
+msgstr ""
+"$id debe hacer referencia a una entrada de post de un archivo multimedia"
 
-#: Helpers/Attachment.php:25
+#: GutenPress/Helpers/Attachment.php:25
 msgid "File ID %d not found"
 msgstr "No se ha encontrado el archivo con ID %d"
 
-#: Helpers/Exception.php:7
+#: GutenPress/Helpers/Exception.php:7
 msgid "Exception: %1$s (on %2$s:%3$s)"
 msgstr "Excepción: %1$s (en %2$s:%3$s)"
 
-#: Helpers/Exceptions/NonceFail.php:14
-msgid "Nonce verification Exception: nonce value it's empty on action '%1$s' (on %2$s:%3$s)"
-msgstr "Excepción al verificar nonce: el valor del nonce para la acción '%1$s' está vacío (en %2$s:%3$s)"
+#: GutenPress/Helpers/Exceptions/NonceFail.php:14
+msgid ""
+"Nonce verification Exception: nonce value it's empty on action '%1$s' (on "
+"%2$s:%3$s)"
+msgstr ""
+"Excepción al verificar nonce: el valor del nonce para la acción '%1$s' está "
+"vacío (en %2$s:%3$s)"
 
-#: Helpers/Exceptions/NonceFail.php:16
-msgid "Nonce verification Exception: '%1$s' it's not a valid nonce for the '%2$s' action (on %3$s:%4$s)"
-msgstr "Excepción al verificar nonce: %1$s no es un nonce válido para la acción '%2$s' (en %3$s:%4$s)"
+#: GutenPress/Helpers/Exceptions/NonceFail.php:16
+msgid ""
+"Nonce verification Exception: '%1$s' it's not a valid nonce for the '%2$s' "
+"action (on %3$s:%4$s)"
+msgstr ""
+"Excepción al verificar nonce: %1$s no es un nonce válido para la acción "
+"'%2$s' (en %3$s:%4$s)"
 
-#: Model/Metabox.php:118
+#: GutenPress/Model/Metabox.php:118
 msgid "%s must be a subclass of \\GutenPress\\Model\\PostMeta"
 msgstr "%s debe ser una subclase de \\GutenPress\\Model\\PostMeta"
 
-#: Model/Metabox.php:296
+#: GutenPress/Model/Metabox.php:154
+msgid ""
+"Please add some elements within this Fieldset, otherwhise it will feel very "
+"empty"
+msgstr ""
+"Por favor agrega algunos elementos a este Fieldset, o se sentirá muy solito"
+
+#: GutenPress/Model/Metabox.php:316
 msgid "Error uploading file %s"
 msgstr "Error al subir el archivo %s"
 
-#: Model/Metabox.php:340
+#: GutenPress/Model/Metabox.php:359
 msgid "It seems you're not allowed to save data on %s."
 msgstr "Al parecer no tienes permitido guardar datos en %s."
 
-#: Model/Metabox.php:346
+#: GutenPress/Model/Metabox.php:365
 msgid "You are not authorized to edit this content"
 msgstr "No estás autorizado a editar este contenido."
 
-#: Model/PostMeta.php:27
-msgid "You must define a short string as metabox ID (will also be prepended to this class of meta data)"
-msgstr "Debes definir una cadena corta como ID del metabox (también se usará como prefijo para los datos de esta clase)"
+#: GutenPress/Model/PostMeta.php:27
+msgid ""
+"You must define a short string as metabox ID (will also be prepended to this "
+"class of meta data)"
+msgstr ""
+"Debes definir una cadena corta como ID del metabox (también se usará como "
+"prefijo para los datos de esta clase)"
 
-#: Model/PostMeta.php:58
+#: GutenPress/Model/PostMeta.php:61
 msgid "Key %s it's too long. Please choose something shorter"
 msgstr "La clave %s es muy larga. Por favor elige algo más corto"
 
-#: Model/PostMeta.php:61
+#: GutenPress/Model/PostMeta.php:64
 msgid "Duplicate metadata name for key %s"
 msgstr "Nombre de metadatos duplicado en la clave %s"
 
-#: Model/PostQuery.php:66
+#: GutenPress/Model/PostQuery.php:66
 msgid "%s must be a subclass of \\GutenPress\\Model\\PostObject"
 msgstr "%s debe ser una subclase de \\GutenPress\\Model\\PostObject"
 
-#: Model/PostQuery.php:100
-msgid "The query for this object was already set. You might want to create a new %s"
-msgstr "La consulta de este objeto ya fue establecida. Quizás quieras crear una nueva instancia de %s"
+#: GutenPress/Model/PostQuery.php:100
+msgid ""
+"The query for this object was already set. You might want to create a new %s"
+msgstr ""
+"La consulta de este objeto ya fue establecida. Quizás quieras crear una "
+"nueva instancia de %s"
 
-#: Validate/Validations/Boolean.php:34
+#: GutenPress/Model/ShortcodeFactory.php:31
+msgid "%s must be a subclass of \\GutenPress\\Model\\Shortcode"
+msgstr "%s debe ser una subclase de \\GutenPress\\Model\\Shortcode"
+
+#: GutenPress/Model/ShortcodeFactory.php:98
+#: GutenPress/Model/ShortcodeFactory.php:99
+#: GutenPress/Model/ShortcodeFactory.php:102
+msgid "Shortcodes manager"
+msgstr "Administrador de Shortcodes"
+
+#: GutenPress/Model/ShortcodeFactory.php:103
+msgid "Insert generated shortcode"
+msgstr "Insertar el shortcode generado"
+
+#: GutenPress/Model/ShortcodeFactory.php:104
+msgid "Select the shortcode you want to insert"
+msgstr "Selecciona el shortcode que deseas agregar"
+
+#: GutenPress/Model/ShortcodeFactory.php:134
+msgid "Select the desired Shortcode"
+msgstr "Selecciona el Shortcode deseado"
+
+#: GutenPress/Model/ShortcodeFactory.php:155
+msgid "(Select a Shortcode)"
+msgstr "(Selecciona un Shortcode)"
+
+#: GutenPress/Validate/Validations/Boolean.php:34
 msgid "The value for this field should be of a true/false type"
 msgstr "El valor de este campo debe ser de tipo verdadero/falso"
 
-#: Validate/Validations/Required.php:12
+#: GutenPress/Validate/Validations/Required.php:12
 msgid "Please complete this field"
 msgstr "Por favor completa este dato"
 
@@ -616,20 +1058,24 @@ msgstr "Por favor completa este dato"
 msgid "GutenPress"
 msgstr "GutenPress"
 
-#. #-#-#-#-#  GutenPress.pot (GutenPress 0.1)  #-#-#-#-#
-#. Plugin URI of the plugin/theme
-#. #-#-#-#-#  GutenPress.pot (GutenPress 0.1)  #-#-#-#-#
-#. Author URI of the plugin/theme
-msgid "http://www.yukei.net"
-msgstr "http://www.yukei.net"
-
 #. Description of the plugin/theme
-msgid "WordPress development toolset"
-msgstr "Set de herramientas para el desarrollo en WordPress"
+msgid ""
+"Register autoload instances to manage GutenPress files and other "
+"bootstraping actions"
+msgstr ""
+"Registra la instancia de carga automática para gestionar los archivos de "
+"GutenPress y otras acciones de inicialización"
 
 #. Author of the plugin/theme
 msgid "Felipe Lavin"
 msgstr "Felipe Lavin"
+
+#. Author URI of the plugin/theme
+msgid "http://www.yukei.net"
+msgstr "http://www.yukei.net"
+
+#~ msgid "WordPress development toolset"
+#~ msgstr "Set de herramientas para el desarrollo en WordPress"
 
 #~ msgid "There is no data to validate on index %1$s"
 #~ msgstr "No hay datos para validar en el índice %1$s"
