@@ -40,6 +40,7 @@
 			};
 		},
 		_init_gutenpress_shortcode: function(){
+			var t = this;
 			var setDialogSize = function(){
 				var _window = $(window),
 					height  = Math.floor( _window.height() * 0.6 ) - 28,
@@ -71,13 +72,12 @@
 						var preview     = $('#gutenpress-shortcode-preview'),
 							form        = $('#gutenpress-shortcode-composer'),
 							fields      = $('#gutenpress-shortcode-fields'),
-							sc_content  = has_content ? has_content.value : '',
+							sc_content  = has_content ? has_content.value : false,
 							base_format = has_content && sc_content ? '[%shortcode%%attributes%]%content%[/%shortcode%]' : '[%shortcode%%attributes%]',
 							attributes  = [],
 							val         = base_format.replace(/%shortcode%/g, $('#gutenpress-shortcode-select').val());
 						fields.find('input, select').each(function(i, obj){
 							// @todo deal with multiple-inputs
-							// @todo deal with shortcodes with content
 							if ( obj.name === 'content' )
 								return;
 							if ( obj.checkValidity ) {
@@ -87,12 +87,13 @@
 							}
 						});
 						val = attributes.length ? val.replace('%attributes%', ' '+ attributes.join(' ')) : val.replace('%attributes%', '');
-						if ( has_content && sc_content ) {
+						if ( sc_content ) {
 							val = val.replace('%content%', sc_content);
 						}
 						preview.val( val );
 						return val;
 					};
+					$('#gutenpress-shortcode-preview').val('');
 					setDialogSize();
 					$.get( l10n.settings.ajax_url, {
 						action: 'gutenpress_shortcode_get_composer'
@@ -112,7 +113,6 @@
 								if ( has_content ) setSelectionAsContent();
 								$('#gutenpress-shortcode-actions').fadeIn();
 								$('#gutenpress-shortcode-create').on('click', function(){
-									previewShortcode();
 									$('#gutenpress-dialog-shortcode').dialog('close');
 								});
 								previewShortcode();
