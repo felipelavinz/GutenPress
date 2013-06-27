@@ -16,7 +16,7 @@ class Button extends \GutenPress\Forms\Element{
 		'type',
 		'value'
 	);
-	public function __construct( $type = '', $content = '', array $properties = array() ) {
+	public function __construct( $type = 'button', $content = '', array $properties = array() ) {
 		parent::__construct( $properties, $content );
 	}
 	public function setProperties( array $properties ){
