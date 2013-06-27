@@ -69,6 +69,7 @@ class Form extends Element{
 
 	public function addElement( Element $element ){
 		$this->elements[] = $element;
+		return $this;
 	}
 
 	public function __toString(){
