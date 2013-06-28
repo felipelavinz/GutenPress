@@ -301,6 +301,13 @@ class Metabox{
 		do_action( $this->id .'_metabox_data_updated', $data, $post_id, $post, $this );
 	}
 
+	/**
+	 * Add, update or remove a post meta data
+	 * @param  int $post_id The post ID
+	 * @param  string $key The key where the data it's on the submitted info
+	 * @param  array $data The array of submitted info
+	 * @return void
+	 */
 	private function updatePostMeta( $post_id, $key, $data ){
 		if ( isset($data[$key]) ) {
 			update_post_meta( $post_id, $this->id .'_'. $key, $data[$key] );
