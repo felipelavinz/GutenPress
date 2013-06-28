@@ -144,25 +144,42 @@ class Metabox{
 		}
 		foreach ( $this->postmeta->data as $field ) {
 			$element = $this->createElement( $field, $form );
-			if ( $element instanceof \GutenPress\Forms\FormElementInterface ) {
-				$value = $element instanceof \GutenPress\Forms\MultipleFormElementInterface ? get_post_meta( $post->ID, $this->id .'_'. $field->name, false ) : get_post_meta( $post->ID, $this->id .'_'. $field->name, true );
-				if ( ! empty($value) ) $element->setValue( $value );
-			}
+
 			if ( $element instanceof \GutenPress\Forms\FieldsetElementInterface ) {
 				// $element it's a Fieldset
 				if ( empty($field->properties['elements']) ) {
 					throw new \Exception( __('Please add some elements within this Fieldset, otherwhise it will feel very empty', 'gutenpress') );
 				}
+
+				$is_multiple = $element instanceof \Gutenpress\Forms\MultipleFormElementInterface;
+				if ( $is_multiple ) {
+					// set value on MultipleFieldset
+					// each copy of the fieldset it's stored as one serialized meta value
+					// with this method, we're getting an array of arrays
+					$this->setElementValue( $element, $field->name );
+				}
+
 				$element->setId( $form->getId( $field->name ) );
+
+				// loop over the fieldset elements and instantiate them
 				foreach ( $field->properties['elements'] as $fs_field ) {
 					$field_name = $fs_field->name;
 					$fs_element = $this->createElement( $fs_field, $form );
 					$fs_element->setName( $field_name );
-					$fs_element->setAttribute( 'name', $form->getName( $field->name . '][__i__]['. $field_name ) );
+					// on MultipleFieldsets, change the element name to allow multiple fields within
+					if ( $is_multiple ) {
+						$fs_element->setAttribute( 'name', $form->getName( $field->name . '][__i__]['. $field_name ) );
+					} else {
+						// on a simple fieldset, every field it's stored as a separate meta value
+						$fs_element->setAttribute( 'name', $form->getName( $field->name .'_'. $field_name ) );
+						$this->setElementValue( $fs_element, $field->name .'_'. $field_name );
+					}
 					$element->addElement( $fs_element );
 				}
-				// $element->setAttribute('id', $form->getId( $element->name ) );
+			} else {
+				$this->setElementValue( $element, $field->name );
 			}
+
 			$form->addElement( $element );
 		}
 		// add a nonce for security...
@@ -171,6 +188,14 @@ class Metabox{
 			$this->id .'_nonce'
 		) );
 		echo $form;
+	}
+
+	private function setElementValue( &$element, $field_name ){
+		global $post;
+		if ( $element instanceof \GutenPress\Forms\FormElementInterface ) {
+			$value = $element instanceof \GutenPress\Forms\MultipleFormElementInterface ? get_post_meta( $post->ID, $this->id .'_'. $field_name, false ) : get_post_meta( $post->ID, $this->id .'_'. $field_name, true );
+			if ( ! empty($value) ) $element->setValue( $value );
+		}
 	}
 
 	private function addField( &$form, $field ){
@@ -243,6 +268,7 @@ class Metabox{
 
 		$data = $_POST[ $this->id .'-form' ];
 		$data = \GutenPress\Helpers\Arrays::filterRecursive( $data );
+
 		// no need for slashes; WordPress will take care of sanitizing when using "add/update_post_meta"
 		$data = stripslashes_deep( $data );
 
@@ -257,25 +283,32 @@ class Metabox{
 		$data = apply_filters( 'filter_'. $this->id .'_metabox_data', $data, $this, $post );
 
 		foreach ( $this->postmeta->data as $meta ) {
-			if ( isset( $data[ $meta->name ] ) ) {
-				if ( in_array( 'GutenPress\Forms\MultipleFormElementInterface', class_implements($meta->element) ) ) {
-					// delete previous data
-					delete_post_meta( $post_id, $this->id .'_'. $meta->name );
-					foreach ( $data[ $meta->name ] as $value ) {
-						add_post_meta( $post_id, $this->id .'_'. $meta->name, $value );
-					}
-				} else {
-					update_post_meta( $post_id, $this->id .'_'. $meta->name, $data[ $meta->name ] );
+			if ( $meta->element === '\GutenPress\Forms\Element\Fieldset' ) {
+				foreach ( $meta->properties['elements'] as $element ) {
+					$this->updatePostMeta( $post_id, $meta->name .'_'. $element->name, $data );
+				}
+			} elseif ( in_array( 'GutenPress\Forms\MultipleFormElementInterface', class_implements($meta->element) ) ) {
+				delete_post_meta( $post_id, $this->id .'_'. $meta->name );
+				foreach ( $data[ $meta->name ] as $value ) {
+					add_post_meta( $post_id, $this->id .'_'. $meta->name, $value );
 				}
 			} else {
-				// if data it's defined, but no data is sent, try to delete the given key
-				// this will take care of checkboxes and such
-				delete_post_meta( $post_id, $this->id .'_'. $meta->name );
+				$this->updatePostMeta( $post_id, $meta->name, $data );
 			}
 		}
 
 		// hook into this action if you need to do something after metadata was saved
 		do_action( $this->id .'_metabox_data_updated', $data, $post_id, $post, $this );
+	}
+
+	private function updatePostMeta( $post_id, $key, $data ){
+		if ( isset($data[$key]) ) {
+			update_post_meta( $post_id, $this->id .'_'. $key, $data[$key] );
+		} else {
+			// if data it's defined, but no data is sent, try to delete the given key
+			// this will take care of checkboxes and such
+			delete_post_meta( $post_id, $this->id .'_'. $key );
+		}
 	}
 
 	/**
