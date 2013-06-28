@@ -38,6 +38,7 @@ class Fieldset extends \GutenPress\Forms\FormElement implements \GutenPress\Form
 	}
 	public function addElement( \GutenPress\Forms\Element $element ) {
 		$this->elements[] = $element;
+		return $this;
 	}
 	public function __toString(){
 		$out  = '';
