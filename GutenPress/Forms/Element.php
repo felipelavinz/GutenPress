@@ -54,6 +54,7 @@ abstract class Element{
 	 */
 	public function setContent( $content ){
 		$this->content = $content;
+		return $this;
 	}
 
 	/**
@@ -62,6 +63,7 @@ abstract class Element{
 	 */
 	public function setProperties( array $properties){
 		$this->initProperties( $properties );
+		return $this;
 	}
 
 	/**
@@ -105,6 +107,7 @@ abstract class Element{
 	}
 	public function setAttribute( $attr, $value ){
 		$this->attributes[$attr] = $value;
+		return $this;
 	}
 
 	/**
