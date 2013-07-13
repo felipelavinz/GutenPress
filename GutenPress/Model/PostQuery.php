@@ -112,6 +112,15 @@ abstract class PostQuery implements \Iterator, \Countable{
 		return $this->query;
 	}
 
+	public function getFoundPostsIds(){
+		if ( !isset( $this->query ) ) {
+			$this->getObjects();
+			$this->preLoop();
+		}
+		$found_ids = array();
+		foreach ( $this->query->posts as $p ) $found_ids[] = $p->ID;
+		return $found_ids;
+	}
 
 	/**
 	 * Implement countable interface, so we can do count($object)
