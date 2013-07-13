@@ -15,7 +15,7 @@ class Sortable extends \GutenPress\Forms\OptionElement{
 	public function renderItem( $val, $option ){
 		return sprintf( $this->item_format, $option, $val, $this->name );
 	}
-	private function sortItems(){
+	protected function sortItems(){
 		uksort( $this->options, function($a, $b){
 			$keys = array_keys( $this->options );
 			$a_index = array_search($a, $this->value);
