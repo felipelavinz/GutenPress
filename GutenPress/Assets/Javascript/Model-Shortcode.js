@@ -56,7 +56,7 @@
 				title         : l10n.dialog.title,
 				dialogClass   : 'wp-dialog',
 				resizable     : false,
-				modal         : true,
+				modal         : false,
 				draggable     : true,
 				closeOnEscape : true,
 				open: function(event, ui){
@@ -112,20 +112,18 @@
 								// ... if the shortcode can use a content, we should use the selected text as value
 								if ( has_content ) setSelectionAsContent();
 								$('#gutenpress-shortcode-actions').fadeIn();
-								$('#gutenpress-shortcode-create').on('click', function(){
+								$('#gutenpress-shortcode-create').on('click', function(event){
+									var generated_shortcode = $('#gutenpress-shortcode-preview').val(),
+										editor_content      = tinymce.activeEditor.getContent();
+									tinymce.activeEditor.selection.setContent( generated_shortcode );
+									tinymce.activeEditor.focus();
 									$('#gutenpress-dialog-shortcode').dialog('close');
+									event.preventDefault();
 								});
 								previewShortcode();
 							});
 						});
 					} );
-				},
-				close: function(event, ui){
-					// return focus to tinymce
-					var generated_shortcode = $('#gutenpress-shortcode-preview').val(),
-						editor_content      = tinymce.activeEditor.getContent();
-					tinymce.activeEditor.selection.setContent( generated_shortcode );
-					tinymce.activeEditor.focus();
 				}
 			});
 			$(window).resize(function(){ setDialogSize(); });
