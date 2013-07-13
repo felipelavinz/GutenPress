@@ -16,7 +16,7 @@ class PostObject{
 
 	private $know_multiples = false;
 
-	private $know_properties = array();
+	private $known_properties = array();
 
 	/**
 	 * @var array
@@ -36,12 +36,12 @@ class PostObject{
 
 	public function __get( $key ){
 		// if we already got that property, inmediately return it
-		if ( isset($this->know_properties[ $key ]) ) {
-			return $this->know_properties[ $key ];
+		if ( isset($this->known_properties[ $key ]) ) {
+			return $this->known_properties[ $key ];
 		}
 		if ( $key === 'thumbnail' ) {
-			$this->know_properties['thumbnail'] = $this->getThumbnail();
-			return $this->know_properties['thumbnail'];
+			$this->known_properties['thumbnail'] = $this->getThumbnail();
+			return $this->known_properties['thumbnail'];
 		}
 		if ( $key === 'permalink' ) {
 			$this->known_properties['permalink'] = get_permalink( $this->post->ID );
@@ -50,8 +50,8 @@ class PostObject{
 		if ( $this->know_multiples === true ) {
 			// we already know what fields can have multiple values
 			if ( $this->multiple[ $key ] ) {
-				$this->know_properties[ $key ] = get_post_meta( $this->post->ID, $key, false );
-				return $this->know_properties[ $key ];
+				$this->known_properties[ $key ] = get_post_meta( $this->post->ID, $key, false );
+				return $this->known_properties[ $key ];
 			}
 			return $this->post->{$key};
 		} else {
@@ -61,11 +61,11 @@ class PostObject{
 				// probably not a postmeta, let WP_Post handle it
 				return $this->post->{$key};
 			} elseif ( count($value) === 1 ) {
-				$this->know_properties[ $key ] = $value[0];
+				$this->known_properties[ $key ] = $value[0];
 			} else {
-				$this->know_properties[ $key ] = $value;
+				$this->known_properties[ $key ] = $value;
 			}
-			return $this->know_properties[ $key ];
+			return $this->known_properties[ $key ];
 		}
 	}
 
