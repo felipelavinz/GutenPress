@@ -274,8 +274,12 @@ class Metabox{
 
 		// handle file uploads
 		if ( ! empty($_FILES[ $this->id .'-form' ]) ) {
-			$uploads = $this->handleUploads( $post_id );
-			$data = array_merge( $data, $uploads );
+			try{
+				$uploads = $this->handleUploads( $post_id );
+				$data = array_merge( $data, $uploads );
+			} catch ( \Exception $e ) {
+				wp_die( $e->getMessage() );
+			}
 		}
 
 		// and now, you may filter the metabox data to do some

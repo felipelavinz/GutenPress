@@ -1,5 +1,3 @@
-(function($){
-	$(function(){
-		$('.gp-sortable').sortable().disableSelection();
-	});
+;(function($){
+	$('.gp-sortable').sortable().disableSelection();
 })(jQuery);

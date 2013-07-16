@@ -48,7 +48,5 @@
 			});
 		});
 	};
-	$(document).ready(function(){
-		$('.gp-wpimage').gpWpImage();
-	});
+	$('.gp-wpimage').gpWpImage();
 })(jQuery);

@@ -46,11 +46,13 @@ class Attachment{
 	 * @todo manually specify the unit
 	 */
 	public static function getSize( $attachment, $unit = '' ){
-		$filepath = get_post_meta( $attachment, '_wp_attached_file', true );
-		$fullpath = WP_CONTENT_DIR .'/uploads/'. $filepath;
+		static $upload_dir;
+		$upload_dir = wp_upload_dir();
+		$filepath   = get_post_meta( $attachment, '_wp_attached_file', true );
+		$fullpath   = trailingslashit( $upload_dir['basedir'] ) . $filepath;
 		if( ! is_readable($fullpath) )
 			return '';
-		$size = filesize($fullpath);
+		$size  = filesize($fullpath);
 		$sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 		for ($i=0; $size > 1024 && isset($sizes[$i+1]); $i++) $size /= 1024;
 		$size = round($size)." ".$sizes[$i];

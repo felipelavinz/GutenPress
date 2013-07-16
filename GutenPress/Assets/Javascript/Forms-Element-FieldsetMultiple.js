@@ -1,4 +1,4 @@
-(function($){
+;(function($){
 	jQuery(document).ready(function(){
 		$('.clone-fieldset').on('click', function(event){
 			var el = $(this),

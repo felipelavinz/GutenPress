@@ -29,7 +29,7 @@ class WPImage extends \GutenPress\Forms\FormElement{
 			$out .= '<div class="thumb-receiver gp-wpimage-receiver">'. wp_get_attachment_image($value, 'thumbnail') .'</div>';
 			$out .= '<button data-uploader_title="'. esc_attr( $this->getLabel() ) .'" data-uploader_button_text="'. esc_attr( __('Select image', 'gutenpress') ) .'" class="button gp-wpimage-upload">'. __('Replace image', 'gutenpress') .'</button>';
 			$out .= ' <button class="btn-link gp-wpimage-delete">'. __('Remove image', 'gutenpress') .'</button>';
-			$out .= '<input class="gp-wpimage-field" type="hidden" name="'. $this->name .'" value="'. $value .'">';
+			$out .= '<input class="gp-wpimage-field" type="hidden" name="'. $this->name .'" value="'. esc_attr($value) .'">';
 		}
 		$out .= '</div>';
 		\GutenPress\Assets\Assets::getInstance()->loadScript('Forms-Element-WPImage');
