@@ -2,7 +2,7 @@
 
 namespace GutenPress\Forms\Element;
 
-class GMapSeach extends Input{
+class GMapSearch extends Input{
 	protected static $type = 'text';
 	protected $view_properties = array(
 		'display_inline' => 0
@@ -30,7 +30,7 @@ class GMapSeach extends Input{
 		// Load Script
 		\GutenPress\Assets\Assets::getInstance()->enqueueScript('googlemaps', 'http://maps.googleapis.com/maps/api/js?hl=es&key=AIzaSyBAg3G1aMJzsWz7g4RdFidgSwflF4uY32A&sensor=true');
 		\GutenPress\Assets\Assets::getInstance()->loadScript('jquery.ui.map.min');
-		\GutenPress\Assets\Assets::getInstance()->loadScript('Forms-Element-GMapSeach');
+		\GutenPress\Assets\Assets::getInstance()->loadScript('Forms-Element-GMapSearch');
 
 		return $out;
 	}
