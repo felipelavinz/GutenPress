@@ -12,6 +12,14 @@ class GMapSearch extends Input{
 	}
 
 	public function __toString(){
+
+		if ( defined('GUTENPRESS_GMAPS_API_KEY') ) {
+			throw new \Exception( __('Please define the GUTENPRESS_GMAPS_API_KEY constant with a proper Google Maps API Key', 'gutenpress') );
+		}
+		if ( GUTENPRESS_GMAPS_API_KEY === 'AIzaSyBAg3G1aMJzsWz7g4RdFidgSwflF4uY32A' ) {
+			error_log( __('Please define GUTENPRESS_GMAPS_API_KEY with your own API Key to avoid query limits', 'gutenpress') );
+		}
+
 		// Build canvas & hidden inputs with the main input
 		$name = $this->getAttribute('name');
 		$value = $this->getAttribute('value');
@@ -28,8 +36,8 @@ class GMapSearch extends Input{
 		$out .= '</div>';
 
 		// Load Script
-		\GutenPress\Assets\Assets::getInstance()->enqueueScript('googlemaps', 'http://maps.googleapis.com/maps/api/js?hl=es&key=AIzaSyBAg3G1aMJzsWz7g4RdFidgSwflF4uY32A&sensor=true');
-		\GutenPress\Assets\Assets::getInstance()->loadScript('jquery.ui.map.min');
+		\GutenPress\Assets\Assets::getInstance()->enqueueScript('googlemaps', 'http://maps.googleapis.com/maps/api/js?hl=es&key='. GUTENPRESS_GMAPS_API_KEY .'&sensor=true');
+		\GutenPress\Assets\Assets::getInstance()->loadScript('jquery.ui.map');
 		\GutenPress\Assets\Assets::getInstance()->loadScript('Forms-Element-GMapSearch');
 
 		return $out;
