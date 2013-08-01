@@ -26,12 +26,14 @@ class SelectMultiple extends \GutenPress\Forms\OptionElement implements \GutenPr
 			$this->setValue( $value );
 			$out .= '<p class="select-multiple">';
 				$out .= '<select'. $this->renderAttributes() .'>';
-					if ( is_string($this->options) ) {
-						$out .= $this->renderOption( $key, $val, $value );
-					} else {
-						$out .= '<optgroup label="'. esc_attr($key) .'">';
-							foreach ( $this->options as $k => $v ) $out .= $this->renderOption($k, $v, $value);
-						$out .= '</optgroup>';
+					foreach ( $this->options as $key => $val ) {
+						if ( is_string($val) ) {
+							$out .= $this->renderOption( $key, $val, $value );
+						} else {
+							$out .= '<optgroup label="'. esc_attr($key) .'">';
+								foreach ( $this->options as $k => $v ) $out .= $this->renderOption($k, $v, $value);
+							$out .= '</optgroup>';
+						}
 					}
 				$out .= '</select>';
 				$out .= $action_links;
