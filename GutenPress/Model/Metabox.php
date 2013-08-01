@@ -145,6 +145,10 @@ class Metabox{
 		foreach ( $this->postmeta->data as $field ) {
 			$element = $this->createElement( $field, $form );
 
+			// aqui puedo modificar el $element de forma custom
+			$element = apply_filters( 'gutenpress_metabox_field' , $element, $field, $form, $this );
+
+			// esto tambien se debería hacer a través del filtro
 			if ( $element instanceof \GutenPress\Forms\FieldsetElementInterface ) {
 				// $element it's a Fieldset
 				if ( empty($field->properties['elements']) ) {
@@ -287,11 +291,12 @@ class Metabox{
 		$data = apply_filters( 'filter_'. $this->id .'_metabox_data', $data, $this, $post );
 
 		foreach ( $this->postmeta->data as $meta ) {
-			if ( $meta->element === '\GutenPress\Forms\Element\Fieldset' ) {
+			$element = new $meta->element;
+			if ( $element instanceof \GutenPress\Forms\Element\Fieldset ) {
 				foreach ( $meta->properties['elements'] as $element ) {
 					$this->updatePostMeta( $post_id, $meta->name .'_'. $element->name, $data );
 				}
-			} elseif ( in_array( 'GutenPress\Forms\MultipleFormElementInterface', class_implements($meta->element) ) ) {
+			} elseif ( $element instanceof \GutenPress\Forms\MultipleFormElementInterface ) {
 				delete_post_meta( $post_id, $this->id .'_'. $meta->name );
 				foreach ( $data[ $meta->name ] as $value ) {
 					add_post_meta( $post_id, $this->id .'_'. $meta->name, $value );
