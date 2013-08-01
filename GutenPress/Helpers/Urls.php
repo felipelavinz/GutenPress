@@ -10,7 +10,7 @@ class Urls{
 		$url .= "://";
 
 		// Server Name
-		$url .= $_SERVER["SERVER_NAME"];
+		$url .= $_SERVER["HTTP_HOST"];
 		if ( $include_port && $_SERVER["SERVER_PORT"] != "80" ) $url .= ':'.$_SERVER["SERVER_PORT"];
 
 		// Path
