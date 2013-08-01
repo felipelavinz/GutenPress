@@ -36,7 +36,10 @@ class Fieldset extends \GutenPress\Forms\FormElement implements \GutenPress\Form
 	public function getLabel(){
 		return $this->label;
 	}
-	public function addElement( \GutenPress\Forms\Element $element ) {
+	public function addElement( $element ) {
+		if ( ! $element instanceof \GutenPress\Forms\Element ){
+			throw new \Exception( __('$element must be an instance of \GutenPress\Forms\Element', 'gutenpress') );
+		}
 		$this->elements[] = $element;
 		return $this;
 	}
