@@ -36,7 +36,10 @@ class Fieldset extends \GutenPress\Forms\FormElement implements \GutenPress\Form
 	public function getLabel(){
 		return $this->label;
 	}
-	public function addElement( \GutenPress\Forms\Element $element ) {
+	public function addElement( $element ) {
+		if ( ! $element instanceof \GutenPress\Forms\Element ){
+			throw new \Exception( __('$element must be an instance of \GutenPress\Forms\Element', 'gutenpress') );
+		}
 		$this->elements[] = $element;
 		return $this;
 	}
@@ -56,4 +59,27 @@ class Fieldset extends \GutenPress\Forms\FormElement implements \GutenPress\Form
 		$out .= '</fieldset>';
 		return $out;
 	}
+	public static function filterMetaboxField( $element, $field, $form, $instance ){
+		if ( get_class($element) === __CLASS__ ) {
+			// $element it's a Fieldset
+			if ( empty($field->properties['elements']) ) {
+				throw new \Exception( __('Please add some elements within this Fieldset, otherwhise it will feel very empty', 'gutenpress') );
+			}
+
+			$element->setId( $form->getId( $field->name ) );
+
+			// loop over the fieldset elements and instantiate them
+			foreach ( $field->properties['elements'] as $fs_field ) {
+				$field_name = $fs_field->name;
+				$fs_element = $instance->createElement( $fs_field, $form );
+				$fs_element->setName( $field_name );
+				// on a simple fieldset, every field it's stored as a separate meta value
+				$fs_element->setAttribute( 'name', $form->getName( $field->name .'_'. $field_name ) );
+				$instance->setElementValue( $fs_element, $field->name .'_'. $field_name );
+				$element->addElement( $fs_element );
+			}
+		}
+		return $element;
+	}
 }
+add_filter('gutenpress_metabox_field', array('\GutenPress\Forms\Element\Fieldset', 'filterMetaboxField'), 10, 4);

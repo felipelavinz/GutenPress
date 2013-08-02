@@ -26,4 +26,11 @@ class PostMetaData{
 	public function isMultiple(){
 		return $this instanceof \GutenPress\Forms\MultipleFormElementInterface;
 	}
+	public function getProperty( $key ){
+		return ( isset( $this->properties[ $key ] ) ? $this->properties[ $key ] : false ) ;
+	}
+	public function setProperty( $key, $value ){
+		$this->properties[$key] = $value;
+		return $this->properties;
+	}
 }

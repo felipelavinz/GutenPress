@@ -101,7 +101,7 @@ class PostType extends \GutenPress\Generate\Generator{
 		return "'". $str ."'";
 	}
 	public function getRewrite(){
-		if ( (bool)$this->args['rewrite'] === false || empty($this->args['rewrite']) )
+		if ( empty($this->args['rewrite']) || (bool)$this->args['rewrite'] === false )
 			return 'false';
 		$vars = array();
 		foreach ( $this->args['rewrite'] as $key => $val ) {

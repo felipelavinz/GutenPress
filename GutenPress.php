@@ -65,3 +65,16 @@ function gp_admin_print_footer_scripts(){
 	$Assets = \GutenPress\Assets\Assets::getInstance();
 	$Assets->loadEnqueuedScripts();
 }
+
+/**
+ * Conditionally define some used constants.
+ * All constants defined here should be customized hooking into init with a lower priority.
+ * You can use the CustomBootstrap.php file to do that
+ * @return void
+ */
+function gp_pluggable_constants(){
+	if ( ! defined('GUTENPRESS_GMAPS_API_KEY') ) {
+		define('GUTENPRESS_GMAPS_API_KEY', 'AIzaSyBAg3G1aMJzsWz7g4RdFidgSwflF4uY32A');
+	}
+}
+add_action('init', 'gp_pluggable_constants', 9999);
