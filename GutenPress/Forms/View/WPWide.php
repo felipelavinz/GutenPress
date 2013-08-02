@@ -8,10 +8,7 @@ use GutenPress\Forms\Element as Element;
 class WPWide extends Forms\View{
 	private $i = 1;
 	public function __toString(){
-		// Default $elements filters
-		$this->elements = apply_filters('filter_form_fields', $this->elements);
-
-		$out = '';
+		$out  = '';
 		$out .= '<table class="form-table gutenpress-form">';
 			foreach ( $this->elements as $element ){
 				$this->setElementViewAttributes( $element );

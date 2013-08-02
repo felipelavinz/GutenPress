@@ -82,6 +82,7 @@ class Form extends Element{
 
 	public function __toString(){
 		$out  = '';
+		$this->elements = apply_filters('gutenpress_form_elements', $this->elements, $this);
 		$view = new $this->view( $this, $this->elements );
 		$out .= '<form'. $this->renderAttributes() .'>';
 			$out .= $view;
