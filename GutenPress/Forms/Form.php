@@ -36,7 +36,7 @@ class Form extends Element{
 		}
 
 		// the selected view must extend the base view class
-		if ( is_subclass_of($view, '\GutenPress\Forms\View') ) {
+		if ( is_subclass_of( $view, '\GutenPress\Forms\View' ) ) {
 			$this->view = $view;
 		} else {
 			throw new \GutenPress\Helpers\Exception( __('The $view parameter must be a subclass of \GutenPress\Forms\View') );
@@ -72,8 +72,17 @@ class Form extends Element{
 		return $this;
 	}
 
+	public function getElements(){
+		return $this->elements;
+	}
+	public function setElements( $elements ){
+		$this->elements = $elements;
+		return $this->elements;
+	}
+
 	public function __toString(){
 		$out  = '';
+		$this->elements = apply_filters('gutenpress_form_elements', $this->elements, $this);
 		$view = new $this->view( $this, $this->elements );
 		$out .= '<form'. $this->renderAttributes() .'>';
 			$out .= $view;

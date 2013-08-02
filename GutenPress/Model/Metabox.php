@@ -145,40 +145,10 @@ class Metabox{
 		foreach ( $this->postmeta->data as $field ) {
 			$element = $this->createElement( $field, $form );
 
-			if ( $element instanceof \GutenPress\Forms\FieldsetElementInterface ) {
-				// $element it's a Fieldset
-				if ( empty($field->properties['elements']) ) {
-					throw new \Exception( __('Please add some elements within this Fieldset, otherwhise it will feel very empty', 'gutenpress') );
-				}
+			// Allow further customization on the $element
+			$element = apply_filters( 'gutenpress_metabox_field' , $element, $field, $form, $this );
 
-				$is_multiple = $element instanceof \Gutenpress\Forms\MultipleFormElementInterface;
-				if ( $is_multiple ) {
-					// set value on MultipleFieldset
-					// each copy of the fieldset it's stored as one serialized meta value
-					// with this method, we're getting an array of arrays
-					$this->setElementValue( $element, $field->name );
-				}
-
-				$element->setId( $form->getId( $field->name ) );
-
-				// loop over the fieldset elements and instantiate them
-				foreach ( $field->properties['elements'] as $fs_field ) {
-					$field_name = $fs_field->name;
-					$fs_element = $this->createElement( $fs_field, $form );
-					$fs_element->setName( $field_name );
-					// on MultipleFieldsets, change the element name to allow multiple fields within
-					if ( $is_multiple ) {
-						$fs_element->setAttribute( 'name', $form->getName( $field->name . '][__i__]['. $field_name ) );
-					} else {
-						// on a simple fieldset, every field it's stored as a separate meta value
-						$fs_element->setAttribute( 'name', $form->getName( $field->name .'_'. $field_name ) );
-						$this->setElementValue( $fs_element, $field->name .'_'. $field_name );
-					}
-					$element->addElement( $fs_element );
-				}
-			} else {
-				$this->setElementValue( $element, $field->name );
-			}
+			$this->setElementValue( $element, $field->name );
 
 			$form->addElement( $element );
 		}
@@ -190,7 +160,7 @@ class Metabox{
 		echo $form;
 	}
 
-	private function setElementValue( &$element, $field_name ){
+	public function setElementValue( &$element, $field_name ){
 		global $post;
 		if ( $element instanceof \GutenPress\Forms\FormElementInterface ) {
 			$value = $element instanceof \GutenPress\Forms\MultipleFormElementInterface ? get_post_meta( $post->ID, $this->id .'_'. $field_name, false ) : get_post_meta( $post->ID, $this->id .'_'. $field_name, true );
@@ -213,7 +183,7 @@ class Metabox{
 	 * Create the form element
 	 * @return object \GutenPress\Forms\Element
 	 */
-	private function createElement( $field, $form ){
+	public function createElement( $field, $form ){
 		global $post;
 		$element = new $field->element;
 		$properties = $field->properties;
@@ -244,6 +214,7 @@ class Metabox{
 	 * @param object WP_Post object
 	 * @throws \Exception If user doesn't have permission to save data
 	 * @uses apply_filters() Calls 'filter_'. $this->id .'_metabox_data' to filter data before saving
+	 * @uses do_action() Calls $this->id .'_metabox_data_update' before data is saved
 	 * @uses do_action() Calls $this->id .'_metabox_data_updated' after data is saved
 	 * @return void
 	 */
@@ -286,15 +257,19 @@ class Metabox{
 		// sanitizing and formatting
 		$data = apply_filters( 'filter_'. $this->id .'_metabox_data', $data, $this, $post );
 
+		// hook into this action if you need to do something before metadata is saved
+		do_action( $this->id .'_metabox_data_update', $data, $post_id, $post, $this );
+
 		foreach ( $this->postmeta->data as $meta ) {
-			if ( $meta->element === '\GutenPress\Forms\Element\Fieldset' ) {
-				foreach ( $meta->properties['elements'] as $element ) {
-					$this->updatePostMeta( $post_id, $meta->name .'_'. $element->name, $data );
-				}
-			} elseif ( in_array( 'GutenPress\Forms\MultipleFormElementInterface', class_implements($meta->element) ) ) {
+			$element = new $meta->element;
+			if ( $element instanceof \GutenPress\Forms\MultipleFormElementInterface ) {
 				delete_post_meta( $post_id, $this->id .'_'. $meta->name );
 				foreach ( $data[ $meta->name ] as $value ) {
 					add_post_meta( $post_id, $this->id .'_'. $meta->name, $value );
+				}
+			} elseif ( $element instanceof \GutenPress\Forms\Element\Fieldset ) {
+				foreach ( $meta->properties['elements'] as $element ) {
+					$this->updatePostMeta( $post_id, $meta->name .'_'. $element->name, $data );
 				}
 			} else {
 				$this->updatePostMeta( $post_id, $meta->name, $data );

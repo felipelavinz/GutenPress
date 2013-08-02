@@ -28,7 +28,8 @@ abstract class Generator{
 	protected function getTemplatePath( $template = '' ){
 		if ( empty($template) ) {
 			$classname = get_class($this);
-			$template  = end( explode('\\', $classname) );
+			$classname = explode('\\', $classname);
+			$template  = end( $classname );
 		}
 		return __DIR__ .'/Templates/'. $template .'.tpl';
 	}

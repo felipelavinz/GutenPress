@@ -37,4 +37,30 @@ class FieldsetMultiple extends Fieldset implements \GutenPress\Forms\MultipleFor
 		\GutenPress\Assets\Assets::getInstance()->loadScript('Forms-Element-FieldsetMultiple');
 		return $out;
 	}
+	public static function filterMetaboxField( $element, $field, $form, $instance ){
+		if ( get_class($element) === __CLASS__ ) {
+			// $element it's a Fieldset
+			if ( empty($field->properties['elements']) ) {
+				throw new \Exception( __('Please add some elements within this Fieldset, otherwhise it will feel very empty', 'gutenpress') );
+			}
+
+			// set value on MultipleFieldset
+			// each copy of the fieldset it's stored as one serialized meta value
+			// with this method, we're getting an array of arrays
+			$instance->setElementValue( $element, $field->name );
+
+			$element->setId( $form->getId( $field->name ) );
+
+			// loop over the fieldset elements and instantiate them
+			foreach ( $field->properties['elements'] as $fs_field ) {
+				$field_name = $fs_field->name;
+				$fs_element = $instance->createElement( $fs_field, $form );
+				$fs_element->setName( $field_name );
+				$fs_element->setAttribute( 'name', $form->getName( $field->name . '][__i__]['. $field_name ) );
+				$element->addElement( $fs_element );
+			}
+		}
+		return $element;
+	}
 }
+add_filter('gutenpress_metabox_field', array('\GutenPress\Forms\Element\FieldsetMultiple', 'filterMetaboxField'), 10, 4);
