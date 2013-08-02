@@ -43,7 +43,6 @@ class Form extends Element{
 		}
 
 		// add a set of elements
-		// DELETE THIS
 		if ( ! empty($elements) ) {
 			foreach ( $elements as $element ) {
 				$this->addElement( $element );
