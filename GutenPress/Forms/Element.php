@@ -126,6 +126,14 @@ abstract class Element{
 	public function getProperty( $key ){
 		return isset($this->properties[$key]) ? $this->properties[$key] : '';
 	}
+	public function setProperty( $key, $value ){
+		$this->properties[$key] = $value;
+		return $this;
+	}
+
+	public function getProperties(){
+		return $this->properties;
+	}
 
 	/**
 	 * Output all the element's attributes.
