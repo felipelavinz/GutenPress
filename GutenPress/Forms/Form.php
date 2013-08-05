@@ -5,6 +5,7 @@ namespace GutenPress\Forms;
 class Form extends Element{
 	protected $id;
 	protected $view;
+	protected $values;
 	protected $elements = array();
 
 	protected static $element_attributes = array(
@@ -78,6 +79,28 @@ class Form extends Element{
 	public function setElements( $elements ){
 		$this->elements = $elements;
 		return $this->elements;
+	}
+
+	public function setValue( $key, $prop ){
+		$this->values[$key] = $prop;
+		return $this;
+	}
+	public function setValues( $values ){
+		$this->values = $values;
+		return $this;
+	}
+	public function getValues(){
+		return $this->values;
+	}
+	public function getValue( $key ){
+		return isset($this->values[$key]) ? $this->values[$sanitize_key] : null;
+	}
+
+	public function getProperties(){
+		return $this->properties;
+	}
+	public function getProperty( $key ){
+		return isset($this->properties[$key]) ? $this->properties[$key] : null;
 	}
 
 	public function __toString(){
