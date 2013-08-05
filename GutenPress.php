@@ -14,10 +14,10 @@ Author URI: http://www.yukei.net
 
 function gp_register_autoload(){
 
-	require_once WPMU_PLUGIN_DIR .'/GutenPress/Autoload/SplClassLoader.php';
+	require_once __DIR__ .'/GutenPress/Autoload/SplClassLoader.php';
 
 	// register GutenPress autoloader
-	$GutenPress = new SplClassLoader('GutenPress', WPMU_PLUGIN_DIR);
+	$GutenPress = new SplClassLoader('GutenPress', __DIR__);
 	$GutenPress->register();
 
 }
