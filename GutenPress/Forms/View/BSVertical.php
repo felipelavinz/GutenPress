@@ -18,7 +18,7 @@ class BSVertical extends Forms\View{
 		$successes = $this->form->getProperty('successes');
 		foreach ( $this->elements as $element ){
 			$this->setElementViewAttributes( $element );
-			if ( $element instanceof Element\InputHidden ) {
+			if ( $element instanceof Element\InputHidden || $element->getAttribute('class') === 'hidden' ) {
 				$out .= '<div class="hidden control-group">';
 						$out .= (string)$element;
 				$out .= '</div>';
@@ -54,7 +54,8 @@ class BSVertical extends Forms\View{
 			$element->setAttribute('id', $this->form->getAttribute('id') .'-'. $this->i );
 		}
 		if ( $element instanceof Element\InputSubmit || $element instanceof Element\Button && $element->getAttribute('type') === 'submit' ) {
-			$element->setAttribute('class', 'button-primary');
+			$class = $element->getAttribute('class');
+			$element->setAttribute('class', $class . ' button-primary');
 		} elseif ( $element instanceof Element\InputButton || $element instanceof Element\Button ) {
 			$element->setAttribute('class', 'button');
 		}

@@ -93,7 +93,7 @@ class Form extends Element{
 		return $this->values;
 	}
 	public function getValue( $key ){
-		return isset($this->values[$key]) ? $this->values[$sanitize_key] : null;
+		return isset($this->values[$key]) ? $this->values[$key] : null;
 	}
 
 	public function getProperties(){

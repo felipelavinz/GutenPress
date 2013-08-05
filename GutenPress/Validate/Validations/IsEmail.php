@@ -7,6 +7,6 @@ class IsEmail implements \GutenPress\Validate\ValidatorInterface{
 		return is_email( $value );
 	}
 	public function getMessages(){
-		return __('Por favor ingresa una dirección de e-mail válida', 'gutenpress');
+		return __('Please enter a valid e-mail address', 'gutenpress');
 	}
 }
