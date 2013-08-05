@@ -146,7 +146,7 @@ class ShortcodeFactory{
 	 * @return array             Plugins URLs with our custom file appended
 	 */
 	public function registerButton( $plugin_arr ){
-		$plugin_arr['gutenpress_shortcode'] = WPMU_PLUGIN_URL .'/GutenPress/Assets/Javascript/Model-Shortcode.js';
+		$plugin_arr['gutenpress_shortcode'] = GUTENPRESS_URL .'/Assets/Javascript/Model-Shortcode.js';
 		return $plugin_arr;
 	}
 

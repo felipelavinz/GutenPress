@@ -23,13 +23,13 @@
 				});
 				// When an image is selected, run a callback.
 				file_frame.on( 'select', function() {
-					var attachment = file_frame.state().get('selection').first().toJSON(),
-						thumb = $('<img>').attr({
+					var attachment = file_frame.state().get('selection').first().toJSON();
+						var thumb = $('<img>').attr({
 							'alt'    : attachment.title,
-							'src'    : attachment.sizes.thumbnail.url,
+							'src'    : attachment.sizes.thumbnail !== undefined ? attachment.sizes.thumbnail.url : attachment.sizes.full.url,
 							'title'  : attachment.title,
-							'width'  : attachment.sizes.thumbnail.width,
-							'height' : attachment.sizes.thumbnail.height
+							'width'  : attachment.sizes.thumbnail !== undefined ? attachment.sizes.thumbnail.width : attachment.sizes.full.width,
+							'height' : attachment.sizes.thumbnail !== undefined ? attachment.sizes.thumbnail.height : attachment.sizes.full.height
 						}),
 						entry_id = attachment.id;
 					$receiver.html( thumb );

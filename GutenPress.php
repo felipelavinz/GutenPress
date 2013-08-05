@@ -14,12 +14,17 @@ Author URI: http://www.yukei.net
 
 function gp_register_autoload(){
 
-	require_once WPMU_PLUGIN_DIR .'/GutenPress/Autoload/SplClassLoader.php';
+	require_once __DIR__ .'/GutenPress/Autoload/SplClassLoader.php';
 
 	// register GutenPress autoloader
-	$GutenPress = new SplClassLoader('GutenPress', WPMU_PLUGIN_DIR);
+	$GutenPress = new SplClassLoader('GutenPress', __DIR__);
 	$GutenPress->register();
 
+	define('GUTENPRESS_PATH', __DIR__ .'/GutenPress');
+
+	// public URL should always be relative to mu-plugins
+	$gp_rel_path = str_replace(WPMU_PLUGIN_DIR, '', __DIR__);
+	define('GUTENPRESS_URL', WPMU_PLUGIN_URL . $gp_rel_path .'/GutenPress' );
 }
 // call immediately, to avoid issues with network-activated plugins
 gp_register_autoload();
