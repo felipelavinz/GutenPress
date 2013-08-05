@@ -1,6 +1,85 @@
 ;(function($, window, l10n){
 	if ( typeof tinymce !== 'object' )
 		return false;
+	var Shortcode = function(){
+		// does the shortcode accepts internal content?
+		var has_content;
+		$('#gutenpress-shortcode-preview').val('');
+		setDialogSize();
+		$.get( l10n.settings.ajax_url, {
+			action: 'gutenpress_shortcode_get_composer'
+		}, function(data){
+			$('#gutenpress-shortcode-receiver').html( data );
+			$('#gutenpress-shortcode-select').on('change', function(){
+				$.get( l10n.settings.ajax_url, {
+					action: 'gutenpress_shortcode_get_fields',
+					shortcode: $(this).val()
+				}, function(data){
+					setDialogSize();
+					$('#gutenpress-shortcode-fields').html( data ).find('input, select, textarea').on('change', function(){
+						previewShortcode();
+					});
+					has_content = document.getElementById('gutenpress-shortcode-content');
+					// ... if the shortcode can use a content, we should use the selected text as value
+					if ( has_content ) setSelectionAsContent();
+					$('#gutenpress-shortcode-actions').fadeIn();
+					$('#gutenpress-shortcode-create').off('click').on('click', function(event){
+						var generated_shortcode = $('#gutenpress-shortcode-preview').val();
+						tinymce.activeEditor.selection.setContent( generated_shortcode );
+						tinymce.activeEditor.focus();
+						$('#gutenpress-dialog-shortcode').dialog('close');
+						event.preventDefault();
+					});
+					previewShortcode();
+				});
+			});
+		} );
+	};
+	var previewShortcode = function(){
+		var preview     = $('#gutenpress-shortcode-preview'),
+			form        = $('#gutenpress-shortcode-composer'),
+			fields      = $('#gutenpress-shortcode-fields'),
+			has_content = setSelectionAsContent(),
+			sc_content  = has_content ? has_content.value : false,
+			base_format = has_content && sc_content ? '[%shortcode%%attributes%]%content%[/%shortcode%]' : '[%shortcode%%attributes%]',
+			attributes  = [],
+			val         = base_format.replace(/%shortcode%/g, $('#gutenpress-shortcode-select').val());
+		fields.find('input, select').each(function(i, obj){
+			// @todo deal with multiple-inputs
+			if ( obj.name === 'content' )
+				return;
+			if ( obj.checkValidity ) {
+				if ( obj.value && obj.checkValidity() ) attributes.push(obj.name +'="'+ obj.value +'"');
+			} else {
+				if ( obj.value ) attributes.push(obj.name +'="'+ obj.value +'"');
+			}
+		});
+		val = attributes.length ? val.replace('%attributes%', ' '+ attributes.join(' ')) : val.replace('%attributes%', '');
+		if ( sc_content ) {
+			val = val.replace('%content%', sc_content);
+		}
+		preview.val( val );
+		return val;
+	};
+	var setSelectionAsContent = function(){
+		var has_content = false;
+		var selectedContent = tinymce.activeEditor.selection.getContent();
+		if ( selectedContent ) {
+			has_content.value = selectedContent;
+		}
+		return has_content;
+	};
+	var setDialogSize = function(){
+		var _window = $(window),
+			height  = Math.floor( _window.height() * 0.6 ) - 28,
+			width   = Math.floor( _window.width() * 0.5 ),
+			dialog  = $('#gutenpress-dialog-shortcode');
+		dialog.dialog('option', {
+			width  : width > 540 ? width : 540,
+			height : height > 250 ? height: 280
+		}).dialog('option', 'position', { at: 'center' });
+		$('#gutenpress-shortcode-manager').css('height', parseInt( $('#gutenpress-dialog-shortcode').outerHeight(), 10) - 65);
+	};
 	tinymce.create('tinymce.plugins.GutenPressShortcodePlugin', {
 		init: function(ed, url){
 			var t = this;
@@ -41,17 +120,6 @@
 		},
 		_init_gutenpress_shortcode: function(){
 			var t = this;
-			var setDialogSize = function(){
-				var _window = $(window),
-					height  = Math.floor( _window.height() * 0.6 ) - 28,
-					width   = Math.floor( _window.width() * 0.5 ),
-					dialog  = $('#gutenpress-dialog-shortcode');
-				dialog.dialog('option', {
-					width  : width > 540 ? width : 540,
-					height : height > 250 ? height: 280
-				}).dialog('option', 'position', { at: 'center' });
-				$('#gutenpress-shortcode-manager').css('height', parseInt( $('#gutenpress-dialog-shortcode').outerHeight(), 10) - 65);
-			};
 			$('#gutenpress-dialog-shortcode').dialog({
 				title         : l10n.dialog.title,
 				dialogClass   : 'wp-dialog',
@@ -59,71 +127,8 @@
 				modal         : false,
 				draggable     : true,
 				closeOnEscape : true,
-				open: function(event, ui){
-					// does the shortcode accepts internal content?
-					var has_content;
-					var setSelectionAsContent = function(){
-						var selectedContent = tinymce.activeEditor.selection.getContent();
-						if ( selectedContent ) {
-							has_content.value = selectedContent;
-						}
-					};
-					var previewShortcode = function(){
-						var preview     = $('#gutenpress-shortcode-preview'),
-							form        = $('#gutenpress-shortcode-composer'),
-							fields      = $('#gutenpress-shortcode-fields'),
-							sc_content  = has_content ? has_content.value : false,
-							base_format = has_content && sc_content ? '[%shortcode%%attributes%]%content%[/%shortcode%]' : '[%shortcode%%attributes%]',
-							attributes  = [],
-							val         = base_format.replace(/%shortcode%/g, $('#gutenpress-shortcode-select').val());
-						fields.find('input, select').each(function(i, obj){
-							// @todo deal with multiple-inputs
-							if ( obj.name === 'content' )
-								return;
-							if ( obj.checkValidity ) {
-								if ( obj.value && obj.checkValidity() ) attributes.push(obj.name +'="'+ obj.value +'"');
-							} else {
-								if ( obj.value ) attributes.push(obj.name +'="'+ obj.value +'"');
-							}
-						});
-						val = attributes.length ? val.replace('%attributes%', ' '+ attributes.join(' ')) : val.replace('%attributes%', '');
-						if ( sc_content ) {
-							val = val.replace('%content%', sc_content);
-						}
-						preview.val( val );
-						return val;
-					};
-					$('#gutenpress-shortcode-preview').val('');
-					setDialogSize();
-					$.get( l10n.settings.ajax_url, {
-						action: 'gutenpress_shortcode_get_composer'
-					}, function(data){
-						$('#gutenpress-shortcode-receiver').html( data );
-						$('#gutenpress-shortcode-select').on('change', function(){
-							$.get( l10n.settings.ajax_url, {
-								action: 'gutenpress_shortcode_get_fields',
-								shortcode: $(this).val()
-							}, function(data){
-								setDialogSize();
-								$('#gutenpress-shortcode-fields').html( data ).find('input, select, textarea').on('change', function(){
-									previewShortcode();
-								});
-								has_content = document.getElementById('gutenpress-shortcode-content');
-								// ... if the shortcode can use a content, we should use the selected text as value
-								if ( has_content ) setSelectionAsContent();
-								$('#gutenpress-shortcode-actions').fadeIn();
-								$('#gutenpress-shortcode-create').on('click', function(event){
-									var generated_shortcode = $('#gutenpress-shortcode-preview').val(),
-										editor_content      = tinymce.activeEditor.getContent();
-									tinymce.activeEditor.selection.setContent( generated_shortcode );
-									tinymce.activeEditor.focus();
-									$('#gutenpress-dialog-shortcode').dialog('close');
-									event.preventDefault();
-								});
-								previewShortcode();
-							});
-						});
-					} );
+				open: function(){
+					Shortcode();
 				}
 			});
 			$(window).resize(function(){ setDialogSize(); });

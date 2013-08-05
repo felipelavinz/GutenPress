@@ -20,6 +20,11 @@ function gp_register_autoload(){
 	$GutenPress = new SplClassLoader('GutenPress', __DIR__);
 	$GutenPress->register();
 
+	define('GUTENPRESS_PATH', __DIR__ .'/GutenPress');
+
+	// public URL should always be relative to mu-plugins
+	$gp_rel_path = str_replace(WPMU_PLUGIN_DIR, '', __DIR__);
+	define('GUTENPRESS_URL', WPMU_PLUGIN_URL . $gp_rel_path .'/GutenPress' );
 }
 // call immediately, to avoid issues with network-activated plugins
 gp_register_autoload();
