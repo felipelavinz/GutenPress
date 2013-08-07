@@ -9,4 +9,10 @@ class PostObjectMultiLanguage extends PostObject{
 		}
 		return parent::__get( $key );
 	}
+	public function __isset( $key ){
+		$exists_localized = metadata_exists( 'post', $this->post->ID, $key .'_'. qtrans_getLanguage() );
+		if ( $exists_localized )
+			return true;
+		return parent::__isset( $key );
+	}
 }
