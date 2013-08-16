@@ -222,7 +222,7 @@ class Taxonomy{
 				),
 				new Element\InputText(
 					__('Parent Item', 'gutenpress'),
-					$form->getName('labels][parent_item_colon'),
+					$form->getName('labels][parent_item'),
 					array(
 						'data-number' => 'singular',
 						/* translators: paren item label masculine format */
