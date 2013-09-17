@@ -30,6 +30,9 @@
 	color: rgb(33, 117, 155);
 	cursor: pointer;
 }
+.gutenpress-form .hidden{
+	display: none;
+}
 .gutenpress-form .btn-link:focus, .gutenpress-form .btn-link:active{
 	color: rgb(18, 73, 100);
 	outline: thin dotted;
@@ -103,4 +106,17 @@
 	border: 1px solid #eee;
 	color: #999;
 	padding: 3px;
+}
+.gp-wpgallery-controls{
+	clear: both;
+}
+.gp-wpgallery-item{
+	padding: 2px;
+	border: 1px solid #dcdcdc;
+	background: #f7f7f7;
+	cursor: move;
+}
+.gp-wpgallery .ui-sortable-placeholder{
+	background: #eee;
+	border: 3px dashed #ddd;
 }
