@@ -62,7 +62,7 @@
 		return val;
 	};
 	var setSelectionAsContent = function(){
-		var has_content = false;
+		var has_content = document.getElementById('gutenpress-shortcode-content');
 		var selectedContent = tinymce.activeEditor.selection.getContent();
 		if ( selectedContent ) {
 			has_content.value = selectedContent;
