@@ -1,16 +1,18 @@
 <?php
 /**
+ * Plugin Name: GutenPress
+ * Plugin URI: http://felipelavinz.github.io/GutenPress
+ * Description: GutenPress it's a set of tools for people that want to build great things using WordPress.
+ * Author: Felipe Lavin
+ * Version: 0.9
+ * Author URI: http://www.yukei.net
+ * License: GPLv2
+ *
+ * Register autoload instances to manage GutenPress files and other bootstraping actions
+ *
  * @package GutenPress
- * @version 0.1
+ * @version 0.9
  */
-/*
-Plugin Name: GutenPress
-Plugin URI:
-Description: Register autoload instances to manage GutenPress files and other bootstraping actions
-Author: Felipe Lavin
-Version: 0.1
-Author URI: http://www.yukei.net
-*/
 
 function gp_register_autoload(){
 
@@ -28,10 +30,6 @@ function gp_register_autoload(){
 }
 // call immediately, to avoid issues with network-activated plugins
 gp_register_autoload();
-
-if ( is_readable(__DIR__ .'/GutenPress/CustomBootstrap.php' ) ) {
-	include_once __DIR__ .'/GutenPress/CustomBootstrap.php';
-}
 
 add_action('plugins_loaded', 'gp_admin_bootstrap');
 function gp_admin_bootstrap(){
