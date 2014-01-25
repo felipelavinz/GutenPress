@@ -1,4 +1,20 @@
 <?php
+/**
+ * PostQuery Model
+ *
+ * Acts like a wrapper for the WordPress loops that implements
+ * the Iterator interface so a "foreach" can be used for looping
+ * through the elements.
+ * The class constructor takes an array of arguments that are
+ * passed directly to WP_Query, so it's fully compatible with
+ * any WordPress query.
+ * Each of the iterable elements is an instance of a custom
+ * post type specific class that's extending PostObject, and
+ * acts as a decorator for WP_Post so it can use its own custom
+ * methods
+ *
+ * @package GutenPress
+ */
 
 namespace GutenPress\Model;
 
@@ -17,7 +33,7 @@ abstract class PostQuery implements \Iterator, \Countable{
 	private $the_post;
 
 	/**
-	 * Keep a copy of the global post, for those times when wp_reset_postdata doesn't work
+	 * Keep a copy of the global post, in case wp_reset_postdata() doesn't work
 	 * @var \WP_Post
 	 */
 	private $_wp_post;
@@ -35,22 +51,10 @@ abstract class PostQuery implements \Iterator, \Countable{
 	private $query_args;
 
 	/**
-	 * An array of metadata definitions
-	 * @var array
-	 */
-	protected $metadata;
-
-	/**
 	 * The FQN of a decorator for WP_Post
 	 * @var string
 	 */
 	protected $decorator;
-
-	/**
-	 * An array of meta fields that should be interpreted as multiple
-	 * @var array
-	 */
-	private $are_multiple;
 
 	/**
 	 * @param array $query_args An array of arguments passed on to WP_Query
@@ -81,7 +85,6 @@ abstract class PostQuery implements \Iterator, \Countable{
 
 	/**
 	 * Parse query params and execute WP_Query
-	 * @return void
 	 */
 	private function getObjects(){
 		$query_args = wp_parse_args( $this->query_args, array(
@@ -148,7 +151,7 @@ abstract class PostQuery implements \Iterator, \Countable{
 		}
 		global $post;
 		$this->query->the_post();
-		$this->the_post = new $this->decorator( $post, (array)$this->metadata, (array)$this->are_multiple );
+		$this->the_post = new $this->decorator( $post );
 		return $this->the_post;
 	}
 	public function key(){
@@ -160,6 +163,7 @@ abstract class PostQuery implements \Iterator, \Countable{
 	public function rewind(){
 		// check if query was already made
 		if ( !isset( $this->query ) ) {
+			// if no custom query was made, we might want to use WordPress' query
 			global $wp_query;
 			if ( empty($this->query_args) && ( $wp_query->is_archive() || $wp_query->is_singular() ) ) {
 				$this->setQuery( $wp_query );
@@ -177,6 +181,7 @@ abstract class PostQuery implements \Iterator, \Countable{
 		} else {
 			// loop it's ending, so let's cleanup
 			wp_reset_query();
+			// manually reset the post data
 			global $post;
 			$post = $this->_wp_post;
 			return false;
@@ -184,17 +189,7 @@ abstract class PostQuery implements \Iterator, \Countable{
 	}
 
 	private function preLoop(){
-		$metadata = apply_filters( $this->post_type .'_postquery_meta', array(), $this);
-		foreach ( (array)$metadata as $meta ) {
-			$this->registerMetadata( $meta );
-		}
 		global $post;
 		$this->_wp_post = $post;
-	}
-	private function registerMetadata( \GutenPress\Model\Postmeta $meta ){
-		$this->metadata[ $meta->id ] = $meta;
-		foreach ( $meta->data as $data ) {
-			$this->are_multiple[ $meta->id .'_'. $data->name ] = $data->isMultiple() ?: 0;
-		}
 	}
 }
