@@ -1,10 +1,25 @@
 <?php
+/**
+ * PostObject Model
+ *
+ * This basic model can be extended by each of the custom types
+ * as a "Decorator" for WP_Post objects.
+ * Since the WP_Post class it's declared as final, we can't
+ * extend it with new methods directly, so we'll use this class
+ * as an intermediary for it.
+ * Custom post types plugins generated with GutenPress create
+ * a new class for its type, where new methods can be added
+ * as necessary
+ *
+ * @package GutenPress
+ * @since 0.8
+ */
 namespace GutenPress\Model;
 
 class PostObject{
 	/**
 	 * Hold a copy of the original WP_Post object
-	 * @var WP_Post
+	 * @var \WP_Post
 	 */
 	protected $post;
 
@@ -74,7 +89,7 @@ class PostObject{
 
 	/**
 	 * Return the instance of the WP_Post
-	 * @return WP_Post The post object that we're working with
+	 * @return \WP_Post The post object that we're working with
 	 */
 	public function getPost(){
 		return $this->post;
