@@ -1,4 +1,13 @@
 <?php
+/**
+ * PostType Model
+ *
+ * Handles the registration and activation for a Custom Post Type.
+ * A CPT plugin created with GutenPress extends this class and
+ * implements the abstract methods.
+ * Plus, it should call activatePlugin on register_activation_hook
+ * and registerPostType on init
+ */
 
 namespace GutenPress\Model;
 
@@ -21,6 +30,15 @@ abstract class PostType{
 	private function setActions(){
 		add_action( 'init', array($this, 'registerPostType') );
 	}
+
+	/**
+	 * Handle custom post type registration
+	 *
+	 * This method it's executed on the "init" hook and calls
+	 * register_post_type() with the params defined on setPostTypeObject
+	 *
+	 * @throws Exception If the custom post type registration fails
+	 */
 	final public static function registerPostType(){
 		$class = get_called_class();
 		$post_type = new $class;
@@ -29,6 +47,14 @@ abstract class PostType{
 			throw new \Exception( $register->get_error_message() );
 		}
 	}
+
+	/**
+	 * Activation routine for a GutenPress custom post type plugin
+	 *
+	 * This method should be called as register_activation_hook.
+	 * It will add all capabilities for the administrator role and
+	 * flush rewrite rules so permalinks can work correctly
+	 */
 	public static function activatePlugin(){
 		$admin = get_role('administrator');
 		$class = get_called_class();
