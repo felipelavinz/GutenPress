@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Basic assets management for GutenPress
+ *
+ * The main functionality for this class it's to allow on-demand
+ * loading of scripts related to GutenPress form elements using head.js
+ */
 namespace GutenPress\Assets;
 
 class Assets{
