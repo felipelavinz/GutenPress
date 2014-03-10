@@ -3,13 +3,13 @@
 namespace GutenPress\Helpers;
 
 class Arrays{
-	public static function filterRecursive( array $array ){
+	public static function filterRecursive( array $array, $callback = null ){
 		foreach ( $array as &$value ) {
 			if ( is_array($value) ) {
-				$value = self::filterRecursive( $value );
+				$value = self::filterRecursive( $value, $callback );
 			}
 		}
-		return array_filter( $array );
+		return isset($callback) ? array_filter( $array, $callback ) : array_filter( $array );
 	}
 	/**
 	 * Re-index an array by a given key name

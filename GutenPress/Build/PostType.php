@@ -517,16 +517,29 @@ class PostType{
 				throw new Helpers\Exceptions\NonceFail( $_POST['_build_post_type_nonce'], 'gutenpress-build-post_type' );
 			}
 
-			$postdata = Helpers\Arrays::filterRecursive( $_POST['gp-build-post_type'] );
+			// needs a custom filter callback, since fields with "0" value are set but treated as they aren't
+			$postdata = Helpers\Arrays::filterRecursive( $_POST['gp-build-post_type'], function( $var ){
+				if ( $var === '0' )
+					return true;
+				return (bool)$var;
+			} );
 
 			$rules = array(
 				'post_type' => new Validation\Required(),
-				'public' => array( new Validation\Boolean( true ) )
+				'public' => new Validation\Boolean( true )
 			);
 
 			$validate = new Validate\Validate( $postdata, $rules );
 			if ( ! $validate->isValid() ) {
-				echo '<pre>', print_r($validate->getErrorMessages(), true) ,'</pre>';
+				$title = __("Woops, there was an error generating your Custom Post Type", 'gutenpress');
+				$error_msg  = '<h3>'. $title .'</h3>';
+				$error_msg .= '<ul>';
+					foreach ( $validate->getErrorMessages() as $error ) {
+						$error_msg .= '<li>'. $error .'</li>';
+					}
+				$error_msg .= '</ul>';
+				$error_msg .= '<p class="description">Please fix the above errors and try again</p>';
+				wp_die( $error_msg, $title, array('response' => 500, 'back_link' => true) );
 				exit;
 			}
 

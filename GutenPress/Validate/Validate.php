@@ -44,7 +44,9 @@ class Validate{
 		}
 
 		foreach ( $this->rules as $key => $val ) {
-			if ( is_array($val) ) {
+			if ( ! isset($this->data[$key]) ) {
+				$this->errors[ $key ] = __("The $key field it's not set", 'gutenpress');
+			} elseif ( is_array($val) ) {
 				foreach ( $val as $validator ) {
 					$this->validateData( $key, $this->data[$key], $validator );
 				}
