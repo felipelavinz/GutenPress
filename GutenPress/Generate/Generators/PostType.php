@@ -50,7 +50,7 @@ class PostType extends \GutenPress\Generate\Generator{
 			$this->truthy( $this->has_archive ),
 			$this->rewrite,
 			$this->truthy( $this->query_var ),
-			$this->truthy( $this->can_expor ),
+			$this->truthy( $this->can_export ),
 			$this->classname
 		);
 	}
