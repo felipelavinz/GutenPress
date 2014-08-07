@@ -75,7 +75,7 @@
 			width   = Math.floor( _window.width() * 0.5 ),
 			dialog  = $('#gutenpress-dialog-shortcode');
 		dialog.dialog('option', {
-			width  : width > 540 ? width : 540,
+			width  : width > 580 ? width : 580,
 			height : height > 250 ? height: 280
 		}).dialog('option', 'position', { at: 'center' });
 		$('#gutenpress-shortcode-manager').css('height', parseInt( $('#gutenpress-dialog-shortcode').outerHeight(), 10) - 65);
@@ -124,7 +124,7 @@
 				title         : l10n.dialog.title,
 				dialogClass   : 'wp-dialog',
 				resizable     : false,
-				modal         : false,
+				modal         : true,
 				draggable     : true,
 				closeOnEscape : true,
 				open: function(){

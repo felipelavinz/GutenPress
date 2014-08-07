@@ -100,7 +100,7 @@ class ShortcodeFactory{
 	}
 
 	public function enqueueStuff(){
-		if ( get_current_screen()->base !== 'post' )
+		if ( ! in_array( get_current_screen()->base, array('post', 'page') ) )
 			return;
 		wp_enqueue_script('jquery-ui-dialog');
 		wp_enqueue_style('jquery-ui-dialog');

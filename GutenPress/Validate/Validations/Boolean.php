@@ -31,7 +31,7 @@ class Boolean implements \GutenPress\Validate\ValidatorInterface{
 	}
 
 	public function getMessages(){
-		return __('The value for this field should be of a true/false type');
+		return __('The value for this field should be of a true/false type', 'gutenpress');
 	}
 
 }

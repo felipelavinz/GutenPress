@@ -5,6 +5,7 @@ namespace GutenPress\Generate;
 abstract class Generator{
 
 	private $writer;
+	protected $prefix;
 	private $base_path;
 	protected $template;
 	protected $generated;
@@ -13,12 +14,15 @@ abstract class Generator{
 	protected $template_vars;
 
 	public function __construct(){
+		$this->prefix = apply_filters('gutenpress_generate_prefix', 'gp-', get_called_class(), get_object_vars($this) );
+
 		// setup paths
 		$this->base_path = __DIR__;
 		$this->setTargetPath();
 
 		// get a writer object
 		$this->writer = new Writer;
+
 	}
 
 	/**

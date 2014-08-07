@@ -5,7 +5,6 @@ namespace GutenPress\Generate\Generators;
 class PostType extends \GutenPress\Generate\Generator{
 	protected $args;
 	protected $post_type;
-	// protected $defaults = array();
 	public function __construct( $post_type, $args ){
 		$this->args = $args;
 		$this->post_type = sanitize_key( $post_type );
@@ -15,10 +14,8 @@ class PostType extends \GutenPress\Generate\Generator{
 		$this->args_map = new \GutenPress\Helpers\ArrayMap( $this->args );
 		parent::__construct();
 	}
-	// protected function setDefaults(){
-	// }
 	protected function setTargetPath(){
-		$this->target_path = WP_PLUGIN_DIR .'/'. $this->classname;
+		$this->target_path = WP_PLUGIN_DIR .'/'. $this->prefix . strtolower($this->classname);
 	}
 	protected function setTemplateVars(){
 		$this->template_vars = array(
@@ -53,7 +50,7 @@ class PostType extends \GutenPress\Generate\Generator{
 			$this->truthy( $this->has_archive ),
 			$this->rewrite,
 			$this->truthy( $this->query_var ),
-			$this->truthy( $this->can_expor ),
+			$this->truthy( $this->can_export ),
 			$this->classname
 		);
 	}
@@ -143,7 +140,7 @@ class PostType extends \GutenPress\Generate\Generator{
 		return empty( $this->args['menu_position'] ) ? 'null' : (int)$this->args['menu_position'];
 	}
 	protected function prepareCommit(){
-		$file = trailingslashit( $this->target_path ) . $this->classname .'.php';
+		$file = trailingslashit( $this->target_path ) . $this->prefix . strtolower($this->classname) .'.php';
 		$this->parseTemplate( $this->readTemplate(), $this->template_vars, $file );
 	}
 }
