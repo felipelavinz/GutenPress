@@ -10,7 +10,7 @@ class PostType extends \GutenPress\Generate\Generator{
 		$this->args = $args;
 		$this->post_type = sanitize_key( $post_type );
 		if ( strlen($this->post_type) > 20 ) {
-			throw new Exception(  );
+			throw new \Exception( sprintf( _x('The post type slug %s must be 20 characters or less', 'gutenpress exception', 'gutenpress'), $post_type ) );
 		}
 		$this->args_map = new \GutenPress\Helpers\ArrayMap( $this->args );
 		parent::__construct();

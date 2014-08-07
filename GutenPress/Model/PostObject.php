@@ -14,6 +14,7 @@
  * @package GutenPress
  * @since 0.8
  */
+
 namespace GutenPress\Model;
 
 class PostObject{
