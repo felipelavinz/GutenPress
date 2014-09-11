@@ -10,13 +10,13 @@ class Taxonomy extends \GutenPress\Generate\Generator{
 		$this->args = $args;
 		$this->taxonomy = sanitize_key( $taxonomy );
 		if ( strlen($this->taxonomy) > 32 ) {
-			throw new Exception(  );
+			throw new \Exception( sprintf( _x('The taxonomy name %s must be 32 characters or less', 'gutenpress exception', 'gutenpress'), $this->taxonomy ) );
 		}
 		$this->args_map = new \GutenPress\Helpers\ArrayMap( $this->args );
 		parent::__construct();
 	}
 	protected function setTargetPath(){
-		$this->target_path = WP_PLUGIN_DIR .'/'. $this->classname;
+		$this->target_path = WP_PLUGIN_DIR .'/'. $this->prefix . strtolower($this->classname);
 	}
 	protected function setTemplateVars(){
 		$this->template_vars = array(
@@ -104,7 +104,7 @@ class Taxonomy extends \GutenPress\Generate\Generator{
 		return 'array( '. implode(', ', $object_type) .' )';
 	}
 	protected function prepareCommit(){
-		$file = trailingslashit( $this->target_path ) . $this->classname .'.php';
+		$file = trailingslashit( $this->target_path ) . $this->prefix . strtolower($this->classname) .'.php';
 		$this->parseTemplate( $this->readTemplate(), $this->template_vars, $file );
 	}
 }
