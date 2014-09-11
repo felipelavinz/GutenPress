@@ -1,12 +1,10 @@
 ;(function($){
 	$('.gp-ui-datepicker').each(function(){
 		var $this    = $(this),
-			instance = {
-				dateFormat: $this.data('dateFormat')
-			};
+			instanceConfig = $this.data('instanceconfig');
 		var params = $.extend({
 			dateFormat: 'yy-mm-dd'
-		}, instance );
+		}, instanceConfig );
 		$(this).datepicker( params );
 	});
 })(jQuery);

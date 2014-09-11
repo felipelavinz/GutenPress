@@ -130,3 +130,52 @@
 	background: #eee;
 	border: 3px dashed #ddd;
 }
+
+/* Calendar Widget */
+.ui-datepicker{
+	background: #fff;
+	padding: 5px;
+}
+.ui-datepicker-prev:before{
+	content: '< ';
+}
+.ui-datepicker-next{
+	float: right;
+}
+.ui-datepicker-next:after{
+	content: ' >';
+}
+.ui-datepicker-title{
+	clear: both;
+	text-align: center;
+	text-transform: uppercase;
+	color: #999;
+	letter-spacing: 1px;
+}
+.ui-datepicker-calendar th,
+.ui-datepicker-calendar td{
+	text-align: center;
+}
+.ui-datepicker-calendar tbody tr:nth-child(2n+1) td{
+	background: #f5f5f5;
+}
+.ui-datepicker-calendar tbody tr td.ui-datepicker-other-month{
+	background: #fff;
+}
+.ui-datepicker-unselectable{
+	color: #ccc;
+}
+.ui-datepicker-calendar a{
+	display: block;
+	min-width: 20px;
+	padding: 4px;
+	text-decoration: none;
+}
+.ui-datepicker-current-day a{
+	background: #AF0C0B;
+	color: #fff;
+}
+.ui-datepicker-calendar a:hover{
+	color: #fff;
+	background: #0074A2;
+}
