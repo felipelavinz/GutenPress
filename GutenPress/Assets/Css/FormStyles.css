@@ -10,6 +10,12 @@
 .gutenpress-form .form-table td p:last-child{
 	margin-bottom: 0;
 }
+.gutenpress-form td[colspan="2"]{
+	padding: 15px 0;
+}
+.gutenpress-form td h3{
+	margin-bottom: 0;
+}
 .gutenpress-form fieldset .control-group label{
 	display: inline-block;
 	text-align: right;
@@ -72,6 +78,23 @@
 }
 .gp-sortable-content li{
 	line-height: 1.5;
+}
+ul.gp-sortable li{
+	position: relative;
+	padding: 10px 10px 10px 45px;
+}
+ul.gp-sortable .item-controls{
+	position: absolute;
+	left: 15px;
+	top: 7px;
+	font-size: 24px;
+	color: #999;
+	font-weight: bold;
+}
+ul.gp-sortable .ui-sortable-placeholder{
+	border: 3px dashed #ccc;
+	visibility: visible !important;
+	background: transparent;
 }
 @media only screen and (max-width:900px){
 	.gutenpress-form fieldset .control-group{
