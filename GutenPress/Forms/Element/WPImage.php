@@ -4,11 +4,14 @@ namespace GutenPress\Forms\Element;
 
 class WPImage extends \GutenPress\Forms\FormElement{
 	public function __construct( $label = '', $name = '', array $properties = array() ){
+		$properties = wp_parse_args( $properties, array(
+			'test_scripts' => false
+		) );
 		parent::__construct( $label, $name, $properties );
 	}
 	public function __toString(){
 		$out = '';
-		if ( ! did_action('wp_enqueue_media') )
+		if ( isset($this->properties['test_scripts']) && (bool)$this->properties['test_scripts'] === true && ! did_action('wp_enqueue_media') )
 			return '<div class="error inline"><p>'. __('You need to call wp_enqueue_media() on the admin_enqueue_scripts hook', 'gutenpress') .'</p></div>';
 		$class = $this->getAttribute('class');
 		if ( empty($class) )
