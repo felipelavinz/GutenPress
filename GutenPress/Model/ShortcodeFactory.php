@@ -104,6 +104,7 @@ class ShortcodeFactory{
 			return;
 		wp_enqueue_script('jquery-ui-dialog');
 		wp_enqueue_style('jquery-ui-dialog');
+		wp_enqueue_style('wp-jquery-ui-dialog');
 		add_action('admin_head', array($this, 'l10nScript'));
 	}
 
