@@ -118,7 +118,7 @@ class NestedNavMenus{
 	 * @return [type]            [description]
 	 * @todo   Add conditions for URLs (links to archive pages or other objects)
 	 */
-	private static function getAssociatedMenuItems( $something = null ){
+	public static function getAssociatedMenuItems( $something = null ){
 		if ( is_null($something) ) {
 			$something = get_queried_object();
 		}
@@ -130,8 +130,28 @@ class NestedNavMenus{
 			$object_id = $something->term_id;
 			$object_type = 'taxonomy';
 			$taxonomy = $something->taxonomy;
+		} elseif ( isset($something->name, $something->labels, $something->capability_type) ) {
+			$url = get_post_type_archive_link( $something->name );
+			return static::getLinkAssociatedMenuItems( $url );
 		}
 		return wp_get_associated_nav_menu_items( $object_id, $object_type, $taxonomy );
+	}
+	private static function getLinkAssociatedMenuItems( $url ){
+		$associated_items = new \WP_Query(array(
+			'post_type' => 'nav_menu_item',
+			'meta_query' => array(
+				array(
+					'key' => '_menu_item_type',
+					'value' => 'custom'
+				),
+				array(
+					'key' => '_menu_item_url',
+					'value' => trim( $url )
+				)
+			),
+			'fields' => 'ids'
+		));
+		return $associated_items->posts;
 	}
 	public static function allowNestedMenus(){
 		$nav_menu_tax = get_taxonomy('nav_menu');
