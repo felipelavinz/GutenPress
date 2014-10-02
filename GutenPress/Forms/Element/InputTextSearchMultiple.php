@@ -36,7 +36,7 @@ class InputTextSearchMultiple extends Input implements \GutenPress\Forms\Multipl
 		$fieldidentifier = substr($fieldidentifier[1], 0 , strlen($fieldidentifier[1])-1);
 		$out = '';
 		$values = (array)$this->getValue();
-		$out .= '<p class="input-text-search-multiple '.$fieldidentifier.'"><input field="'.$fieldidentifier.'" '. $this->renderOptions() .' class="searchmultiplefield regular-text" type="text"></p>';
+		$out .= '<p class="input-text-search-multiple '.$fieldidentifier.'"><input field="'.$fieldidentifier.'" '. $this->renderOptions() .' class="searchmultiplefield widefat" type="text"></p>';
 		$out .= '<div class="tagchecklist box-text-search-multiple '.$fieldidentifier.'">';
 		if(empty($values)){
 			$out .= '<input '. $this->renderAttributes() .'>';
