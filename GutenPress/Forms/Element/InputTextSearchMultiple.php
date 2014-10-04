@@ -10,6 +10,7 @@ class InputTextSearchMultiple extends Input implements \GutenPress\Forms\Multipl
 	public function setName( $name ){
 		// use name as an array
 		parent::setName( $name .'[]' );
+
 	}
 	public function setProperties( array $properties ){
 		$properties['type']  = self::$type;
@@ -32,8 +33,7 @@ class InputTextSearchMultiple extends Input implements \GutenPress\Forms\Multipl
 		return $out;
 	}
 	public function __toString(){
-		$fieldidentifier = explode('[', $this->name);
-		$fieldidentifier = substr($fieldidentifier[1], 0 , strlen($fieldidentifier[1])-1);
+		$fieldidentifier = $this->id;
 		$out = '';
 		$values = (array)$this->getValue();
 		$out .= '<p class="input-text-search-multiple '.$fieldidentifier.'"><input field="'.$fieldidentifier.'" '. $this->renderOptions() .' class="searchmultiplefield widefat" type="text"></p>';

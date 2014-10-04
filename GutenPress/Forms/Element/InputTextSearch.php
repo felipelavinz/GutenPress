@@ -28,8 +28,7 @@ class InputTextSearch extends Input{
 		return $out;
 	}
 	public function __toString(){
-		$fieldidentifier = explode('[', $this->name);
-		$fieldidentifier = substr($fieldidentifier[1], 0 , strlen($fieldidentifier[1])-1);
+		$fieldidentifier = $this->id;
 		$out = '';
 		$out .= '<p class="input-text-search '.$fieldidentifier.'"><input field="'.$fieldidentifier.'" '. $this->renderOptions() .' class="searchfield widefat" type="text"></p>';
 		$out .= '<div class="tagchecklist box-text-search '.$fieldidentifier.'">';
