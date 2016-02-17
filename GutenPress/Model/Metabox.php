@@ -264,8 +264,10 @@ class Metabox{
 			$element = new $meta->element;
 			if ( $element instanceof \GutenPress\Forms\MultipleFormElementInterface ) {
 				delete_post_meta( $post_id, $this->id .'_'. $meta->name );
-				foreach ( $data[ $meta->name ] as $value ) {
-					add_post_meta( $post_id, $this->id .'_'. $meta->name, $value );
+				if ( is_array( $data[ $meta->name ] ) ) {
+					foreach ( $data[ $meta->name ] as $value ) {
+						add_post_meta( $post_id, $this->id .'_'. $meta->name, $value );
+					}
 				}
 			} elseif ( $element instanceof \GutenPress\Forms\Element\Fieldset ) {
 				foreach ( $meta->properties['elements'] as $element ) {
